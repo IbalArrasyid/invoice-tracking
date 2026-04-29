@@ -1,0 +1,501 @@
+tgl_kirim,nama_customer,nama_driver,area_pengantaran,jadwal_terima,cut_off_jam,status_prioritas
+2024-02-28,PT HM Sampoerna,Budi Santoso,Bogor,Selasa-Kamis,10:00,Prioritas
+2024-04-25,PT Indofood CBP,Agus Pratama,Jakarta Barat,Setiap Hari,15:00,Normal
+2024-10-07,PT HM Sampoerna,Budi Santoso,Bogor,Selasa-Kamis,10:00,Prioritas
+2024-01-17,PT Suzuki Indomobil,Budi Santoso,Jakarta Selatan,Senin-Kamis,10:00,Prioritas
+2024-11-05,PT Kimia Farma,Budi Santoso,Depok,Setiap Hari,16:00,Normal
+2024-11-29,PT Pertamina Retail,Eko Setiawan,Jakarta Pusat,Setiap Hari,14:30,Normal
+2024-10-29,PT Sido Muncul,Dedi Kurniawan,Bekasi,Rabu-Jumat,12:00,Prioritas
+2024-03-25,PT Suzuki Indomobil,Rudi Hartono,Jakarta Selatan,Senin-Kamis,10:00,Prioritas
+2024-04-22,PT Unilever Indonesia,Dedi Kurniawan,Tangerang,Selasa-Jumat,11:00,Prioritas
+2024-02-20,PT Kalbe Farma,Dedi Kurniawan,Jakarta Timur,Senin-Jumat,11:30,Prioritas
+2024-05-16,PT Gudang Garam,Budi Santoso,Bogor,Senin-Kamis,09:30,Prioritas
+2024-03-05,PT Kimia Farma,Rudi Hartono,Depok,Setiap Hari,16:00,Prioritas
+2024-11-18,PT Mayora Indah,Eko Setiawan,Tangerang Selatan,Senin-Rabu,10:30,Prioritas
+2024-10-23,PT Wings Group,Agus Pratama,Bekasi,Setiap Hari,13:00,Normal
+2024-12-05,PT Suzuki Indomobil,Agus Pratama,Jakarta Selatan,Senin-Kamis,10:00,Prioritas
+2024-04-30,PT Astra International,Budi Santoso,Jakarta Pusat,Setiap Hari,14:00,Normal
+2024-11-22,PT Sido Muncul,Dedi Kurniawan,Bekasi,Rabu-Jumat,12:00,Prioritas
+2024-04-18,PT Wings Group,Dedi Kurniawan,Bekasi,Setiap Hari,13:00,Normal
+2024-11-28,PT HM Sampoerna,Budi Santoso,Bogor,Selasa-Kamis,10:00,Prioritas
+2024-10-01,PT Unilever Indonesia,Agus Pratama,Tangerang,Selasa-Jumat,11:00,Prioritas
+2024-05-20,PT Kalbe Farma,Eko Setiawan,Jakarta Timur,Senin-Jumat,11:30,Normal
+2024-01-30,PT Wings Group,Agus Pratama,Bekasi,Setiap Hari,13:00,Normal
+2024-06-11,PT Semen Indonesia,Rudi Hartono,Tangerang,Senin-Jumat,13:30,Normal
+2024-10-18,PT Indofood CBP,Dedi Kurniawan,Jakarta Barat,Setiap Hari,15:00,Normal
+2024-07-22,PT Sido Muncul,Rudi Hartono,Bekasi,Rabu-Jumat,12:00,Prioritas
+2024-05-07,PT Unilever Indonesia,Eko Setiawan,Tangerang,Selasa-Jumat,11:00,Prioritas
+2024-10-28,PT Pertamina Retail,Rudi Hartono,Jakarta Pusat,Setiap Hari,14:30,Normal
+2024-07-05,PT Kalbe Farma,Agus Pratama,Jakarta Timur,Senin-Jumat,11:30,Prioritas
+2024-09-18,PT Unilever Indonesia,Rudi Hartono,Tangerang,Selasa-Jumat,11:00,Prioritas
+2024-02-27,PT Suzuki Indomobil,Agus Pratama,Jakarta Selatan,Senin-Kamis,10:00,Prioritas
+2024-12-16,PT Semen Indonesia,Rudi Hartono,Tangerang,Senin-Jumat,13:30,Prioritas
+2024-07-15,PT Kalbe Farma,Eko Setiawan,Jakarta Timur,Senin-Jumat,11:30,Prioritas
+2024-05-09,PT Kimia Farma,Eko Setiawan,Depok,Setiap Hari,16:00,Normal
+2024-12-16,PT Suzuki Indomobil,Budi Santoso,Jakarta Selatan,Senin-Kamis,10:00,Prioritas
+2024-05-17,PT Kimia Farma,Dedi Kurniawan,Depok,Setiap Hari,16:00,Prioritas
+2024-03-22,PT Kalbe Farma,Rudi Hartono,Jakarta Timur,Senin-Jumat,11:30,Normal
+2024-05-15,PT Pertamina Retail,Eko Setiawan,Jakarta Pusat,Setiap Hari,14:30,Normal
+2024-02-26,PT Kimia Farma,Dedi Kurniawan,Depok,Setiap Hari,16:00,Normal
+2024-11-08,PT Kimia Farma,Agus Pratama,Depok,Setiap Hari,16:00,Prioritas
+2024-03-25,PT Semen Indonesia,Eko Setiawan,Tangerang,Senin-Jumat,13:30,Prioritas
+2024-09-30,PT Matahari Dept Store,Budi Santoso,Jakarta Selatan,Setiap Hari,15:30,Normal
+2024-01-11,PT Sido Muncul,Budi Santoso,Bekasi,Rabu-Jumat,12:00,Prioritas
+2024-06-07,PT Matahari Dept Store,Agus Pratama,Jakarta Selatan,Setiap Hari,15:30,Normal
+2024-10-18,PT Matahari Dept Store,Budi Santoso,Jakarta Selatan,Setiap Hari,15:30,Normal
+2024-02-06,PT Sido Muncul,Eko Setiawan,Bekasi,Rabu-Jumat,12:00,Prioritas
+2024-12-04,PT Unilever Indonesia,Rudi Hartono,Tangerang,Selasa-Jumat,11:00,Prioritas
+2024-05-16,PT Unilever Indonesia,Eko Setiawan,Tangerang,Selasa-Jumat,11:00,Prioritas
+2024-04-19,PT Kalbe Farma,Eko Setiawan,Jakarta Timur,Senin-Jumat,11:30,Prioritas
+2024-04-15,PT Pertamina Retail,Dedi Kurniawan,Jakarta Pusat,Setiap Hari,14:30,Normal
+2024-11-29,PT HM Sampoerna,Dedi Kurniawan,Bogor,Selasa-Kamis,10:00,Prioritas
+2024-08-20,PT Kimia Farma,Budi Santoso,Depok,Setiap Hari,16:00,Normal
+2024-06-24,PT Astra International,Budi Santoso,Jakarta Pusat,Setiap Hari,14:00,Normal
+2024-10-29,PT Indofood CBP,Agus Pratama,Jakarta Barat,Setiap Hari,15:00,Normal
+2024-11-20,PT Pertamina Retail,Budi Santoso,Jakarta Pusat,Setiap Hari,14:30,Normal
+2024-01-18,PT Matahari Dept Store,Dedi Kurniawan,Jakarta Selatan,Setiap Hari,15:30,Normal
+2024-05-23,PT Indofood CBP,Rudi Hartono,Jakarta Barat,Setiap Hari,15:00,Normal
+2024-10-21,PT Unilever Indonesia,Eko Setiawan,Tangerang,Selasa-Jumat,11:00,Prioritas
+2024-09-02,PT Semen Indonesia,Rudi Hartono,Tangerang,Senin-Jumat,13:30,Normal
+2024-12-04,PT Astra International,Rudi Hartono,Jakarta Pusat,Setiap Hari,14:00,Normal
+2024-08-28,PT Kalbe Farma,Budi Santoso,Jakarta Timur,Senin-Jumat,11:30,Prioritas
+2024-02-21,PT HM Sampoerna,Budi Santoso,Bogor,Selasa-Kamis,10:00,Prioritas
+2024-02-26,PT Wings Group,Agus Pratama,Bekasi,Setiap Hari,13:00,Prioritas
+2024-08-19,PT Kimia Farma,Agus Pratama,Depok,Setiap Hari,16:00,Normal
+2024-08-26,PT Mayora Indah,Agus Pratama,Tangerang Selatan,Senin-Rabu,10:30,Prioritas
+2024-08-15,PT Astra International,Eko Setiawan,Jakarta Pusat,Setiap Hari,14:00,Normal
+2024-10-04,PT HM Sampoerna,Budi Santoso,Bogor,Selasa-Kamis,10:00,Prioritas
+2024-05-02,PT Matahari Dept Store,Agus Pratama,Jakarta Selatan,Setiap Hari,15:30,Normal
+2024-04-22,PT Sido Muncul,Rudi Hartono,Bekasi,Rabu-Jumat,12:00,Prioritas
+2024-07-15,PT Unilever Indonesia,Budi Santoso,Tangerang,Selasa-Jumat,11:00,Prioritas
+2024-08-21,PT Mayora Indah,Dedi Kurniawan,Tangerang Selatan,Senin-Rabu,10:30,Prioritas
+2024-10-14,PT Pertamina Retail,Rudi Hartono,Jakarta Pusat,Setiap Hari,14:30,Normal
+2024-04-22,PT Mayora Indah,Budi Santoso,Tangerang Selatan,Senin-Rabu,10:30,Prioritas
+2024-02-02,PT Kimia Farma,Dedi Kurniawan,Depok,Setiap Hari,16:00,Prioritas
+2024-09-02,PT Gudang Garam,Eko Setiawan,Bogor,Senin-Kamis,09:30,Prioritas
+2024-03-22,PT Kimia Farma,Budi Santoso,Depok,Setiap Hari,16:00,Normal
+2024-04-08,PT Astra International,Budi Santoso,Jakarta Pusat,Setiap Hari,14:00,Normal
+2024-05-01,PT HM Sampoerna,Rudi Hartono,Bogor,Selasa-Kamis,10:00,Prioritas
+2024-10-21,PT Matahari Dept Store,Agus Pratama,Jakarta Selatan,Setiap Hari,15:30,Normal
+2024-11-14,PT Suzuki Indomobil,Budi Santoso,Jakarta Selatan,Senin-Kamis,10:00,Prioritas
+2024-10-17,PT Gudang Garam,Eko Setiawan,Bogor,Senin-Kamis,09:30,Prioritas
+2024-04-15,PT Mayora Indah,Dedi Kurniawan,Tangerang Selatan,Senin-Rabu,10:30,Prioritas
+2024-03-11,PT Kalbe Farma,Dedi Kurniawan,Jakarta Timur,Senin-Jumat,11:30,Normal
+2024-02-08,PT Matahari Dept Store,Budi Santoso,Jakarta Selatan,Setiap Hari,15:30,Normal
+2024-02-22,PT Gudang Garam,Budi Santoso,Bogor,Senin-Kamis,09:30,Prioritas
+2024-05-16,PT Kimia Farma,Agus Pratama,Depok,Setiap Hari,16:00,Normal
+2024-02-06,PT Matahari Dept Store,Agus Pratama,Jakarta Selatan,Setiap Hari,15:30,Normal
+2024-08-13,PT Unilever Indonesia,Eko Setiawan,Tangerang,Selasa-Jumat,11:00,Prioritas
+2024-12-02,PT Gudang Garam,Eko Setiawan,Bogor,Senin-Kamis,09:30,Prioritas
+2024-10-11,PT Holcim Indonesia,Dedi Kurniawan,Bekasi,Selasa-Jumat,11:00,Prioritas
+2024-03-11,PT Astra International,Dedi Kurniawan,Jakarta Pusat,Setiap Hari,14:00,Normal
+2024-10-11,PT Astra International,Agus Pratama,Jakarta Pusat,Setiap Hari,14:00,Normal
+2024-04-18,PT Gudang Garam,Dedi Kurniawan,Bogor,Senin-Kamis,09:30,Prioritas
+2024-05-16,PT HM Sampoerna,Eko Setiawan,Bogor,Selasa-Kamis,10:00,Prioritas
+2024-01-29,PT Matahari Dept Store,Budi Santoso,Jakarta Selatan,Setiap Hari,15:30,Normal
+2024-05-22,PT Holcim Indonesia,Budi Santoso,Bekasi,Selasa-Jumat,11:00,Prioritas
+2024-03-08,PT Semen Indonesia,Dedi Kurniawan,Tangerang,Senin-Jumat,13:30,Normal
+2024-10-10,PT Sido Muncul,Rudi Hartono,Bekasi,Rabu-Jumat,12:00,Prioritas
+2024-02-09,PT Astra International,Agus Pratama,Jakarta Pusat,Setiap Hari,14:00,Normal
+2024-07-09,PT Holcim Indonesia,Eko Setiawan,Bekasi,Selasa-Jumat,11:00,Prioritas
+2024-03-07,PT Kalbe Farma,Budi Santoso,Jakarta Timur,Senin-Jumat,11:30,Normal
+2024-01-22,PT Matahari Dept Store,Dedi Kurniawan,Jakarta Selatan,Setiap Hari,15:30,Normal
+2024-12-09,PT Indofood CBP,Budi Santoso,Jakarta Barat,Setiap Hari,15:00,Normal
+2024-07-29,PT Kimia Farma,Eko Setiawan,Depok,Setiap Hari,16:00,Normal
+2024-05-02,PT Matahari Dept Store,Agus Pratama,Jakarta Selatan,Setiap Hari,15:30,Normal
+2024-04-01,PT Semen Indonesia,Rudi Hartono,Tangerang,Senin-Jumat,13:30,Normal
+2024-06-20,PT Pertamina Retail,Rudi Hartono,Jakarta Pusat,Setiap Hari,14:30,Normal
+2024-05-08,PT Holcim Indonesia,Dedi Kurniawan,Bekasi,Selasa-Jumat,11:00,Prioritas
+2024-02-26,PT Pertamina Retail,Rudi Hartono,Jakarta Pusat,Setiap Hari,14:30,Normal
+2024-08-29,PT Holcim Indonesia,Agus Pratama,Bekasi,Selasa-Jumat,11:00,Prioritas
+2024-08-26,PT Matahari Dept Store,Dedi Kurniawan,Jakarta Selatan,Setiap Hari,15:30,Normal
+2024-04-29,PT Semen Indonesia,Agus Pratama,Tangerang,Senin-Jumat,13:30,Normal
+2024-07-24,PT Indofood CBP,Dedi Kurniawan,Jakarta Barat,Setiap Hari,15:00,Normal
+2024-05-23,PT Astra International,Dedi Kurniawan,Jakarta Pusat,Setiap Hari,14:00,Normal
+2024-12-16,PT Kalbe Farma,Eko Setiawan,Jakarta Timur,Senin-Jumat,11:30,Normal
+2024-03-01,PT Suzuki Indomobil,Dedi Kurniawan,Jakarta Selatan,Senin-Kamis,10:00,Prioritas
+2024-01-22,PT Mayora Indah,Budi Santoso,Tangerang Selatan,Senin-Rabu,10:30,Prioritas
+2024-06-10,PT Wings Group,Rudi Hartono,Bekasi,Setiap Hari,13:00,Normal
+2024-03-01,PT Kimia Farma,Rudi Hartono,Depok,Setiap Hari,16:00,Normal
+2024-05-13,PT Indofood CBP,Budi Santoso,Jakarta Barat,Setiap Hari,15:00,Normal
+2024-09-24,PT Suzuki Indomobil,Eko Setiawan,Jakarta Selatan,Senin-Kamis,10:00,Prioritas
+2024-12-10,PT Pertamina Retail,Agus Pratama,Jakarta Pusat,Setiap Hari,14:30,Normal
+2024-12-09,PT Astra International,Dedi Kurniawan,Jakarta Pusat,Setiap Hari,14:00,Normal
+2024-03-05,PT HM Sampoerna,Dedi Kurniawan,Bogor,Selasa-Kamis,10:00,Prioritas
+2024-07-29,PT HM Sampoerna,Dedi Kurniawan,Bogor,Selasa-Kamis,10:00,Prioritas
+2024-10-11,PT Mayora Indah,Agus Pratama,Tangerang Selatan,Senin-Rabu,10:30,Prioritas
+2024-07-15,PT HM Sampoerna,Agus Pratama,Bogor,Selasa-Kamis,10:00,Prioritas
+2024-07-29,PT Mayora Indah,Eko Setiawan,Tangerang Selatan,Senin-Rabu,10:30,Prioritas
+2024-05-27,PT Mayora Indah,Agus Pratama,Tangerang Selatan,Senin-Rabu,10:30,Prioritas
+2024-11-07,PT Gudang Garam,Dedi Kurniawan,Bogor,Senin-Kamis,09:30,Prioritas
+2024-12-12,PT Sido Muncul,Agus Pratama,Bekasi,Rabu-Jumat,12:00,Prioritas
+2024-03-28,PT Semen Indonesia,Budi Santoso,Tangerang,Senin-Jumat,13:30,Normal
+2024-11-21,PT HM Sampoerna,Eko Setiawan,Bogor,Selasa-Kamis,10:00,Prioritas
+2024-05-01,PT Holcim Indonesia,Dedi Kurniawan,Bekasi,Selasa-Jumat,11:00,Prioritas
+2024-03-18,PT Indofood CBP,Budi Santoso,Jakarta Barat,Setiap Hari,15:00,Normal
+2024-11-11,PT Sido Muncul,Budi Santoso,Bekasi,Rabu-Jumat,12:00,Prioritas
+2024-11-19,PT Matahari Dept Store,Eko Setiawan,Jakarta Selatan,Setiap Hari,15:30,Normal
+2024-07-16,PT Pertamina Retail,Rudi Hartono,Jakarta Pusat,Setiap Hari,14:30,Normal
+2024-12-02,PT Unilever Indonesia,Budi Santoso,Tangerang,Selasa-Jumat,11:00,Prioritas
+2024-02-26,PT Holcim Indonesia,Rudi Hartono,Bekasi,Selasa-Jumat,11:00,Prioritas
+2024-12-23,PT Semen Indonesia,Eko Setiawan,Tangerang,Senin-Jumat,13:30,Normal
+2024-05-08,PT Kimia Farma,Budi Santoso,Depok,Setiap Hari,16:00,Normal
+2024-08-26,PT Semen Indonesia,Eko Setiawan,Tangerang,Senin-Jumat,13:30,Prioritas
+2024-06-12,PT Gudang Garam,Rudi Hartono,Bogor,Senin-Kamis,09:30,Prioritas
+2024-09-16,PT Pertamina Retail,Rudi Hartono,Jakarta Pusat,Setiap Hari,14:30,Normal
+2024-08-19,PT Kimia Farma,Agus Pratama,Depok,Setiap Hari,16:00,Normal
+2024-08-19,PT Sido Muncul,Dedi Kurniawan,Bekasi,Rabu-Jumat,12:00,Prioritas
+2024-11-25,PT Holcim Indonesia,Dedi Kurniawan,Bekasi,Selasa-Jumat,11:00,Prioritas
+2024-09-06,PT Kimia Farma,Agus Pratama,Depok,Setiap Hari,16:00,Normal
+2024-05-27,PT Astra International,Agus Pratama,Jakarta Pusat,Setiap Hari,14:00,Normal
+2024-10-04,PT Wings Group,Budi Santoso,Bekasi,Setiap Hari,13:00,Prioritas
+2024-07-16,PT Indofood CBP,Agus Pratama,Jakarta Barat,Setiap Hari,15:00,Normal
+2024-08-01,PT Astra International,Rudi Hartono,Jakarta Pusat,Setiap Hari,14:00,Normal
+2024-08-01,PT Sido Muncul,Budi Santoso,Bekasi,Rabu-Jumat,12:00,Prioritas
+2024-07-19,PT Kalbe Farma,Eko Setiawan,Jakarta Timur,Senin-Jumat,11:30,Prioritas
+2024-10-22,PT Suzuki Indomobil,Rudi Hartono,Jakarta Selatan,Senin-Kamis,10:00,Prioritas
+2024-06-03,PT Wings Group,Rudi Hartono,Bekasi,Setiap Hari,13:00,Normal
+2024-08-05,PT Holcim Indonesia,Eko Setiawan,Bekasi,Selasa-Jumat,11:00,Prioritas
+2024-11-05,PT Kimia Farma,Agus Pratama,Depok,Setiap Hari,16:00,Normal
+2024-08-12,PT Mayora Indah,Rudi Hartono,Tangerang Selatan,Senin-Rabu,10:30,Prioritas
+2024-12-09,PT Wings Group,Rudi Hartono,Bekasi,Setiap Hari,13:00,Normal
+2024-08-28,PT Holcim Indonesia,Agus Pratama,Bekasi,Selasa-Jumat,11:00,Prioritas
+2024-01-15,PT Kimia Farma,Rudi Hartono,Depok,Setiap Hari,16:00,Normal
+2024-01-15,PT HM Sampoerna,Budi Santoso,Bogor,Selasa-Kamis,10:00,Prioritas
+2024-08-26,PT Unilever Indonesia,Agus Pratama,Tangerang,Selasa-Jumat,11:00,Prioritas
+2024-06-17,PT Kalbe Farma,Agus Pratama,Jakarta Timur,Senin-Jumat,11:30,Normal
+2024-07-15,PT Wings Group,Dedi Kurniawan,Bekasi,Setiap Hari,13:00,Normal
+2024-08-05,PT Holcim Indonesia,Dedi Kurniawan,Bekasi,Selasa-Jumat,11:00,Prioritas
+2024-01-11,PT Sido Muncul,Eko Setiawan,Bekasi,Rabu-Jumat,12:00,Prioritas
+2024-04-25,PT Wings Group,Budi Santoso,Bekasi,Setiap Hari,13:00,Normal
+2024-01-22,PT HM Sampoerna,Budi Santoso,Bogor,Selasa-Kamis,10:00,Prioritas
+2024-01-12,PT Indofood CBP,Eko Setiawan,Jakarta Barat,Setiap Hari,15:00,Normal
+2024-09-02,PT Unilever Indonesia,Budi Santoso,Tangerang,Selasa-Jumat,11:00,Prioritas
+2024-08-27,PT Indofood CBP,Dedi Kurniawan,Jakarta Barat,Setiap Hari,15:00,Normal
+2024-11-07,PT Unilever Indonesia,Eko Setiawan,Tangerang,Selasa-Jumat,11:00,Prioritas
+2024-02-29,PT Pertamina Retail,Agus Pratama,Jakarta Pusat,Setiap Hari,14:30,Normal
+2024-10-24,PT Astra International,Budi Santoso,Jakarta Pusat,Setiap Hari,14:00,Normal
+2024-12-13,PT Gudang Garam,Rudi Hartono,Bogor,Senin-Kamis,09:30,Prioritas
+2024-04-12,PT Pertamina Retail,Budi Santoso,Jakarta Pusat,Setiap Hari,14:30,Normal
+2024-11-18,PT Holcim Indonesia,Agus Pratama,Bekasi,Selasa-Jumat,11:00,Prioritas
+2024-06-04,PT Semen Indonesia,Eko Setiawan,Tangerang,Senin-Jumat,13:30,Prioritas
+2024-10-17,PT Semen Indonesia,Budi Santoso,Tangerang,Senin-Jumat,13:30,Normal
+2024-12-05,PT Kalbe Farma,Dedi Kurniawan,Jakarta Timur,Senin-Jumat,11:30,Normal
+2024-06-24,PT HM Sampoerna,Budi Santoso,Bogor,Selasa-Kamis,10:00,Prioritas
+2024-09-09,PT Holcim Indonesia,Budi Santoso,Bekasi,Selasa-Jumat,11:00,Prioritas
+2024-11-22,PT Wings Group,Rudi Hartono,Bekasi,Setiap Hari,13:00,Normal
+2024-04-01,PT Kalbe Farma,Eko Setiawan,Jakarta Timur,Senin-Jumat,11:30,Prioritas
+2024-11-12,PT Mayora Indah,Eko Setiawan,Tangerang Selatan,Senin-Rabu,10:30,Prioritas
+2024-08-12,PT Sido Muncul,Eko Setiawan,Bekasi,Rabu-Jumat,12:00,Prioritas
+2024-05-06,PT Holcim Indonesia,Budi Santoso,Bekasi,Selasa-Jumat,11:00,Prioritas
+2024-05-06,PT Sido Muncul,Rudi Hartono,Bekasi,Rabu-Jumat,12:00,Prioritas
+2024-07-15,PT HM Sampoerna,Dedi Kurniawan,Bogor,Selasa-Kamis,10:00,Prioritas
+2024-06-17,PT Holcim Indonesia,Agus Pratama,Bekasi,Selasa-Jumat,11:00,Prioritas
+2024-05-13,PT Wings Group,Dedi Kurniawan,Bekasi,Setiap Hari,13:00,Normal
+2024-12-26,PT Gudang Garam,Dedi Kurniawan,Bogor,Senin-Kamis,09:30,Prioritas
+2024-04-08,PT Kimia Farma,Budi Santoso,Depok,Setiap Hari,16:00,Normal
+2024-09-09,PT Kalbe Farma,Eko Setiawan,Jakarta Timur,Senin-Jumat,11:30,Prioritas
+2024-09-02,PT Pertamina Retail,Rudi Hartono,Jakarta Pusat,Setiap Hari,14:30,Normal
+2024-02-19,PT Suzuki Indomobil,Dedi Kurniawan,Jakarta Selatan,Senin-Kamis,10:00,Prioritas
+2024-05-06,PT Pertamina Retail,Dedi Kurniawan,Jakarta Pusat,Setiap Hari,14:30,Normal
+2024-09-02,PT Wings Group,Eko Setiawan,Bekasi,Setiap Hari,13:00,Normal
+2024-10-09,PT Kalbe Farma,Dedi Kurniawan,Jakarta Timur,Senin-Jumat,11:30,Normal
+2024-05-20,PT Sido Muncul,Dedi Kurniawan,Bekasi,Rabu-Jumat,12:00,Prioritas
+2024-04-09,PT Astra International,Dedi Kurniawan,Jakarta Pusat,Setiap Hari,14:00,Normal
+2024-12-20,PT Kimia Farma,Agus Pratama,Depok,Setiap Hari,16:00,Prioritas
+2024-09-05,PT Pertamina Retail,Dedi Kurniawan,Jakarta Pusat,Setiap Hari,14:30,Normal
+2024-09-26,PT Semen Indonesia,Eko Setiawan,Tangerang,Senin-Jumat,13:30,Normal
+2024-04-10,PT Astra International,Dedi Kurniawan,Jakarta Pusat,Setiap Hari,14:00,Normal
+2024-06-04,PT Unilever Indonesia,Budi Santoso,Tangerang,Selasa-Jumat,11:00,Prioritas
+2024-05-21,PT Unilever Indonesia,Budi Santoso,Tangerang,Selasa-Jumat,11:00,Prioritas
+2024-05-30,PT Kimia Farma,Agus Pratama,Depok,Setiap Hari,16:00,Normal
+2024-09-09,PT Semen Indonesia,Budi Santoso,Tangerang,Senin-Jumat,13:30,Prioritas
+2024-05-27,PT Gudang Garam,Rudi Hartono,Bogor,Senin-Kamis,09:30,Prioritas
+2024-04-05,PT Wings Group,Budi Santoso,Bekasi,Setiap Hari,13:00,Normal
+2024-09-02,PT Holcim Indonesia,Budi Santoso,Bekasi,Selasa-Jumat,11:00,Prioritas
+2024-09-09,PT Kalbe Farma,Budi Santoso,Jakarta Timur,Senin-Jumat,11:30,Prioritas
+2024-01-29,PT HM Sampoerna,Agus Pratama,Bogor,Selasa-Kamis,10:00,Prioritas
+2024-06-05,PT Gudang Garam,Budi Santoso,Bogor,Senin-Kamis,09:30,Prioritas
+2024-10-14,PT Astra International,Rudi Hartono,Jakarta Pusat,Setiap Hari,14:00,Normal
+2024-11-13,PT Semen Indonesia,Agus Pratama,Tangerang,Senin-Jumat,13:30,Prioritas
+2024-08-19,PT Kalbe Farma,Rudi Hartono,Jakarta Timur,Senin-Jumat,11:30,Normal
+2024-08-08,PT Gudang Garam,Dedi Kurniawan,Bogor,Senin-Kamis,09:30,Prioritas
+2024-11-11,PT Suzuki Indomobil,Budi Santoso,Jakarta Selatan,Senin-Kamis,10:00,Prioritas
+2024-11-18,PT Indofood CBP,Agus Pratama,Jakarta Barat,Setiap Hari,15:00,Normal
+2024-03-22,PT Astra International,Agus Pratama,Jakarta Pusat,Setiap Hari,14:00,Normal
+2024-03-22,PT Astra International,Budi Santoso,Jakarta Pusat,Setiap Hari,14:00,Normal
+2024-11-01,PT Pertamina Retail,Rudi Hartono,Jakarta Pusat,Setiap Hari,14:30,Normal
+2024-05-28,PT Indofood CBP,Dedi Kurniawan,Jakarta Barat,Setiap Hari,15:00,Normal
+2024-02-07,PT Sido Muncul,Agus Pratama,Bekasi,Rabu-Jumat,12:00,Prioritas
+2024-11-18,PT Semen Indonesia,Eko Setiawan,Tangerang,Senin-Jumat,13:30,Prioritas
+2024-04-12,PT Matahari Dept Store,Rudi Hartono,Jakarta Selatan,Setiap Hari,15:30,Normal
+2024-11-28,PT Indofood CBP,Agus Pratama,Jakarta Barat,Setiap Hari,15:00,Normal
+2024-03-14,PT Holcim Indonesia,Budi Santoso,Bekasi,Selasa-Jumat,11:00,Prioritas
+2024-06-07,PT Semen Indonesia,Eko Setiawan,Tangerang,Senin-Jumat,13:30,Prioritas
+2024-05-28,PT Gudang Garam,Rudi Hartono,Bogor,Senin-Kamis,09:30,Prioritas
+2024-06-05,PT Pertamina Retail,Rudi Hartono,Jakarta Pusat,Setiap Hari,14:30,Normal
+2024-10-04,PT Kimia Farma,Rudi Hartono,Depok,Setiap Hari,16:00,Normal
+2024-01-22,PT Gudang Garam,Rudi Hartono,Bogor,Senin-Kamis,09:30,Prioritas
+2024-05-09,PT Gudang Garam,Budi Santoso,Bogor,Senin-Kamis,09:30,Prioritas
+2024-10-22,PT HM Sampoerna,Eko Setiawan,Bogor,Selasa-Kamis,10:00,Prioritas
+2024-12-11,PT Semen Indonesia,Dedi Kurniawan,Tangerang,Senin-Jumat,13:30,Prioritas
+2024-04-01,PT Semen Indonesia,Rudi Hartono,Tangerang,Senin-Jumat,13:30,Normal
+2024-05-23,PT Sido Muncul,Agus Pratama,Bekasi,Rabu-Jumat,12:00,Prioritas
+2024-11-22,PT Kalbe Farma,Rudi Hartono,Jakarta Timur,Senin-Jumat,11:30,Prioritas
+2024-06-28,PT Sido Muncul,Rudi Hartono,Bekasi,Rabu-Jumat,12:00,Prioritas
+2024-02-26,PT HM Sampoerna,Agus Pratama,Bogor,Selasa-Kamis,10:00,Prioritas
+2024-09-11,PT Pertamina Retail,Dedi Kurniawan,Jakarta Pusat,Setiap Hari,14:30,Normal
+2024-10-09,PT Kalbe Farma,Budi Santoso,Jakarta Timur,Senin-Jumat,11:30,Normal
+2024-05-10,PT Wings Group,Dedi Kurniawan,Bekasi,Setiap Hari,13:00,Prioritas
+2024-07-26,PT Semen Indonesia,Eko Setiawan,Tangerang,Senin-Jumat,13:30,Prioritas
+2024-12-03,PT Suzuki Indomobil,Eko Setiawan,Jakarta Selatan,Senin-Kamis,10:00,Prioritas
+2024-04-08,PT Suzuki Indomobil,Eko Setiawan,Jakarta Selatan,Senin-Kamis,10:00,Prioritas
+2024-09-13,PT Semen Indonesia,Rudi Hartono,Tangerang,Senin-Jumat,13:30,Prioritas
+2024-05-17,PT Indofood CBP,Eko Setiawan,Jakarta Barat,Setiap Hari,15:00,Normal
+2024-08-13,PT Mayora Indah,Rudi Hartono,Tangerang Selatan,Senin-Rabu,10:30,Prioritas
+2024-11-08,PT HM Sampoerna,Agus Pratama,Bogor,Selasa-Kamis,10:00,Prioritas
+2024-10-10,PT Mayora Indah,Budi Santoso,Tangerang Selatan,Senin-Rabu,10:30,Prioritas
+2024-04-26,PT Astra International,Budi Santoso,Jakarta Pusat,Setiap Hari,14:00,Normal
+2024-11-28,PT Astra International,Agus Pratama,Jakarta Pusat,Setiap Hari,14:00,Normal
+2024-05-30,PT Pertamina Retail,Eko Setiawan,Jakarta Pusat,Setiap Hari,14:30,Normal
+2024-09-05,PT Kalbe Farma,Rudi Hartono,Jakarta Timur,Senin-Jumat,11:30,Normal
+2024-03-18,PT Kimia Farma,Rudi Hartono,Depok,Setiap Hari,16:00,Prioritas
+2024-09-18,PT Gudang Garam,Agus Pratama,Bogor,Senin-Kamis,09:30,Prioritas
+2024-08-01,PT Mayora Indah,Dedi Kurniawan,Tangerang Selatan,Senin-Rabu,10:30,Prioritas
+2024-05-17,PT Kimia Farma,Budi Santoso,Depok,Setiap Hari,16:00,Normal
+2024-10-28,PT Mayora Indah,Eko Setiawan,Tangerang Selatan,Senin-Rabu,10:30,Prioritas
+2024-03-18,PT Sido Muncul,Rudi Hartono,Bekasi,Rabu-Jumat,12:00,Prioritas
+2024-06-20,PT Wings Group,Eko Setiawan,Bekasi,Setiap Hari,13:00,Normal
+2024-08-22,PT Kalbe Farma,Dedi Kurniawan,Jakarta Timur,Senin-Jumat,11:30,Prioritas
+2024-05-03,PT Pertamina Retail,Eko Setiawan,Jakarta Pusat,Setiap Hari,14:30,Normal
+2024-07-30,PT Holcim Indonesia,Budi Santoso,Bekasi,Selasa-Jumat,11:00,Prioritas
+2024-12-30,PT Sido Muncul,Rudi Hartono,Bekasi,Rabu-Jumat,12:00,Prioritas
+2024-12-02,PT HM Sampoerna,Agus Pratama,Bogor,Selasa-Kamis,10:00,Prioritas
+2024-03-06,PT Suzuki Indomobil,Eko Setiawan,Jakarta Selatan,Senin-Kamis,10:00,Prioritas
+2024-02-22,PT Wings Group,Rudi Hartono,Bekasi,Setiap Hari,13:00,Prioritas
+2024-08-22,PT Matahari Dept Store,Budi Santoso,Jakarta Selatan,Setiap Hari,15:30,Normal
+2024-12-02,PT Kalbe Farma,Agus Pratama,Jakarta Timur,Senin-Jumat,11:30,Normal
+2024-05-16,PT Semen Indonesia,Dedi Kurniawan,Tangerang,Senin-Jumat,13:30,Prioritas
+2024-11-29,PT Kalbe Farma,Budi Santoso,Jakarta Timur,Senin-Jumat,11:30,Prioritas
+2024-12-12,PT Holcim Indonesia,Eko Setiawan,Bekasi,Selasa-Jumat,11:00,Prioritas
+2024-11-18,PT Wings Group,Rudi Hartono,Bekasi,Setiap Hari,13:00,Normal
+2024-11-13,PT Suzuki Indomobil,Budi Santoso,Jakarta Selatan,Senin-Kamis,10:00,Prioritas
+2024-05-28,PT HM Sampoerna,Agus Pratama,Bogor,Selasa-Kamis,10:00,Prioritas
+2024-02-21,PT Kalbe Farma,Budi Santoso,Jakarta Timur,Senin-Jumat,11:30,Normal
+2024-06-03,PT Pertamina Retail,Budi Santoso,Jakarta Pusat,Setiap Hari,14:30,Normal
+2024-01-30,PT Semen Indonesia,Dedi Kurniawan,Tangerang,Senin-Jumat,13:30,Normal
+2024-03-18,PT Kalbe Farma,Agus Pratama,Jakarta Timur,Senin-Jumat,11:30,Normal
+2024-12-16,PT Gudang Garam,Agus Pratama,Bogor,Senin-Kamis,09:30,Prioritas
+2024-11-11,PT Astra International,Rudi Hartono,Jakarta Pusat,Setiap Hari,14:00,Normal
+2024-09-12,PT Indofood CBP,Eko Setiawan,Jakarta Barat,Setiap Hari,15:00,Normal
+2024-11-25,PT Sido Muncul,Dedi Kurniawan,Bekasi,Rabu-Jumat,12:00,Prioritas
+2024-01-08,PT HM Sampoerna,Rudi Hartono,Bogor,Selasa-Kamis,10:00,Prioritas
+2024-10-07,PT HM Sampoerna,Agus Pratama,Bogor,Selasa-Kamis,10:00,Prioritas
+2024-10-28,PT Wings Group,Dedi Kurniawan,Bekasi,Setiap Hari,13:00,Normal
+2024-12-20,PT Kalbe Farma,Dedi Kurniawan,Jakarta Timur,Senin-Jumat,11:30,Normal
+2024-04-12,PT Mayora Indah,Rudi Hartono,Tangerang Selatan,Senin-Rabu,10:30,Prioritas
+2024-05-02,PT Astra International,Rudi Hartono,Jakarta Pusat,Setiap Hari,14:00,Normal
+2024-06-03,PT Gudang Garam,Dedi Kurniawan,Bogor,Senin-Kamis,09:30,Prioritas
+2024-12-04,PT Holcim Indonesia,Rudi Hartono,Bekasi,Selasa-Jumat,11:00,Prioritas
+2024-12-18,PT Gudang Garam,Budi Santoso,Bogor,Senin-Kamis,09:30,Prioritas
+2024-09-12,PT Pertamina Retail,Dedi Kurniawan,Jakarta Pusat,Setiap Hari,14:30,Normal
+2024-11-07,PT Indofood CBP,Dedi Kurniawan,Jakarta Barat,Setiap Hari,15:00,Normal
+2024-11-14,PT Indofood CBP,Dedi Kurniawan,Jakarta Barat,Setiap Hari,15:00,Normal
+2024-12-04,PT Pertamina Retail,Agus Pratama,Jakarta Pusat,Setiap Hari,14:30,Normal
+2024-11-18,PT Matahari Dept Store,Budi Santoso,Jakarta Selatan,Setiap Hari,15:30,Normal
+2024-01-19,PT Sido Muncul,Eko Setiawan,Bekasi,Rabu-Jumat,12:00,Prioritas
+2024-02-19,PT Unilever Indonesia,Dedi Kurniawan,Tangerang,Selasa-Jumat,11:00,Prioritas
+2024-04-01,PT Kalbe Farma,Agus Pratama,Jakarta Timur,Senin-Jumat,11:30,Normal
+2024-07-08,PT Kimia Farma,Eko Setiawan,Depok,Setiap Hari,16:00,Normal
+2024-03-26,PT Mayora Indah,Dedi Kurniawan,Tangerang Selatan,Senin-Rabu,10:30,Prioritas
+2024-06-03,PT Sido Muncul,Dedi Kurniawan,Bekasi,Rabu-Jumat,12:00,Prioritas
+2024-02-09,PT Sido Muncul,Agus Pratama,Bekasi,Rabu-Jumat,12:00,Prioritas
+2024-12-13,PT Indofood CBP,Rudi Hartono,Jakarta Barat,Setiap Hari,15:00,Normal
+2024-10-14,PT Semen Indonesia,Dedi Kurniawan,Tangerang,Senin-Jumat,13:30,Normal
+2024-01-09,PT Kalbe Farma,Dedi Kurniawan,Jakarta Timur,Senin-Jumat,11:30,Normal
+2024-07-08,PT Sido Muncul,Dedi Kurniawan,Bekasi,Rabu-Jumat,12:00,Prioritas
+2024-11-25,PT Holcim Indonesia,Dedi Kurniawan,Bekasi,Selasa-Jumat,11:00,Prioritas
+2024-08-30,PT Indofood CBP,Budi Santoso,Jakarta Barat,Setiap Hari,15:00,Normal
+2024-06-17,PT Kimia Farma,Eko Setiawan,Depok,Setiap Hari,16:00,Normal
+2024-11-22,PT Astra International,Rudi Hartono,Jakarta Pusat,Setiap Hari,14:00,Normal
+2024-11-29,PT Mayora Indah,Rudi Hartono,Tangerang Selatan,Senin-Rabu,10:30,Prioritas
+2024-01-22,PT Suzuki Indomobil,Dedi Kurniawan,Jakarta Selatan,Senin-Kamis,10:00,Prioritas
+2024-02-20,PT Astra International,Agus Pratama,Jakarta Pusat,Setiap Hari,14:00,Normal
+2024-07-18,PT Unilever Indonesia,Rudi Hartono,Tangerang,Selasa-Jumat,11:00,Prioritas
+2024-12-23,PT Pertamina Retail,Eko Setiawan,Jakarta Pusat,Setiap Hari,14:30,Normal
+2024-03-21,PT Pertamina Retail,Rudi Hartono,Jakarta Pusat,Setiap Hari,14:30,Normal
+2024-09-09,PT Holcim Indonesia,Eko Setiawan,Bekasi,Selasa-Jumat,11:00,Prioritas
+2024-01-18,PT Mayora Indah,Dedi Kurniawan,Tangerang Selatan,Senin-Rabu,10:30,Prioritas
+2024-05-01,PT Sido Muncul,Dedi Kurniawan,Bekasi,Rabu-Jumat,12:00,Prioritas
+2024-07-08,PT HM Sampoerna,Eko Setiawan,Bogor,Selasa-Kamis,10:00,Prioritas
+2024-07-03,PT HM Sampoerna,Budi Santoso,Bogor,Selasa-Kamis,10:00,Prioritas
+2024-03-04,PT Indofood CBP,Rudi Hartono,Jakarta Barat,Setiap Hari,15:00,Normal
+2024-11-25,PT Indofood CBP,Eko Setiawan,Jakarta Barat,Setiap Hari,15:00,Normal
+2024-06-20,PT Suzuki Indomobil,Agus Pratama,Jakarta Selatan,Senin-Kamis,10:00,Prioritas
+2024-10-17,PT Semen Indonesia,Agus Pratama,Tangerang,Senin-Jumat,13:30,Normal
+2024-10-11,PT Semen Indonesia,Agus Pratama,Tangerang,Senin-Jumat,13:30,Prioritas
+2024-04-30,PT Holcim Indonesia,Dedi Kurniawan,Bekasi,Selasa-Jumat,11:00,Prioritas
+2024-11-04,PT Semen Indonesia,Budi Santoso,Tangerang,Senin-Jumat,13:30,Normal
+2024-03-08,PT Unilever Indonesia,Eko Setiawan,Tangerang,Selasa-Jumat,11:00,Prioritas
+2024-02-27,PT Unilever Indonesia,Budi Santoso,Tangerang,Selasa-Jumat,11:00,Prioritas
+2024-05-02,PT Wings Group,Eko Setiawan,Bekasi,Setiap Hari,13:00,Normal
+2024-05-16,PT Unilever Indonesia,Budi Santoso,Tangerang,Selasa-Jumat,11:00,Prioritas
+2024-09-27,PT Kalbe Farma,Budi Santoso,Jakarta Timur,Senin-Jumat,11:30,Prioritas
+2024-08-19,PT Sido Muncul,Dedi Kurniawan,Bekasi,Rabu-Jumat,12:00,Prioritas
+2024-08-20,PT Astra International,Eko Setiawan,Jakarta Pusat,Setiap Hari,14:00,Normal
+2024-01-24,PT Gudang Garam,Eko Setiawan,Bogor,Senin-Kamis,09:30,Prioritas
+2024-01-17,PT HM Sampoerna,Budi Santoso,Bogor,Selasa-Kamis,10:00,Prioritas
+2024-07-25,PT Holcim Indonesia,Rudi Hartono,Bekasi,Selasa-Jumat,11:00,Prioritas
+2024-12-31,PT Sido Muncul,Rudi Hartono,Bekasi,Rabu-Jumat,12:00,Prioritas
+2024-06-14,PT Astra International,Eko Setiawan,Jakarta Pusat,Setiap Hari,14:00,Normal
+2024-05-21,PT Unilever Indonesia,Eko Setiawan,Tangerang,Selasa-Jumat,11:00,Prioritas
+2024-12-31,PT Kimia Farma,Dedi Kurniawan,Depok,Setiap Hari,16:00,Normal
+2024-09-30,PT Gudang Garam,Dedi Kurniawan,Bogor,Senin-Kamis,09:30,Prioritas
+2024-08-09,PT Gudang Garam,Budi Santoso,Bogor,Senin-Kamis,09:30,Prioritas
+2024-12-02,PT Astra International,Eko Setiawan,Jakarta Pusat,Setiap Hari,14:00,Normal
+2024-08-09,PT Indofood CBP,Rudi Hartono,Jakarta Barat,Setiap Hari,15:00,Normal
+2024-06-24,PT Kalbe Farma,Rudi Hartono,Jakarta Timur,Senin-Jumat,11:30,Normal
+2024-02-19,PT Pertamina Retail,Dedi Kurniawan,Jakarta Pusat,Setiap Hari,14:30,Normal
+2024-05-13,PT HM Sampoerna,Dedi Kurniawan,Bogor,Selasa-Kamis,10:00,Prioritas
+2024-09-02,PT HM Sampoerna,Budi Santoso,Bogor,Selasa-Kamis,10:00,Prioritas
+2024-02-19,PT Astra International,Rudi Hartono,Jakarta Pusat,Setiap Hari,14:00,Normal
+2024-07-10,PT Pertamina Retail,Agus Pratama,Jakarta Pusat,Setiap Hari,14:30,Normal
+2024-10-15,PT Gudang Garam,Eko Setiawan,Bogor,Senin-Kamis,09:30,Prioritas
+2024-07-30,PT Astra International,Dedi Kurniawan,Jakarta Pusat,Setiap Hari,14:00,Normal
+2024-08-05,PT Semen Indonesia,Budi Santoso,Tangerang,Senin-Jumat,13:30,Prioritas
+2024-06-10,PT Gudang Garam,Dedi Kurniawan,Bogor,Senin-Kamis,09:30,Prioritas
+2024-04-19,PT Kimia Farma,Agus Pratama,Depok,Setiap Hari,16:00,Normal
+2024-02-26,PT Indofood CBP,Dedi Kurniawan,Jakarta Barat,Setiap Hari,15:00,Normal
+2024-02-29,PT Wings Group,Dedi Kurniawan,Bekasi,Setiap Hari,13:00,Normal
+2024-08-08,PT Semen Indonesia,Eko Setiawan,Tangerang,Senin-Jumat,13:30,Prioritas
+2024-11-15,PT Holcim Indonesia,Eko Setiawan,Bekasi,Selasa-Jumat,11:00,Prioritas
+2024-01-15,PT Kimia Farma,Eko Setiawan,Depok,Setiap Hari,16:00,Normal
+2024-12-23,PT Holcim Indonesia,Dedi Kurniawan,Bekasi,Selasa-Jumat,11:00,Prioritas
+2024-12-26,PT Mayora Indah,Dedi Kurniawan,Tangerang Selatan,Senin-Rabu,10:30,Prioritas
+2024-01-05,PT Wings Group,Agus Pratama,Bekasi,Setiap Hari,13:00,Normal
+2024-12-03,PT Gudang Garam,Rudi Hartono,Bogor,Senin-Kamis,09:30,Prioritas
+2024-11-21,PT Pertamina Retail,Budi Santoso,Jakarta Pusat,Setiap Hari,14:30,Normal
+2024-04-22,PT Kimia Farma,Rudi Hartono,Depok,Setiap Hari,16:00,Normal
+2024-03-22,PT Wings Group,Dedi Kurniawan,Bekasi,Setiap Hari,13:00,Normal
+2024-10-18,PT Wings Group,Eko Setiawan,Bekasi,Setiap Hari,13:00,Prioritas
+2024-03-21,PT Suzuki Indomobil,Agus Pratama,Jakarta Selatan,Senin-Kamis,10:00,Prioritas
+2024-12-12,PT Suzuki Indomobil,Budi Santoso,Jakarta Selatan,Senin-Kamis,10:00,Prioritas
+2024-08-06,PT HM Sampoerna,Rudi Hartono,Bogor,Selasa-Kamis,10:00,Prioritas
+2024-05-20,PT Kalbe Farma,Agus Pratama,Jakarta Timur,Senin-Jumat,11:30,Prioritas
+2024-06-26,PT Astra International,Rudi Hartono,Jakarta Pusat,Setiap Hari,14:00,Normal
+2024-12-16,PT HM Sampoerna,Eko Setiawan,Bogor,Selasa-Kamis,10:00,Prioritas
+2024-06-07,PT HM Sampoerna,Budi Santoso,Bogor,Selasa-Kamis,10:00,Prioritas
+2024-01-30,PT Gudang Garam,Budi Santoso,Bogor,Senin-Kamis,09:30,Prioritas
+2024-03-12,PT Indofood CBP,Dedi Kurniawan,Jakarta Barat,Setiap Hari,15:00,Normal
+2024-01-05,PT Astra International,Rudi Hartono,Jakarta Pusat,Setiap Hari,14:00,Normal
+2024-03-08,PT Unilever Indonesia,Rudi Hartono,Tangerang,Selasa-Jumat,11:00,Prioritas
+2024-09-16,PT Indofood CBP,Eko Setiawan,Jakarta Barat,Setiap Hari,15:00,Normal
+2024-07-01,PT Semen Indonesia,Budi Santoso,Tangerang,Senin-Jumat,13:30,Normal
+2024-01-23,PT Pertamina Retail,Rudi Hartono,Jakarta Pusat,Setiap Hari,14:30,Normal
+2024-02-12,PT Matahari Dept Store,Dedi Kurniawan,Jakarta Selatan,Setiap Hari,15:30,Normal
+2024-07-29,PT Gudang Garam,Rudi Hartono,Bogor,Senin-Kamis,09:30,Prioritas
+2024-01-12,PT Kalbe Farma,Dedi Kurniawan,Jakarta Timur,Senin-Jumat,11:30,Normal
+2024-08-26,PT Gudang Garam,Dedi Kurniawan,Bogor,Senin-Kamis,09:30,Prioritas
+2024-02-26,PT Holcim Indonesia,Agus Pratama,Bekasi,Selasa-Jumat,11:00,Prioritas
+2024-09-26,PT Kalbe Farma,Budi Santoso,Jakarta Timur,Senin-Jumat,11:30,Normal
+2024-06-24,PT Mayora Indah,Agus Pratama,Tangerang Selatan,Senin-Rabu,10:30,Prioritas
+2024-02-12,PT Unilever Indonesia,Eko Setiawan,Tangerang,Selasa-Jumat,11:00,Prioritas
+2024-09-19,PT Kimia Farma,Agus Pratama,Depok,Setiap Hari,16:00,Normal
+2024-07-01,PT Wings Group,Agus Pratama,Bekasi,Setiap Hari,13:00,Normal
+2024-05-13,PT Unilever Indonesia,Agus Pratama,Tangerang,Selasa-Jumat,11:00,Prioritas
+2024-12-02,PT Unilever Indonesia,Budi Santoso,Tangerang,Selasa-Jumat,11:00,Prioritas
+2024-11-18,PT Semen Indonesia,Rudi Hartono,Tangerang,Senin-Jumat,13:30,Normal
+2024-10-24,PT Gudang Garam,Rudi Hartono,Bogor,Senin-Kamis,09:30,Prioritas
+2024-10-17,PT Matahari Dept Store,Eko Setiawan,Jakarta Selatan,Setiap Hari,15:30,Normal
+2024-06-11,PT HM Sampoerna,Agus Pratama,Bogor,Selasa-Kamis,10:00,Prioritas
+2024-08-15,PT Sido Muncul,Dedi Kurniawan,Bekasi,Rabu-Jumat,12:00,Prioritas
+2024-01-30,PT Gudang Garam,Dedi Kurniawan,Bogor,Senin-Kamis,09:30,Prioritas
+2024-08-26,PT Mayora Indah,Rudi Hartono,Tangerang Selatan,Senin-Rabu,10:30,Prioritas
+2024-05-27,PT Wings Group,Budi Santoso,Bekasi,Setiap Hari,13:00,Normal
+2024-02-19,PT Holcim Indonesia,Eko Setiawan,Bekasi,Selasa-Jumat,11:00,Prioritas
+2024-08-26,PT Kalbe Farma,Eko Setiawan,Jakarta Timur,Senin-Jumat,11:30,Prioritas
+2024-01-23,PT Semen Indonesia,Rudi Hartono,Tangerang,Senin-Jumat,13:30,Prioritas
+2024-12-02,PT Gudang Garam,Agus Pratama,Bogor,Senin-Kamis,09:30,Prioritas
+2024-09-16,PT Sido Muncul,Agus Pratama,Bekasi,Rabu-Jumat,12:00,Prioritas
+2024-02-23,PT Sido Muncul,Dedi Kurniawan,Bekasi,Rabu-Jumat,12:00,Prioritas
+2024-09-16,PT Astra International,Agus Pratama,Jakarta Pusat,Setiap Hari,14:00,Normal
+2024-08-13,PT Pertamina Retail,Rudi Hartono,Jakarta Pusat,Setiap Hari,14:30,Normal
+2024-03-25,PT Gudang Garam,Dedi Kurniawan,Bogor,Senin-Kamis,09:30,Prioritas
+2024-07-18,PT Mayora Indah,Rudi Hartono,Tangerang Selatan,Senin-Rabu,10:30,Prioritas
+2024-11-04,PT HM Sampoerna,Budi Santoso,Bogor,Selasa-Kamis,10:00,Prioritas
+2024-06-21,PT HM Sampoerna,Budi Santoso,Bogor,Selasa-Kamis,10:00,Prioritas
+2024-12-16,PT Kimia Farma,Rudi Hartono,Depok,Setiap Hari,16:00,Normal
+2024-12-03,PT Pertamina Retail,Eko Setiawan,Jakarta Pusat,Setiap Hari,14:30,Normal
+2024-02-12,PT Wings Group,Eko Setiawan,Bekasi,Setiap Hari,13:00,Normal
+2024-07-01,PT Matahari Dept Store,Dedi Kurniawan,Jakarta Selatan,Setiap Hari,15:30,Normal
+2024-12-06,PT Pertamina Retail,Rudi Hartono,Jakarta Pusat,Setiap Hari,14:30,Normal
+2024-02-14,PT Pertamina Retail,Dedi Kurniawan,Jakarta Pusat,Setiap Hari,14:30,Normal
+2024-06-18,PT HM Sampoerna,Agus Pratama,Bogor,Selasa-Kamis,10:00,Prioritas
+2024-12-17,PT Holcim Indonesia,Eko Setiawan,Bekasi,Selasa-Jumat,11:00,Prioritas
+2024-08-05,PT HM Sampoerna,Eko Setiawan,Bogor,Selasa-Kamis,10:00,Prioritas
+2024-06-10,PT Wings Group,Agus Pratama,Bekasi,Setiap Hari,13:00,Normal
+2024-09-06,PT Wings Group,Agus Pratama,Bekasi,Setiap Hari,13:00,Normal
+2024-03-21,PT Unilever Indonesia,Budi Santoso,Tangerang,Selasa-Jumat,11:00,Prioritas
+2024-02-22,PT Semen Indonesia,Eko Setiawan,Tangerang,Senin-Jumat,13:30,Prioritas
+2024-09-27,PT Holcim Indonesia,Budi Santoso,Bekasi,Selasa-Jumat,11:00,Prioritas
+2024-11-13,PT Matahari Dept Store,Agus Pratama,Jakarta Selatan,Setiap Hari,15:30,Normal
+2024-03-25,PT Unilever Indonesia,Agus Pratama,Tangerang,Selasa-Jumat,11:00,Prioritas
+2024-11-18,PT Semen Indonesia,Agus Pratama,Tangerang,Senin-Jumat,13:30,Prioritas
+2024-07-30,PT Suzuki Indomobil,Dedi Kurniawan,Jakarta Selatan,Senin-Kamis,10:00,Prioritas
+2024-08-16,PT Indofood CBP,Eko Setiawan,Jakarta Barat,Setiap Hari,15:00,Normal
+2024-08-19,PT Pertamina Retail,Agus Pratama,Jakarta Pusat,Setiap Hari,14:30,Normal
+2024-08-29,PT Mayora Indah,Agus Pratama,Tangerang Selatan,Senin-Rabu,10:30,Prioritas
+2024-08-14,PT Gudang Garam,Rudi Hartono,Bogor,Senin-Kamis,09:30,Prioritas
+2024-07-15,PT Semen Indonesia,Eko Setiawan,Tangerang,Senin-Jumat,13:30,Normal
+2024-04-15,PT Unilever Indonesia,Eko Setiawan,Tangerang,Selasa-Jumat,11:00,Prioritas
+2024-01-29,PT Mayora Indah,Rudi Hartono,Tangerang Selatan,Senin-Rabu,10:30,Prioritas
+2024-02-23,PT Kimia Farma,Eko Setiawan,Depok,Setiap Hari,16:00,Normal
+2024-02-13,PT Mayora Indah,Agus Pratama,Tangerang Selatan,Senin-Rabu,10:30,Prioritas
+2024-09-20,PT Matahari Dept Store,Agus Pratama,Jakarta Selatan,Setiap Hari,15:30,Normal
+2024-04-24,PT Astra International,Rudi Hartono,Jakarta Pusat,Setiap Hari,14:00,Normal
+2024-01-15,PT Matahari Dept Store,Rudi Hartono,Jakarta Selatan,Setiap Hari,15:30,Normal
+2024-07-11,PT Kimia Farma,Agus Pratama,Depok,Setiap Hari,16:00,Normal
+2024-07-11,PT Astra International,Agus Pratama,Jakarta Pusat,Setiap Hari,14:00,Normal
+2024-02-21,PT Matahari Dept Store,Dedi Kurniawan,Jakarta Selatan,Setiap Hari,15:30,Normal
+2024-01-22,PT Unilever Indonesia,Dedi Kurniawan,Tangerang,Selasa-Jumat,11:00,Prioritas
+2024-12-23,PT Sido Muncul,Agus Pratama,Bekasi,Rabu-Jumat,12:00,Prioritas
+2024-08-19,PT Sido Muncul,Eko Setiawan,Bekasi,Rabu-Jumat,12:00,Prioritas
+2024-01-11,PT Astra International,Dedi Kurniawan,Jakarta Pusat,Setiap Hari,14:00,Normal
+2024-10-08,PT Unilever Indonesia,Eko Setiawan,Tangerang,Selasa-Jumat,11:00,Prioritas
+2024-05-28,PT Astra International,Agus Pratama,Jakarta Pusat,Setiap Hari,14:00,Normal
+2024-05-03,PT Suzuki Indomobil,Rudi Hartono,Jakarta Selatan,Senin-Kamis,10:00,Prioritas
+2024-08-23,PT Gudang Garam,Budi Santoso,Bogor,Senin-Kamis,09:30,Prioritas
+2024-09-13,PT Matahari Dept Store,Eko Setiawan,Jakarta Selatan,Setiap Hari,15:30,Normal
+2024-09-23,PT HM Sampoerna,Eko Setiawan,Bogor,Selasa-Kamis,10:00,Prioritas
+2024-05-30,PT Unilever Indonesia,Rudi Hartono,Tangerang,Selasa-Jumat,11:00,Prioritas
+2024-05-06,PT Wings Group,Eko Setiawan,Bekasi,Setiap Hari,13:00,Normal
+2024-12-09,PT HM Sampoerna,Budi Santoso,Bogor,Selasa-Kamis,10:00,Prioritas
+2024-02-05,PT Wings Group,Eko Setiawan,Bekasi,Setiap Hari,13:00,Normal
+2024-09-17,PT Semen Indonesia,Eko Setiawan,Tangerang,Senin-Jumat,13:30,Normal
+2024-08-29,PT Holcim Indonesia,Budi Santoso,Bekasi,Selasa-Jumat,11:00,Prioritas
+2024-05-10,PT Wings Group,Budi Santoso,Bekasi,Setiap Hari,13:00,Normal
+2024-06-26,PT Astra International,Agus Pratama,Jakarta Pusat,Setiap Hari,14:00,Normal
+2024-02-26,PT HM Sampoerna,Eko Setiawan,Bogor,Selasa-Kamis,10:00,Prioritas
+2024-03-11,PT Wings Group,Budi Santoso,Bekasi,Setiap Hari,13:00,Normal
+2024-11-26,PT Wings Group,Agus Pratama,Bekasi,Setiap Hari,13:00,Normal
+2024-08-26,PT HM Sampoerna,Rudi Hartono,Bogor,Selasa-Kamis,10:00,Prioritas
+2024-03-11,PT Semen Indonesia,Budi Santoso,Tangerang,Senin-Jumat,13:30,Prioritas
+2024-01-22,PT Sido Muncul,Dedi Kurniawan,Bekasi,Rabu-Jumat,12:00,Prioritas
+2024-04-15,PT Semen Indonesia,Budi Santoso,Tangerang,Senin-Jumat,13:30,Normal
+2024-09-23,PT Mayora Indah,Rudi Hartono,Tangerang Selatan,Senin-Rabu,10:30,Prioritas
+2024-09-02,PT Kimia Farma,Dedi Kurniawan,Depok,Setiap Hari,16:00,Prioritas
+2024-04-08,PT HM Sampoerna,Dedi Kurniawan,Bogor,Selasa-Kamis,10:00,Prioritas
+2024-01-26,PT Semen Indonesia,Dedi Kurniawan,Tangerang,Senin-Jumat,13:30,Normal
+2024-07-08,PT Semen Indonesia,Rudi Hartono,Tangerang,Senin-Jumat,13:30,Prioritas
+2024-08-14,PT Pertamina Retail,Rudi Hartono,Jakarta Pusat,Setiap Hari,14:30,Normal
+2024-09-12,PT Unilever Indonesia,Rudi Hartono,Tangerang,Selasa-Jumat,11:00,Prioritas
+2024-09-23,PT Semen Indonesia,Dedi Kurniawan,Tangerang,Senin-Jumat,13:30,Prioritas
+2024-08-06,PT Pertamina Retail,Budi Santoso,Jakarta Pusat,Setiap Hari,14:30,Normal
+2024-04-03,PT Holcim Indonesia,Eko Setiawan,Bekasi,Selasa-Jumat,11:00,Prioritas
+2024-02-12,PT Astra International,Dedi Kurniawan,Jakarta Pusat,Setiap Hari,14:00,Normal
+2024-08-19,PT Mayora Indah,Eko Setiawan,Tangerang Selatan,Senin-Rabu,10:30,Prioritas
+2024-12-20,PT Unilever Indonesia,Rudi Hartono,Tangerang,Selasa-Jumat,11:00,Prioritas
+2024-07-01,PT Suzuki Indomobil,Eko Setiawan,Jakarta Selatan,Senin-Kamis,10:00,Prioritas
+2024-11-25,PT Mayora Indah,Budi Santoso,Tangerang Selatan,Senin-Rabu,10:30,Prioritas
+2024-07-29,PT HM Sampoerna,Dedi Kurniawan,Bogor,Selasa-Kamis,10:00,Prioritas
+2024-12-16,PT Pertamina Retail,Agus Pratama,Jakarta Pusat,Setiap Hari,14:30,Normal

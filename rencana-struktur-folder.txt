@@ -1,0 +1,14 @@
+invoice-tracking/
+├── frontend/          ← React.js (Vite)
+│   ├── src/
+│   │   ├── pages/     ← Dashboard, Input, Tracker, Priority
+│   │   ├── components/
+│   │   └── api/       ← axios instance ke backend
+├── backend/           ← Node.js + Express
+│   ├── routes/        ← auth, invoice, tracking, predict
+│   ├── models/        ← Sequelize ORM
+│   └── middleware/    ← JWT auth
+└── ai-module/         ← Python + Flask
+    ├── model/         ← c45_model.pkl
+    ├── train.py       ← script training C4.5
+    └── app.py         ← Flask API

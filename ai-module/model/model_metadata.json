@@ -1,0 +1,27 @@
+{
+  "trained_at": "2026-04-26T15:45:21.011526",
+  "accuracy": 0.84,
+  "dataset_rows": 500,
+  "train_size": 400,
+  "test_size": 100,
+  "tree_depth": 7,
+  "tree_leaves": 22,
+  "features": [
+    "nama_customer",
+    "nama_driver",
+    "area_pengantaran",
+    "jadwal_terima",
+    "cut_off_jam"
+  ],
+  "target_classes": [
+    "Normal",
+    "Prioritas"
+  ],
+  "feature_importance": {
+    "nama_customer": 0.0229,
+    "nama_driver": 0.0651,
+    "area_pengantaran": 0.1837,
+    "jadwal_terima": 0.0,
+    "cut_off_jam": 0.7283
+  }
+}
