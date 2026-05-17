@@ -33,6 +33,15 @@ const invoiceService = {
   },
 
   /**
+   * Bulk input invoice dari daftar Excel/CSV yang sudah diparse di frontend.
+   * @param {Array<object>} rows
+   */
+  async bulkCreate(rows) {
+    const res = await api.post('/invoices/bulk', { rows });
+    return res.data.data;
+  },
+
+  /**
    * Update invoice
    * @param {number|string} id
    * @param {object} data

@@ -2,31 +2,65 @@ import { useState, useEffect } from 'react';
 import { Search, Plus, MapPin, Clock, Phone } from 'lucide-react';
 import Topbar from '../components/Topbar';
 import { customerService, invoiceService } from '../api';
+import { AREAS, SCHEDULES } from '../data/mockData';
 
 export default function CustomersPage() {
   const [customers, setCustomers] = useState([]);
   const [invoices, setInvoices] = useState([]);
   const [search, setSearch] = useState('');
   const [loading, setLoading] = useState(true);
+  const [showModal, setShowModal] = useState(false);
+  const [saving, setSaving] = useState(false);
+  const [form, setForm] = useState({
+    name: '',
+    area: '',
+    schedule: '',
+    cutoff: '',
+    contact: '',
+    phone: '',
+    address: '',
+  });
+
+  const fetchData = async () => {
+    try {
+      setLoading(true);
+      const [custRes, invRes] = await Promise.all([
+        customerService.getAll(),
+        invoiceService.getAll()
+      ]);
+      setCustomers(custRes || []);
+      setInvoices(invRes.data || []);
+    } catch (err) {
+      console.error('Error fetching data:', err);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        setLoading(true);
-        const [custRes, invRes] = await Promise.all([
-          customerService.getAll(),
-          invoiceService.getAll()
-        ]);
-        setCustomers(custRes || []);
-        setInvoices(invRes.data || []);
-      } catch (err) {
-        console.error('Error fetching data:', err);
-      } finally {
-        setLoading(false);
-      }
-    };
     fetchData();
   }, []);
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setForm(prev => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    try {
+      setSaving(true);
+      await customerService.create(form);
+      await fetchData();
+      setShowModal(false);
+      setForm({ name: '', area: '', schedule: '', cutoff: '', contact: '', phone: '', address: '' });
+    } catch (err) {
+      console.error('Create customer error:', err);
+      alert(err.response?.data?.message || 'Gagal menambahkan pelanggan.');
+    } finally {
+      setSaving(false);
+    }
+  };
 
   const filtered = customers.filter(c =>
     c.name.toLowerCase().includes(search.toLowerCase()) ||
@@ -42,7 +76,7 @@ export default function CustomersPage() {
       <Topbar
         title="Data Pelanggan"
         subtitle="Manajemen data pelanggan dan jadwal penerimaan"
-        actions={<button className="btn btn-primary btn-sm"><Plus size={15} /> Tambah Pelanggan</button>}
+        actions={<button className="btn btn-primary btn-sm" onClick={() => setShowModal(true)}><Plus size={15} /> Tambah Pelanggan</button>}
       />
       <div className="page-container">
         <div className="filter-bar" style={{ marginBottom: 20 }}>
@@ -82,6 +116,75 @@ export default function CustomersPage() {
           })}
         </div>
       </div>
+
+      {showModal && (
+        <div className="modal-backdrop" onClick={() => setShowModal(false)}>
+          <div className="modal" style={{ maxWidth: 640 }} onClick={e => e.stopPropagation()}>
+            <div className="modal-header">
+              <div>
+                <div className="modal-title">Tambah Pelanggan</div>
+                <div className="modal-subtitle">Data ini dipakai untuk jadwal penerimaan dan prediksi prioritas invoice</div>
+              </div>
+              <button className="btn btn-ghost btn-icon" onClick={() => setShowModal(false)}>×</button>
+            </div>
+
+            <form onSubmit={handleSubmit}>
+              <div className="modal-body">
+                <div className="form-row">
+                  <div className="form-group">
+                    <label className="form-label">Nama Pelanggan <span>*</span></label>
+                    <input name="name" className="form-input" value={form.name} onChange={handleChange} required />
+                  </div>
+                  <div className="form-group">
+                    <label className="form-label">Area <span>*</span></label>
+                    <select name="area" className="form-select" value={form.area} onChange={handleChange} required>
+                      <option value="">-- Pilih area --</option>
+                      {AREAS.map(area => <option key={area} value={area}>{area}</option>)}
+                    </select>
+                  </div>
+                </div>
+
+                <div className="form-row">
+                  <div className="form-group">
+                    <label className="form-label">Jadwal Penerimaan <span>*</span></label>
+                    <select name="schedule" className="form-select" value={form.schedule} onChange={handleChange} required>
+                      <option value="">-- Pilih jadwal --</option>
+                      {SCHEDULES.map(schedule => <option key={schedule} value={schedule}>{schedule}</option>)}
+                    </select>
+                  </div>
+                  <div className="form-group">
+                    <label className="form-label">Cut-off <span>*</span></label>
+                    <input type="time" name="cutoff" className="form-input" value={form.cutoff} onChange={handleChange} required />
+                  </div>
+                </div>
+
+                <div className="form-row">
+                  <div className="form-group">
+                    <label className="form-label">Kontak</label>
+                    <input name="contact" className="form-input" value={form.contact} onChange={handleChange} placeholder="Nama PIC" />
+                  </div>
+                  <div className="form-group">
+                    <label className="form-label">Telepon</label>
+                    <input name="phone" className="form-input" value={form.phone} onChange={handleChange} placeholder="Nomor telepon" />
+                  </div>
+                </div>
+
+                <div className="form-group">
+                  <label className="form-label">Alamat</label>
+                  <textarea name="address" className="form-textarea" value={form.address} onChange={handleChange} />
+                </div>
+              </div>
+
+              <div className="modal-footer">
+                <button type="button" className="btn btn-secondary" onClick={() => setShowModal(false)}>Batal</button>
+                <button type="submit" className="btn btn-primary" disabled={saving}>
+                  <Plus size={15} /> {saving ? 'Menyimpan...' : 'Simpan Pelanggan'}
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

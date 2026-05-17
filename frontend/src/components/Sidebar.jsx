@@ -11,6 +11,7 @@ const navItems = [
       { to: '/', icon: LayoutDashboard, label: 'Dashboard', exact: true },
       { to: '/invoices', icon: FileText, label: 'Input Invoice' },
       { to: '/tracker', icon: MapPin, label: 'Status Tracker' },
+      { to: '/courier', icon: Activity, label: 'Mode Kurir' },
       { to: '/priority', icon: Brain, label: 'Prioritas C4.5', badge: 3 },
     ]
   },

@@ -8,6 +8,7 @@ import PriorityPage from './pages/PriorityPage';
 import ReportsPage from './pages/ReportsPage';
 import CustomersPage from './pages/CustomersPage';
 import LoginPage from './pages/LoginPage';
+import CourierPage from './pages/CourierPage';
 
 // Protected Route Component
 const ProtectedRoute = ({ children, isAuthenticated }) => {
@@ -60,6 +61,7 @@ export default function App() {
                   <Route path="/" element={<Dashboard />} />
                   <Route path="/invoices" element={<InvoicePage />} />
                   <Route path="/tracker" element={<TrackerPage />} />
+                  <Route path="/courier" element={<CourierPage />} />
                   <Route path="/priority" element={<PriorityPage />} />
                   <Route path="/reports" element={<ReportsPage />} />
                   <Route path="/customers" element={<CustomersPage />} />

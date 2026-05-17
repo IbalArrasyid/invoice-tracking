@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import {
   Brain, Zap, BarChart2, CheckCircle2, XCircle, Info,
   RefreshCw, ChevronRight, GitBranch

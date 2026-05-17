@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import {
   Plus, Search, Filter, FileText, Edit2, Trash2,
-  MapPin, Clock, ChevronDown, Download, Eye
+  MapPin, Clock, ChevronDown, Download, Eye, Upload
 } from 'lucide-react';
 import Topbar from '../components/Topbar';
 import { invoiceService, customerService, driverService, predictService } from '../api';
@@ -9,6 +9,55 @@ import { AREAS, SCHEDULES, getStatusBadgeClass, getPriorityBadgeClass, formatCur
 
 const STATUS_OPTIONS = ['Semua', 'Menunggu', 'Dalam Pengiriman', 'Terkirim', 'Kembali'];
 const PRIORITY_OPTIONS = ['Semua', 'Tinggi', 'Sedang', 'Rendah'];
+const BULK_TEMPLATE = 'invoiceNo,customerName,area,schedule,cutoff,amount,dueDate,driverName,notes\nINV-2026-001,PT Nusantara,Jakarta Pusat,Senin & Kamis,10:00,2500000,2026-05-20,Budi,Prioritas kontrak';
+
+function splitDelimitedLine(line, delimiter) {
+  const cells = [];
+  let current = '';
+  let quoted = false;
+
+  for (let i = 0; i < line.length; i += 1) {
+    const char = line[i];
+    const next = line[i + 1];
+
+    if (char === '"' && next === '"') {
+      current += '"';
+      i += 1;
+    } else if (char === '"') {
+      quoted = !quoted;
+    } else if (char === delimiter && !quoted) {
+      cells.push(current.trim());
+      current = '';
+    } else {
+      current += char;
+    }
+  }
+
+  cells.push(current.trim());
+  return cells;
+}
+
+function parseBulkText(text) {
+  const lines = text.split(/\r?\n/).map(line => line.trim()).filter(Boolean);
+  if (lines.length < 2) return [];
+  const delimiter = lines[0].includes('\t') ? '\t' : ',';
+  const headers = splitDelimitedLine(lines[0], delimiter);
+
+  return lines.slice(1).map(line => {
+    const cells = splitDelimitedLine(line, delimiter);
+    return headers.reduce((row, header, index) => {
+      row[header] = cells[index] || '';
+      return row;
+    }, {});
+  }).filter(row => Object.values(row).some(Boolean));
+}
+
+function pickBulk(row, keys) {
+  for (const key of keys) {
+    if (row[key]) return row[key];
+  }
+  return '-';
+}
 
 export default function InvoicePage() {
   const [invoices, setInvoices] = useState([]);
@@ -18,6 +67,7 @@ export default function InvoicePage() {
   const [statusFilter, setStatusFilter] = useState('Semua');
   const [priorityFilter, setPriorityFilter] = useState('Semua');
   const [showModal, setShowModal] = useState(false);
+  const [showBulkModal, setShowBulkModal] = useState(false);
   const [detailInvoice, setDetailInvoice] = useState(null);
   const [form, setForm] = useState({
     customerName: '', area: '', jadwal: '', cutoff: '',
@@ -26,6 +76,10 @@ export default function InvoicePage() {
   const [predictResult, setPredictResult] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [pageLoading, setPageLoading] = useState(true);
+  const [bulkText, setBulkText] = useState(BULK_TEMPLATE);
+  const [bulkRows, setBulkRows] = useState(parseBulkText(BULK_TEMPLATE));
+  const [bulkResult, setBulkResult] = useState(null);
+  const [bulkLoading, setBulkLoading] = useState(false);
 
   const fetchInvoices = async () => {
     try {
@@ -127,6 +181,45 @@ export default function InvoicePage() {
     }
   };
 
+  const handleBulkTextChange = (value) => {
+    setBulkText(value);
+    setBulkRows(parseBulkText(value));
+    setBulkResult(null);
+  };
+
+  const handleBulkFile = async (event) => {
+    const file = event.target.files?.[0];
+    if (!file) return;
+
+    if (file.name.toLowerCase().endsWith('.xlsx')) {
+      alert('Untuk sementara gunakan file CSV dari Excel (Save As CSV) atau copy-paste tabel Excel ke kolom impor.');
+      event.target.value = '';
+      return;
+    }
+
+    const text = await file.text();
+    handleBulkTextChange(text);
+  };
+
+  const handleBulkSubmit = async () => {
+    if (!bulkRows.length) {
+      alert('Data belum valid. Pastikan baris pertama berisi header kolom.');
+      return;
+    }
+
+    try {
+      setBulkLoading(true);
+      const result = await invoiceService.bulkCreate(bulkRows);
+      setBulkResult(result);
+      await fetchInvoices();
+    } catch (err) {
+      console.error('Bulk import error:', err);
+      alert('Gagal mengimpor invoice secara bulk.');
+    } finally {
+      setBulkLoading(false);
+    }
+  };
+
   const priorityChipColors = {
     'Tinggi': { bg: 'var(--priority-high-bg)', text: 'var(--priority-high)' },
     'Sedang': { bg: 'var(--priority-medium-bg)', text: 'var(--priority-medium)' },
@@ -143,9 +236,14 @@ export default function InvoicePage() {
         title="Input Invoice"
         subtitle="Manajemen data invoice dan prediksi prioritas"
         actions={
-          <button className="btn btn-primary btn-sm" onClick={() => setShowModal(true)}>
-            <Plus size={15} /> Invoice Baru
-          </button>
+          <>
+            <button className="btn btn-secondary btn-sm" onClick={() => setShowBulkModal(true)}>
+              <Upload size={14} /> Bulk Import
+            </button>
+            <button className="btn btn-primary btn-sm" onClick={() => setShowModal(true)}>
+              <Plus size={15} /> Invoice Baru
+            </button>
+          </>
         }
       />
 
@@ -409,6 +507,106 @@ export default function InvoicePage() {
                 </button>
               </div>
             </form>
+          </div>
+        </div>
+      )}
+
+      {showBulkModal && (
+        <div className="modal-backdrop" onClick={() => setShowBulkModal(false)}>
+          <div className="modal" style={{ maxWidth: 900 }} onClick={e => e.stopPropagation()}>
+            <div className="modal-header">
+              <div>
+                <div className="modal-title">Bulk Input Invoice</div>
+                <div className="modal-subtitle">Upload CSV dari Excel atau paste tabel langsung dari spreadsheet</div>
+              </div>
+              <button className="btn btn-ghost btn-icon" onClick={() => setShowBulkModal(false)}>×</button>
+            </div>
+
+            <div className="modal-body">
+              <div className="bulk-import-grid">
+                <div className="form-group">
+                  <label className="form-label">File CSV / TSV</label>
+                  <input
+                    type="file"
+                    className="form-input"
+                    accept=".csv,.tsv,.txt"
+                    onChange={handleBulkFile}
+                  />
+                </div>
+                <div className="bulk-hint">
+                  Kolom yang didukung: invoiceNo, customerName, area, schedule, cutoff, amount, dueDate, driverName, notes.
+                </div>
+              </div>
+
+              <div className="form-group">
+                <label className="form-label">Paste data dari Excel</label>
+                <textarea
+                  className="form-textarea bulk-textarea"
+                  value={bulkText}
+                  onChange={e => handleBulkTextChange(e.target.value)}
+                />
+              </div>
+
+              <div className="section-header" style={{ marginBottom: 0 }}>
+                <div>
+                  <div className="section-title">Preview Import</div>
+                  <div className="section-subtitle">{bulkRows.length} baris siap diproses</div>
+                </div>
+              </div>
+
+              <div className="table-wrapper bulk-preview">
+                <table className="data-table">
+                  <thead>
+                    <tr>
+                      <th>No. Invoice</th>
+                      <th>Pelanggan</th>
+                      <th>Area</th>
+                      <th>Jadwal</th>
+                      <th>Cut-off</th>
+                      <th>Nominal</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {bulkRows.slice(0, 6).map((row, index) => (
+                      <tr key={index}>
+                        <td><span className="invoice-no">{pickBulk(row, ['invoiceNo', 'invoice_no', 'no_invoice', 'No Invoice', 'Nomor Invoice'])}</span></td>
+                        <td>{pickBulk(row, ['customerName', 'customer_name', 'pelanggan', 'Pelanggan', 'Nama Pelanggan'])}</td>
+                        <td>{pickBulk(row, ['area', 'Area', 'wilayah', 'Wilayah'])}</td>
+                        <td>{pickBulk(row, ['schedule', 'jadwal', 'Jadwal', 'Jadwal Penerimaan'])}</td>
+                        <td>{pickBulk(row, ['cutoff', 'Cutoff', 'cut_off', 'Cut-off'])}</td>
+                        <td>{pickBulk(row, ['amount', 'nominal', 'Nominal', 'Nilai Invoice'])}</td>
+                      </tr>
+                    ))}
+                    {bulkRows.length === 0 && (
+                      <tr>
+                        <td colSpan={6}>
+                          <div className="empty-state" style={{ padding: 28 }}>
+                            <div className="empty-title">Belum ada data valid</div>
+                          </div>
+                        </td>
+                      </tr>
+                    )}
+                  </tbody>
+                </table>
+              </div>
+
+              {bulkResult && (
+                <div className="alert alert-success">
+                  <FileText size={16} />
+                  <div>
+                    <strong>{bulkResult.created?.length || 0} invoice berhasil diimpor.</strong>
+                    {bulkResult.skipped?.length > 0 && ` ${bulkResult.skipped.length} baris dilewati karena data belum lengkap atau nomor invoice duplikat.`}
+                  </div>
+                </div>
+              )}
+            </div>
+
+            <div className="modal-footer">
+              <button className="btn btn-secondary" onClick={() => setShowBulkModal(false)}>Tutup</button>
+              <button className="btn btn-primary" onClick={handleBulkSubmit} disabled={bulkLoading || bulkRows.length === 0}>
+                <Upload size={15} /> {bulkLoading ? 'Mengimpor...' : 'Import Invoice'}
+              </button>
+            </div>
           </div>
         </div>
       )}
