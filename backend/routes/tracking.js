@@ -40,7 +40,14 @@ router.get('/', async (req, res) => {
 // Update status pengiriman (Menunggu → Dalam Pengiriman → Terkirim/Kembali)
 router.patch('/:id', async (req, res) => {
   try {
-    const { status, notes, updatedBy } = req.body;
+    const {
+      status,
+      notes,
+      updatedBy,
+      courierSignature,
+      receiverName,
+      receiverSignature,
+    } = req.body;
     const validStatuses = ['Menunggu', 'Dalam Pengiriman', 'Terkirim', 'Kembali'];
     if (!status || !validStatuses.includes(status)) {
       return res.status(400).json({
@@ -57,19 +64,34 @@ router.patch('/:id', async (req, res) => {
     if (status === 'Terkirim') invoice.deliveredAt = new Date();
     await invoice.save();
 
+    const now = new Date();
+
     // Simpan riwayat ke tabel deliveries
     await Delivery.create({
       invoiceId: invoice.id,
       status,
-      deliveredAt: status === 'Terkirim' ? new Date() : null,
+      deliveredAt: status === 'Terkirim' ? now : null,
       notes: notes || null,
+      courierSignature: courierSignature || null,
+      courierSignedAt: courierSignature ? now : null,
+      receiverName: receiverName || null,
+      receiverSignature: receiverSignature || null,
+      receiverSignedAt: receiverSignature ? now : null,
       updatedBy: updatedBy || req.user.email,
+    });
+
+    const full = await Invoice.findByPk(invoice.id, {
+      include: [
+        { model: Customer, as: 'customer', attributes: ['id', 'name', 'area', 'schedule', 'cutoff', 'contact'] },
+        { model: Driver, as: 'driver', attributes: ['id', 'name', 'phone'] },
+        { model: Delivery, as: 'deliveries', order: [['created_at', 'DESC']], limit: 5 },
+      ],
     });
 
     return res.json({
       success: true,
       message: `Status diperbarui menjadi "${status}".`,
-      data: invoice,
+      data: full,
     });
   } catch (err) {
     return res.status(500).json({ success: false, message: err.message });
