@@ -5,6 +5,8 @@ const Driver      = require('./Driver');
 const Invoice     = require('./Invoice');
 const Delivery    = require('./Delivery');
 const PriorityLog = require('./PriorityLog');
+const DeliveryRecommendation = require('./DeliveryRecommendation');
+const DeliveryAnalyticsLog   = require('./DeliveryAnalyticsLog');
 
 // ─── Associations ────────────────────────────────────────────────
 // Invoice → Customer (many-to-one)
@@ -19,6 +21,10 @@ Driver.hasMany(Invoice,   { foreignKey: 'driver_id',  as: 'invoices' });
 Invoice.hasMany(Delivery,  { foreignKey: 'invoice_id', as: 'deliveries' });
 Delivery.belongsTo(Invoice, { foreignKey: 'invoice_id', as: 'invoice' });
 
+// Invoice → DeliveryRecommendation (one-to-many)
+Invoice.hasMany(DeliveryRecommendation, { foreignKey: 'invoice_id', as: 'recommendations' });
+DeliveryRecommendation.belongsTo(Invoice, { foreignKey: 'invoice_id', as: 'invoice' });
+
 module.exports = {
   sequelize,
   User,
@@ -27,4 +33,6 @@ module.exports = {
   Invoice,
   Delivery,
   PriorityLog,
+  DeliveryRecommendation,
+  DeliveryAnalyticsLog,
 };

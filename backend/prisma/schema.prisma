@@ -1,0 +1,130 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+
+enum UserRole {
+  admin
+  staff
+}
+
+enum InvoiceStatus {
+  Menunggu
+  Dalam_Pengiriman @map("Dalam Pengiriman")
+  Terkirim
+  Kembali
+}
+
+enum PriorityLevel {
+  Tinggi
+  Sedang
+  Rendah
+}
+
+model User {
+  id        Int      @id @default(autoincrement())
+  name      String   @db.VarChar(100)
+  email     String   @unique @db.VarChar(150)
+  password  String   @db.VarChar(255)
+  role      UserRole @default(staff)
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("users")
+}
+
+model Customer {
+  id        Int       @id @default(autoincrement())
+  name      String    @db.VarChar(150)
+  area      String    @db.VarChar(100)
+  schedule  String    @db.VarChar(50)
+  cutoff    String    @db.VarChar(5)
+  contact   String?   @db.VarChar(100)
+  phone     String?   @db.VarChar(20)
+  address   String?
+  createdAt DateTime  @default(now()) @map("created_at")
+  updatedAt DateTime  @updatedAt @map("updated_at")
+  invoices  Invoice[]
+
+  @@map("customers")
+}
+
+model Driver {
+  id        Int       @id @default(autoincrement())
+  name      String    @db.VarChar(100)
+  phone     String    @db.VarChar(20)
+  area      String    @db.VarChar(150)
+  isActive  Boolean   @default(true) @map("is_active")
+  createdAt DateTime  @default(now()) @map("created_at")
+  updatedAt DateTime  @updatedAt @map("updated_at")
+  invoices  Invoice[]
+
+  @@map("drivers")
+}
+
+model Invoice {
+  id           Int           @id @default(autoincrement())
+  invoiceNo    String        @unique @map("invoice_no") @db.VarChar(30)
+  customerId   Int           @map("customer_id")
+  driverId     Int?          @map("driver_id")
+  amount       BigInt        @default(0)
+  date         DateTime      @db.Date
+  dueDate      DateTime?     @map("due_date") @db.Date
+  status       InvoiceStatus @default(Menunggu)
+  priority     PriorityLevel @default(Sedang)
+  schedule     String?       @db.VarChar(50)
+  cutoff       String?       @db.VarChar(5)
+  deliveryDate DateTime?     @map("delivery_date") @db.Date
+  deliveredAt  DateTime?     @map("delivered_at")
+  notes        String?
+  createdAt    DateTime      @default(now()) @map("created_at")
+  updatedAt    DateTime      @updatedAt @map("updated_at")
+  customer     Customer      @relation(fields: [customerId], references: [id])
+  driver       Driver?       @relation(fields: [driverId], references: [id])
+  deliveries   Delivery[]
+
+  @@index([customerId])
+  @@index([driverId])
+  @@map("invoices")
+}
+
+model Delivery {
+  id                Int           @id @default(autoincrement())
+  invoiceId         Int           @map("invoice_id")
+  status            InvoiceStatus
+  deliveredAt       DateTime?     @map("delivered_at")
+  notes             String?
+  courierSignature  String?       @map("courier_signature")
+  courierSignedAt   DateTime?     @map("courier_signed_at")
+  receiverName      String?       @map("receiver_name") @db.VarChar(150)
+  receiverSignature String?       @map("receiver_signature")
+  receiverSignedAt  DateTime?     @map("receiver_signed_at")
+  updatedBy         String?       @map("updated_by") @db.VarChar(100)
+  createdAt         DateTime      @default(now()) @map("created_at")
+  updatedAt         DateTime      @updatedAt @map("updated_at")
+  invoice           Invoice       @relation(fields: [invoiceId], references: [id], onDelete: Cascade)
+
+  @@index([invoiceId])
+  @@map("deliveries")
+}
+
+model PriorityLog {
+  id         Int            @id @default(autoincrement())
+  invoiceNo  String         @map("invoice_no") @db.VarChar(30)
+  area       String?        @db.VarChar(100)
+  schedule   String?        @db.VarChar(50)
+  cutoff     String?        @db.VarChar(5)
+  predicted  PriorityLevel
+  actual     PriorityLevel?
+  accuracy   Boolean?
+  confidence Float?
+  createdAt  DateTime       @default(now()) @map("created_at")
+  updatedAt  DateTime       @updatedAt @map("updated_at")
+
+  @@map("priority_logs")
+}

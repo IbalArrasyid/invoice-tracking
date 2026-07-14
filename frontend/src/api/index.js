@@ -15,3 +15,5 @@ export { default as customerService }   from './customerService';
 export { default as driverService }     from './driverService';
 export { default as dashboardService }  from './dashboardService';
 export { default as priorityLogService } from './priorityLogService';
+export { default as recommendationService } from './recommendationService';
+export { default as analyticsService }      from './analyticsService';

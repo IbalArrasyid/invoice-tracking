@@ -1,7 +1,8 @@
 import { NavLink, useLocation } from 'react-router-dom';
 import {
   LayoutDashboard, FileText, MapPin, Brain, Settings,
-  ChevronRight, Bell, LogOut, Users, BarChart2, Activity
+  ChevronRight, Bell, LogOut, Users, BarChart2, Activity,
+  Lightbulb, TrendingUp, BookOpen
 } from 'lucide-react';
 
 const navItems = [
@@ -13,6 +14,14 @@ const navItems = [
       { to: '/tracker', icon: MapPin, label: 'Status Tracker' },
       { to: '/courier', icon: Activity, label: 'Mode Kurir' },
       { to: '/priority', icon: Brain, label: 'Prioritas C4.5', badge: 3 },
+      { to: '/recommendation', icon: Lightbulb, label: 'Priority Recommendation' },
+    ]
+  },
+  {
+    section: 'Analitik',
+    items: [
+      { to: '/research-showcase', icon: BookOpen, label: 'Research Showcase' },
+      { to: '/analytics', icon: TrendingUp, label: 'Operational Analytics' },
     ]
   },
   {
@@ -41,7 +50,7 @@ export default function Sidebar({ onLogout }) {
         </div>
         <div className="logo-text">
           InvoiceTrack
-          <span>C4.5 Priority System</span>
+          <span>Operational Knowledge System</span>
         </div>
       </div>
 

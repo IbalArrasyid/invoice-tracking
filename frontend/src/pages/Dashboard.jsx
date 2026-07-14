@@ -306,7 +306,7 @@ export default function Dashboard() {
                   border: '1px solid var(--priority-high-border)',
                   borderRadius: 'var(--radius-md)'
                 }}>
-                  <div className="rank-num rank-1">{i + 1}</div>
+                  <div className="priority-sequence-num priority-sequence-1">{i + 1}</div>
                   <div style={{ flex: 1 }}>
                     <div style={{ fontSize: '0.875rem', fontWeight: 600, color: 'var(--text-primary)' }}>
                       {inv.customer?.name || inv.customerName}

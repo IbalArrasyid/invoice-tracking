@@ -17,7 +17,7 @@ const performanceData = [
   { metric: 'Spesifisitas', value: 82 },
 ];
 
-const confusionMatrix = [
+const decisionTreeEvaluation = [
   { actual: 'Tinggi', predTinggi: 18, predSedang: 2, predRendah: 0 },
   { actual: 'Sedang', predTinggi: 1, predSedang: 14, predRendah: 2 },
   { actual: 'Rendah', predTinggi: 0, predSedang: 1, predRendah: 10 },
@@ -352,9 +352,9 @@ export default function PriorityPage() {
             </div>
 
             <div>
-              {/* Confusion Matrix */}
+              {/* Decision Tree Evaluation */}
               <div className="card" style={{ marginBottom: 16 }}>
-                <div className="section-title" style={{ marginBottom: 16 }}>Confusion Matrix</div>
+                <div className="section-title" style={{ marginBottom: 16 }}>Decision Tree Evaluation</div>
                 <div style={{ overflowX: 'auto' }}>
                   <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '0.8rem', textAlign: 'center' }}>
                     <thead>
@@ -366,7 +366,7 @@ export default function PriorityPage() {
                       </tr>
                     </thead>
                     <tbody>
-                      {confusionMatrix.map((row, i) => (
+                      {decisionTreeEvaluation.map((row, i) => (
                         <tr key={row.actual}>
                           <td style={{ padding: '8px 12px', color: 'var(--text-secondary)', fontWeight: 600, textAlign: 'left' }}>
                             {row.actual}

@@ -12,6 +12,8 @@ const customerRoutes  = require('./routes/customers');
 const driverRoutes    = require('./routes/drivers');
 const dashboardRoutes = require('./routes/dashboard');
 const priorityLogRoutes = require('./routes/priorityLogs');
+const recommendationRoutes = require('./routes/recommendation');
+const analyticsRoutes      = require('./routes/analytics');
 
 const app  = express();
 const PORT = process.env.PORT || 3000;
@@ -43,6 +45,8 @@ app.use('/api/customers',     customerRoutes);
 app.use('/api/drivers',       driverRoutes);
 app.use('/api/dashboard',     dashboardRoutes);
 app.use('/api/priority-logs', priorityLogRoutes);
+app.use('/api/recommendation', recommendationRoutes);
+app.use('/api/analytics',      analyticsRoutes);
 
 // ─── Health Check ────────────────────────────────────────────────
 app.get('/api/health', (_req, res) => {
