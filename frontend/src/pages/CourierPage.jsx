@@ -3,9 +3,8 @@ import {
   CheckCircle2, Clock, FileSignature, MapPin, PackageCheck,
   RotateCcw, Search, Send, Truck
 } from 'lucide-react';
-import Topbar from '../components/Topbar';
 import { trackingService } from '../api';
-import { formatCurrency, formatDate, formatDateTime, getPriorityBadgeClass, getStatusBadgeClass } from '../data/mockData';
+import { formatCurrency, formatDate, formatDateTime, getStatusBadgeClass } from '../data/mockData';
 
 const STATUS_FLOW = ['Dalam Pengiriman', 'Terkirim', 'Kembali'];
 
@@ -100,6 +99,17 @@ function StatusIcon({ status }) {
   if (status === 'Dalam Pengiriman') return <Truck size={15} />;
   if (status === 'Kembali') return <RotateCcw size={15} />;
   return <Clock size={15} />;
+}
+
+function getVisiblePriority(priority) {
+  const normalized = String(priority || '').trim().toLowerCase();
+  if (normalized === 'tinggi' || normalized === 'prioritas' || normalized === 'urgent') return 'Urgent';
+  if (normalized === 'sedang' || normalized === 'rendah' || normalized === 'normal' || normalized === 'not urgent') return 'Not Urgent';
+  return priority || '-';
+}
+
+function getVisiblePriorityBadgeClass(priority) {
+  return getVisiblePriority(priority) === 'Urgent' ? 'badge-high' : 'badge-low';
 }
 
 export default function CourierPage() {
@@ -199,10 +209,12 @@ export default function CourierPage() {
 
   return (
     <div>
-      <Topbar
-        title="Mode Kurir"
-        subtitle="Update perjalanan invoice dengan tanda tangan digital kurir dan penerima"
-      />
+      <header className="topbar">
+        <div className="topbar-title">
+          <h1>Proof of Delivery</h1>
+          <p>Capture delivery updates and receiver proof for invoice completion</p>
+        </div>
+      </header>
 
       <div className="page-container courier-layout">
         <section className="courier-list">
@@ -234,7 +246,7 @@ export default function CourierPage() {
                 <span><MapPin size={12} /> {invoice.customer?.area}</span>
                 <div className="courier-card-foot">
                   <span>{formatCurrency(invoice.amount)}</span>
-                  <span className={`badge ${getPriorityBadgeClass(invoice.priority)}`}>{invoice.priority}</span>
+                  <span className={`badge ${getVisiblePriorityBadgeClass(invoice.priority)}`}>{getVisiblePriority(invoice.priority)}</span>
                 </div>
               </button>
             ))}
@@ -257,7 +269,7 @@ export default function CourierPage() {
                   <h2>{selected.customer?.name}</h2>
                   <p>{selected.customer?.area} · Cut-off {selected.cutoff} · Jatuh tempo {formatDate(selected.dueDate || selected.due_date)}</p>
                 </div>
-                <span className={`badge ${getPriorityBadgeClass(selected.priority)}`}>Prioritas {selected.priority}</span>
+                <span className={`badge ${getVisiblePriorityBadgeClass(selected.priority)}`}>Priority: {getVisiblePriority(selected.priority)}</span>
               </div>
 
               <div className="delivery-kpi">

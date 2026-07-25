@@ -1,32 +1,154 @@
 import { useEffect, useMemo, useState } from 'react';
-import { AlertTriangle, Brain, FileText, Loader2, RefreshCw, Zap } from 'lucide-react';
-import Topbar from '../components/Topbar';
 import {
-  DecisionTreeReconstruction,
-  DeliveryContextPanel,
-  KnowledgeTraceTimeline,
-  PriorityExplanationPanel,
-  PrioritySummaryCards,
-  RuleEvidenceTable,
-} from '../components/PriorityRecommendationSections';
+  AlertTriangle, Brain, CheckCircle2, ClipboardList,
+  FileText, GitBranch, Loader2, Scale, Zap
+} from 'lucide-react';
+import { invoiceService, recommendationService } from '../api';
 import {
-  OperationalTimelinePanel,
-  RecommendationHistoryPanel,
-  RecommendationLifecyclePanel,
-  RecommendationOutcomePanel,
-  WorkflowStatusPanel,
-} from '../components/RecommendationWorkflowSections';
-import { invoiceService, recommendationService, trackingService } from '../api';
-import { getPriorityBadgeClass } from '../data/mockData';
-import { normalizePriorityResponse } from '../utils/priorityRecommendationAdapter';
-import { normalizeRecommendationWorkflow } from '../utils/recommendationWorkflowAdapter';
+  field,
+  normalizePriorityResponse,
+  toDisplayValue,
+} from '../utils/priorityRecommendationAdapter';
+
+const FINAL_RULE_SET = 'Rule-Based R1-R8';
+
+function toVisiblePriority(value) {
+  const normalized = String(value || '').trim().toLowerCase();
+
+  if (['urgent', 'prioritas', 'tinggi', 'high'].includes(normalized)) {
+    return 'Urgent';
+  }
+
+  if (['not urgent', 'not_urgent', 'normal', 'sedang', 'rendah', 'medium', 'low'].includes(normalized)) {
+    return 'Not Urgent';
+  }
+
+  return value ? sanitizeText(value) : '-';
+}
+
+function priorityBadgeClass(priority) {
+  return toVisiblePriority(priority) === 'Urgent' ? 'badge-high' : 'badge-low';
+}
+
+function sanitizeText(value) {
+  return toDisplayValue(value)
+    .replace(/C4\.5/gi, 'Decision Tree Classification')
+    .replace(/Priority Recommendation/gi, 'Priority Classification')
+    .replace(/Recommendation Score/gi, 'Classification Result')
+    .replace(/Operational Knowledge/gi, 'Priority Classification')
+    .replace(/Knowledge Trace/gi, 'Classification Evidence')
+    .replace(/Knowledge Acquisition/gi, 'Invoice Data')
+    .replace(/Knowledge Formalization/gi, 'Classification Preparation')
+    .replace(/Decision Tree Reconstruction/gi, 'Decision Tree Classification')
+    .replace(/SAW/gi, 'Classification')
+    .replace(/Hybrid Recommendation/gi, 'Comparative Classification')
+    .replace(/recommendation/gi, 'classification')
+    .replace(/Tinggi/gi, 'Urgent')
+    .replace(/Sedang/gi, 'Not Urgent')
+    .replace(/Rendah/gi, 'Not Urgent')
+    .replace(/Prioritas/gi, 'Urgent')
+    .replace(/Normal/gi, 'Not Urgent');
+}
+
+function normalizeRuleId(value) {
+  const match = String(value || '').match(/R[-\s]?(\d+)/i);
+
+  if (!match) return FINAL_RULE_SET;
+
+  const number = Number(match[1]);
+  if (number >= 1 && number <= 8) return `R${number}`;
+
+  return FINAL_RULE_SET;
+}
+
+function getActivatedRule(classification) {
+  const activatedRule = field(classification.ruleEvidence, 'activated_rule')
+    || field(classification.ruleBasedResult, 'activated_rule')
+    || {};
+
+  const ruleId = field(activatedRule, 'rule_id', 'id')
+    || field(classification.ruleEvidence, 'rule_id')
+    || field(classification.ruleBasedResult, 'rule_id')
+    || classification.ruleRows?.[0]?.id;
+
+  return {
+    id: normalizeRuleId(ruleId),
+    rawName: field(activatedRule, 'rule_name', 'name')
+      || field(classification.ruleEvidence, 'rule_name')
+      || classification.ruleRows?.[0]?.name,
+  };
+}
+
+function getRuleBasedResult(classification) {
+  return field(classification.ruleBasedResult, 'priority_label', 'priority', 'result')
+    || field(classification.ruleEvidence, 'priority_label', 'priority')
+    || classification.ruleRows?.[0]?.evidence
+    || classification.summary.priority;
+}
+
+function getDecisionTreeResult(classification) {
+  return field(classification.decisionTreeResult, 'priority_label', 'prediction', 'result')
+    || field(classification.raw, 'priority_label', 'raw_prediction')
+    || classification.summary.priority;
+}
+
+function getDecisionTreeConfidence(classification) {
+  return field(classification.decisionTreeResult, 'confidence', 'confidence_score')
+    ?? field(classification.raw, 'decision_confidence');
+}
+
+function formatPercent(value) {
+  if (value === null || value === undefined || value === '') return null;
+  const numeric = Number(value);
+  if (!Number.isFinite(numeric)) return sanitizeText(value);
+  return `${Math.round(numeric * 100)}%`;
+}
+
+function buildDecisionPath(decisionPath = []) {
+  const meaningfulPath = decisionPath.filter((step) => {
+    const combined = `${step.node || ''} ${step.fact || ''} ${step.value || ''}`.toLowerCase();
+    return !combined.includes('no decision path available');
+  });
+
+  return meaningfulPath.map((step, index) => ({
+    id: `${index + 1}`,
+    node: sanitizeText(step.node || `Step ${index + 1}`),
+    fact: sanitizeText(step.fact || '-'),
+    value: sanitizeText(step.value || '-'),
+  }));
+}
+
+function buildClassificationView(classification) {
+  if (!classification) return null;
+
+  const activatedRule = getActivatedRule(classification);
+  const ruleBasedResult = toVisiblePriority(getRuleBasedResult(classification));
+  const decisionTreeResult = toVisiblePriority(getDecisionTreeResult(classification));
+  const decisionPath = buildDecisionPath(classification.decisionPath);
+  const decisionTreeConfidence = formatPercent(getDecisionTreeConfidence(classification));
+
+  return {
+    ruleBased: {
+      result: ruleBasedResult,
+      ruleId: activatedRule.id,
+      ruleName: activatedRule.rawName ? sanitizeText(activatedRule.rawName) : FINAL_RULE_SET,
+      explanation: `The selected invoice is evaluated using the finalized ${FINAL_RULE_SET} rule set.`,
+    },
+    decisionTree: {
+      result: decisionTreeResult,
+      model: 'Entropy-based Decision Tree',
+      confidence: decisionTreeConfidence,
+      decisionPath,
+      explanation: 'The selected invoice is evaluated by the entropy-based decision tree and mapped to the final thesis classes.',
+    },
+    agreement: ruleBasedResult === decisionTreeResult ? 'Agreement' : 'Different Prediction',
+  };
+}
 
 export default function PriorityRecommendationPage() {
   const [invoices, setInvoices] = useState([]);
   const [selectedInvoiceId, setSelectedInvoiceId] = useState('');
-  const [rawRecommendation, setRawRecommendation] = useState(null);
-  const [recommendationHistory, setRecommendationHistory] = useState([]);
-  const [trackingHistory, setTrackingHistory] = useState([]);
+  const [rawResponse, setRawResponse] = useState(null);
   const [loadingInvoices, setLoadingInvoices] = useState(true);
   const [isGenerating, setIsGenerating] = useState(false);
   const [error, setError] = useState(null);
@@ -37,29 +159,11 @@ export default function PriorityRecommendationPage() {
     const loadInvoices = async () => {
       try {
         setLoadingInvoices(true);
-        const [invoiceResult, historyResult] = await Promise.allSettled([
-          invoiceService.getAll({ limit: 200 }),
-          recommendationService.getHistory(),
-        ]);
-
-        if (!mounted) return;
-
-        if (invoiceResult.status === 'fulfilled') {
-          setInvoices(invoiceResult.value.data || []);
-        } else {
-          console.error('Error loading invoices:', invoiceResult.reason);
-          setError('Gagal memuat invoice.');
-        }
-
-        if (historyResult.status === 'fulfilled') {
-          setRecommendationHistory(historyResult.value || []);
-        } else {
-          console.error('Error loading recommendation history:', historyResult.reason);
-          setRecommendationHistory([]);
-        }
+        const result = await invoiceService.getAll({ limit: 200 });
+        if (mounted) setInvoices(result.data || []);
       } catch (err) {
         console.error('Error loading invoices:', err);
-        if (mounted) setError('Gagal memuat invoice.');
+        if (mounted) setError('Unable to load invoices.');
       } finally {
         if (mounted) setLoadingInvoices(false);
       }
@@ -71,48 +175,19 @@ export default function PriorityRecommendationPage() {
     };
   }, []);
 
-  useEffect(() => {
-    let mounted = true;
-
-    const loadTrackingHistory = async () => {
-      if (!selectedInvoiceId) {
-        setTrackingHistory([]);
-        return;
-      }
-
-      try {
-        const history = await trackingService.getHistory(selectedInvoiceId);
-        if (mounted) setTrackingHistory(history || []);
-      } catch (err) {
-        console.error('Error loading tracking history:', err);
-        if (mounted) setTrackingHistory([]);
-      }
-    };
-
-    loadTrackingHistory();
-    return () => {
-      mounted = false;
-    };
-  }, [selectedInvoiceId]);
-
   const selectedInvoice = useMemo(
     () => invoices.find((invoice) => String(invoice.id) === String(selectedInvoiceId)),
     [invoices, selectedInvoiceId]
   );
 
-  const recommendation = useMemo(
-    () => rawRecommendation ? normalizePriorityResponse(rawRecommendation, selectedInvoice) : null,
-    [rawRecommendation, selectedInvoice]
+  const classification = useMemo(
+    () => rawResponse ? normalizePriorityResponse(rawResponse, selectedInvoice) : null,
+    [rawResponse, selectedInvoice]
   );
 
-  const workflow = useMemo(
-    () => recommendation ? normalizeRecommendationWorkflow({
-      recommendation,
-      selectedInvoice,
-      recommendationHistory,
-      trackingHistory,
-    }) : null,
-    [recommendation, selectedInvoice, recommendationHistory, trackingHistory]
+  const classificationView = useMemo(
+    () => buildClassificationView(classification),
+    [classification]
   );
 
   const handleGenerate = async () => {
@@ -122,11 +197,10 @@ export default function PriorityRecommendationPage() {
       setIsGenerating(true);
       setError(null);
       const response = await recommendationService.generate(selectedInvoiceId);
-      setRawRecommendation(response.data || response);
-      refreshWorkflowEvidence(selectedInvoiceId);
+      setRawResponse(response.data || response);
     } catch (err) {
-      console.error('Priority recommendation error:', err);
-      setError(err.response?.data?.message || 'Gagal menghasilkan priority recommendation.');
+      console.error('Priority classification error:', err);
+      setError(err.response?.data?.message || 'Priority classification failed.');
     } finally {
       setIsGenerating(false);
     }
@@ -134,41 +208,28 @@ export default function PriorityRecommendationPage() {
 
   const handleInvoiceChange = (event) => {
     setSelectedInvoiceId(event.target.value);
-    setRawRecommendation(null);
+    setRawResponse(null);
     setError(null);
-  };
-
-  const refreshWorkflowEvidence = async (invoiceId) => {
-    const [historyResult, trackingResult] = await Promise.allSettled([
-      recommendationService.getHistory(),
-      trackingService.getHistory(invoiceId),
-    ]);
-
-    if (historyResult.status === 'fulfilled') {
-      setRecommendationHistory(historyResult.value || []);
-    }
-
-    if (trackingResult.status === 'fulfilled') {
-      setTrackingHistory(trackingResult.value || []);
-    }
   };
 
   return (
     <div>
-      <Topbar
-        title="Priority Recommendation"
-        subtitle="Operational Knowledge Formalization Framework for invoice delivery decisions"
-      />
+      <header className="topbar">
+        <div className="topbar-title">
+          <h1>Priority Classification</h1>
+          <p>Rule-Based Classification and Decision Tree Classification for invoice priority</p>
+        </div>
+      </header>
 
       <div className="page-container">
         <div className="grid-2" style={{ alignItems: 'start', marginBottom: 24 }}>
           <section className="card">
             <div className="section-header" style={{ marginBottom: 18 }}>
               <div>
-                <div className="section-title">Invoice Selection</div>
-                <div className="section-subtitle">Generate a priority recommendation from the existing API route</div>
+                <div className="section-title">Classification Input</div>
+                <div className="section-subtitle">Select an invoice before running priority classification</div>
               </div>
-              <div className="tag"><Brain size={12} /> Framework</div>
+              <div className="tag"><FileText size={12} /> Invoice Data</div>
             </div>
 
             <div style={{ display: 'grid', gap: 14 }}>
@@ -180,7 +241,7 @@ export default function PriorityRecommendationPage() {
                   onChange={handleInvoiceChange}
                   disabled={loadingInvoices}
                 >
-                  <option value="">{loadingInvoices ? 'Memuat invoice...' : '-- Pilih invoice --'}</option>
+                  <option value="">{loadingInvoices ? 'Loading invoices...' : '-- Select invoice --'}</option>
                   {invoices.map((invoice) => (
                     <option key={invoice.id} value={invoice.id}>
                       {invoice.invoiceNo || invoice.invoice_no} - {invoice.customerName || invoice.customer_name || invoice.customer?.name || 'Customer'}
@@ -198,13 +259,13 @@ export default function PriorityRecommendationPage() {
                 disabled={!selectedInvoiceId || isGenerating}
               >
                 {isGenerating ? <Loader2 size={16} /> : <Zap size={16} />}
-                {isGenerating ? 'Memproses...' : 'Generate Priority Recommendation'}
+                {isGenerating ? 'Processing...' : 'Run Priority Classification'}
               </button>
 
               {error && (
                 <div className="alert alert-danger">
                   <AlertTriangle size={18} />
-                  <span>{error}</span>
+                  <span>{sanitizeText(error)}</span>
                 </div>
               )}
             </div>
@@ -213,66 +274,189 @@ export default function PriorityRecommendationPage() {
           <section className="card">
             <div className="section-header" style={{ marginBottom: 18 }}>
               <div>
-                <div className="section-title">Framework Handoff</div>
-                <div className="section-subtitle">Current response fields exposed by Batch 2 compatibility</div>
+                <div className="section-title">Classification Methods</div>
+                <div className="section-subtitle">The two methods evaluated in the final thesis</div>
               </div>
-              <div className="tag"><RefreshCw size={12} /> Compatible</div>
+              <div className="tag"><Scale size={12} /> Comparative Analysis</div>
             </div>
 
             <div style={{ display: 'grid', gap: 12 }}>
-              {[
-                ['Knowledge Acquisition', selectedInvoice ? 'Invoice context available' : 'Waiting for invoice'],
-                ['Rule-Based Representation', recommendation ? 'Rule evidence received' : 'Waiting for recommendation'],
-                ['Decision Tree Reconstruction', recommendation ? 'Decision path reconstructed' : 'Waiting for recommendation'],
-                ['Invoice Tracking & POD', workflow ? workflow.currentStatus.label : 'Pending POD context'],
-              ].map(([label, value]) => (
-                <div key={label} style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'space-between',
-                  gap: 12,
-                  border: '1px solid var(--border)',
-                  borderRadius: 'var(--radius-md)',
-                  padding: '12px 14px',
-                  background: 'var(--bg-input)',
-                }}>
-                  <span style={{ color: 'var(--text-secondary)', fontWeight: 600 }}>{label}</span>
-                  <span style={{ color: 'var(--text-primary)', fontWeight: 700, textAlign: 'right' }}>{value}</span>
-                </div>
-              ))}
+              <MethodOverview
+                icon={ClipboardList}
+                title="Rule-Based Classification"
+                detail="Uses the finalized Rule-Based R1-R8 rule set."
+              />
+              <MethodOverview
+                icon={Brain}
+                title="Decision Tree Classification"
+                detail="Uses an entropy-based decision tree."
+              />
             </div>
           </section>
         </div>
 
-        {!recommendation ? (
-          <EmptyFrameworkState />
+        {!classificationView ? (
+          <EmptyClassificationState />
         ) : (
           <div style={{ display: 'grid', gap: 24 }}>
-            <PrioritySummaryCards summary={recommendation.summary} />
-            <WorkflowStatusPanel workflow={workflow} />
+            <section className="card">
+              <div className="section-header" style={{ marginBottom: 18 }}>
+                <div>
+                  <div className="section-title">Classification Result</div>
+                  <div className="section-subtitle">Side-by-side result from both thesis methods</div>
+                </div>
+                <span className={`tag ${classificationView.agreement === 'Agreement' ? 'success' : ''}`}>
+                  <CheckCircle2 size={12} /> {classificationView.agreement}
+                </span>
+              </div>
 
-            <div className="grid-2" style={{ alignItems: 'start' }}>
-              <RecommendationLifecyclePanel lifecycle={workflow.lifecycle} />
-              <RecommendationOutcomePanel outcome={workflow.outcome} />
-            </div>
+              <div className="grid-2" style={{ alignItems: 'stretch' }}>
+                <ClassificationMethodCard
+                  icon={ClipboardList}
+                  title="Rule-Based Classification"
+                  result={classificationView.ruleBased.result}
+                  rows={[
+                    ['Triggered Rule', classificationView.ruleBased.ruleId],
+                    ['Rule Set', FINAL_RULE_SET],
+                    ['Rule Label', classificationView.ruleBased.ruleName],
+                  ]}
+                  explanation={classificationView.ruleBased.explanation}
+                />
 
-            <OperationalTimelinePanel events={workflow.operationalTimeline} />
+                <ClassificationMethodCard
+                  icon={Brain}
+                  title="Decision Tree Classification"
+                  result={classificationView.decisionTree.result}
+                  rows={[
+                    ['Model', classificationView.decisionTree.model],
+                    ['Criterion', 'Entropy'],
+                    ['Confidence', classificationView.decisionTree.confidence || 'Available in model response'],
+                  ]}
+                  explanation={classificationView.decisionTree.explanation}
+                />
+              </div>
+            </section>
 
-            <div className="grid-2" style={{ alignItems: 'start' }}>
-              <KnowledgeTraceTimeline trace={recommendation.knowledgeTrace} />
-              <DecisionTreeReconstruction
-                decisionPath={recommendation.decisionPath}
-                decisionTreeResult={recommendation.decisionTreeResult}
-                summary={recommendation.summary}
-              />
-            </div>
+            <section className="card">
+              <div className="section-header">
+                <div>
+                  <div className="section-title">Decision Path</div>
+                  <div className="section-subtitle">Displayed when the current response includes path evidence</div>
+                </div>
+                <div className="tag"><GitBranch size={12} /> Entropy-based Decision Tree</div>
+              </div>
 
-            <RuleEvidenceTable rows={recommendation.ruleRows} />
-            <DeliveryContextPanel delivery={recommendation.delivery} />
-            <RecommendationHistoryPanel history={workflow.history} />
-            <PriorityExplanationPanel explanation={recommendation.explanation} />
+              {classificationView.decisionTree.decisionPath.length > 0 ? (
+                <div style={{ display: 'grid', gap: 10 }}>
+                  {classificationView.decisionTree.decisionPath.map((step) => (
+                    <div
+                      key={step.id}
+                      style={{
+                        display: 'grid',
+                        gridTemplateColumns: '44px 1fr',
+                        gap: 12,
+                        alignItems: 'start',
+                        padding: '12px 14px',
+                        background: 'var(--bg-input)',
+                        border: '1px solid var(--border)',
+                        borderRadius: 'var(--radius-md)'
+                      }}
+                    >
+                      <div className="priority-sequence-num priority-sequence-1">{step.id}</div>
+                      <div>
+                        <div style={{ color: 'var(--text-primary)', fontWeight: 700, marginBottom: 4 }}>
+                          {step.node}
+                        </div>
+                        <div style={{ color: 'var(--text-secondary)', fontSize: '0.84rem', lineHeight: 1.6 }}>
+                          {step.fact}: {step.value}
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <div className="empty-state" style={{ padding: 28 }}>
+                  <div className="empty-title">Decision path is not exposed by the current response.</div>
+                  <div className="empty-desc">The classification result remains available above.</div>
+                </div>
+              )}
+            </section>
           </div>
         )}
+      </div>
+    </div>
+  );
+}
+
+function MethodOverview({ icon: Icon, title, detail }) {
+  return (
+    <div style={{
+      display: 'flex',
+      alignItems: 'center',
+      gap: 12,
+      border: '1px solid var(--border)',
+      borderRadius: 'var(--radius-md)',
+      padding: '12px 14px',
+      background: 'var(--bg-input)',
+    }}>
+      <div className="stat-icon-wrap" style={{
+        '--icon-bg': 'rgba(37,99,235,0.12)',
+        '--icon-color': 'var(--primary)'
+      }}>
+        <Icon size={17} />
+      </div>
+      <div>
+        <div style={{ color: 'var(--text-primary)', fontWeight: 700 }}>{title}</div>
+        <div style={{ color: 'var(--text-secondary)', fontSize: '0.82rem', marginTop: 3 }}>{detail}</div>
+      </div>
+    </div>
+  );
+}
+
+function ClassificationMethodCard({ icon: Icon, title, result, rows, explanation }) {
+  return (
+    <div style={{
+      border: '1px solid var(--border)',
+      borderRadius: 'var(--radius-md)',
+      padding: 18,
+      background: 'var(--bg-input)',
+      display: 'flex',
+      flexDirection: 'column',
+      gap: 16,
+    }}>
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 12 }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+          <div className="stat-icon-wrap" style={{
+            '--icon-bg': 'rgba(37,99,235,0.12)',
+            '--icon-color': 'var(--primary)'
+          }}>
+            <Icon size={18} />
+          </div>
+          <div style={{ color: 'var(--text-primary)', fontWeight: 800 }}>{title}</div>
+        </div>
+        <span className={`badge ${priorityBadgeClass(result)}`}>{result}</span>
+      </div>
+
+      <div style={{ display: 'grid', gap: 10 }}>
+        {rows.map(([label, value]) => (
+          <div
+            key={label}
+            style={{
+              display: 'flex',
+              justifyContent: 'space-between',
+              gap: 14,
+              borderBottom: '1px solid var(--border)',
+              paddingBottom: 8,
+            }}
+          >
+            <span style={{ color: 'var(--text-muted)', fontSize: '0.82rem' }}>{label}</span>
+            <strong style={{ color: 'var(--text-primary)', textAlign: 'right' }}>{sanitizeText(value)}</strong>
+          </div>
+        ))}
+      </div>
+
+      <div style={{ color: 'var(--text-secondary)', fontSize: '0.875rem', lineHeight: 1.6 }}>
+        {sanitizeText(explanation)}
       </div>
     </div>
   );
@@ -298,7 +482,7 @@ function InvoicePreview({ invoice }) {
     }}>
       <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 12 }}>
         <FileText size={16} color="var(--primary)" />
-        <div style={{ fontWeight: 700 }}>Selected Invoice Context</div>
+        <div style={{ fontWeight: 700 }}>Selected Invoice</div>
       </div>
 
       <div style={{ display: 'grid', gap: 9 }}>
@@ -310,7 +494,9 @@ function InvoicePreview({ invoice }) {
             fontSize: '0.84rem',
           }}>
             <span style={{ color: 'var(--text-muted)' }}>{label}</span>
-            <span style={{ color: 'var(--text-primary)', fontWeight: 600, textAlign: 'right' }}>{value}</span>
+            <span style={{ color: 'var(--text-primary)', fontWeight: 600, textAlign: 'right' }}>
+              {sanitizeText(value)}
+            </span>
           </div>
         ))}
         <div style={{
@@ -322,8 +508,8 @@ function InvoicePreview({ invoice }) {
           marginTop: 2,
         }}>
           <span style={{ color: 'var(--text-muted)' }}>Priority</span>
-          <span className={`badge ${getPriorityBadgeClass(invoice.priority)}`}>
-            {invoice.priority || '-'}
+          <span className={`badge ${priorityBadgeClass(invoice.priority)}`}>
+            {toVisiblePriority(invoice.priority)}
           </span>
         </div>
       </div>
@@ -331,7 +517,7 @@ function InvoicePreview({ invoice }) {
   );
 }
 
-function EmptyFrameworkState() {
+function EmptyClassificationState() {
   return (
     <section className="card" style={{
       minHeight: 260,
@@ -355,12 +541,11 @@ function EmptyFrameworkState() {
           <Brain size={26} />
         </div>
         <div className="section-title" style={{ marginBottom: 8 }}>
-          Operational Knowledge Framework Ready
+          Classification Result
         </div>
         <div style={{ color: 'var(--text-secondary)', fontSize: '0.95rem' }}>
-          Select an invoice and generate a recommendation to display the priority summary,
-          knowledge trace, rule evidence, decision tree reconstruction, delivery context,
-          and POD handoff.
+          Select an invoice and run priority classification to display Rule-Based Classification
+          and Decision Tree Classification results.
         </div>
       </div>
     </section>

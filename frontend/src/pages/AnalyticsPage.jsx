@@ -1,320 +1,163 @@
-import { useState, useEffect } from 'react';
 import {
-  BarChart2, TrendingUp, Users, Target, CheckCircle2,
-  Award, MapPin, Clock, Loader2
+  BarChart2,
+  CheckCircle2,
+  ClipboardList,
+  Database,
+  FileText,
+  Scale,
+  ShieldCheck,
 } from 'lucide-react';
-import {
-  BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip,
-  ResponsiveContainer, PieChart, Pie, Cell, Legend
-} from 'recharts';
-import Topbar from '../components/Topbar';
-import { analyticsService } from '../api';
 
-/* ─── Warna chart ──────────────────────────────────────────── */
-const DELIVERY_COLORS = { 'Kirim Hari Ini': '#10b981', 'Kirim Besok': '#f59e0b', 'Jadwalkan Ulang': '#ef4444' };
-const CONFIDENCE_COLORS = { 'High': '#10b981', 'Medium': '#f59e0b', 'Low': '#ef4444' };
+const RESULT_CARDS = [
+  {
+    label: 'Rule-Based Accuracy',
+    value: '93.94%',
+    detail: 'Rule-Based Classification',
+    icon: ClipboardList,
+    color: '#60a5fa',
+    bg: 'rgba(37,99,235,0.12)',
+  },
+  {
+    label: 'Decision Tree Accuracy',
+    value: '97.98%',
+    detail: 'Decision Tree Classification',
+    icon: BarChart2,
+    color: '#10b981',
+    bg: 'rgba(16,185,129,0.14)',
+  },
+  {
+    label: 'Exact McNemar',
+    value: 'p = 0.2891',
+    detail: 'Statistical Test',
+    icon: Scale,
+    color: '#f59e0b',
+    bg: 'rgba(245,158,11,0.14)',
+  },
+];
 
-/* ─── Custom Tooltip ───────────────────────────────────────── */
-const CustomTooltip = ({ active, payload, label }) => {
-  if (!active || !payload?.length) return null;
-  return (
-    <div style={{
-      background: 'var(--bg-elevated)', border: '1px solid var(--border)',
-      borderRadius: 'var(--radius-md)', padding: '10px 14px',
-      fontSize: '0.8rem', boxShadow: 'var(--shadow-md)',
-    }}>
-      <p style={{ color: 'var(--text-primary)', fontWeight: 600, marginBottom: 4 }}>{label}</p>
-      {payload.map((p, i) => (
-        <p key={i} style={{ color: p.color || 'var(--text-secondary)' }}>
-          {p.name}: <strong>{typeof p.value === 'number' && p.value % 1 !== 0 ? p.value.toFixed(2) : p.value}</strong>
-        </p>
-      ))}
-    </div>
-  );
-};
+const DATASET_CARDS = [
+  ['99', 'Unique Invoices', FileText],
+  ['30', 'Urgent', ShieldCheck],
+  ['69', 'Not Urgent', CheckCircle2],
+  ['expert_label', 'Ground Truth', Database],
+];
+
+const METHOD_ROWS = [
+  ['Ground Truth', 'Historical Admin Labels (expert_label)'],
+  ['Rule-Based Model', 'Rule-Based R1-R8'],
+  ['Decision Tree Model', 'Entropy-based Decision Tree'],
+  ['Primary Evaluation', 'Leave-One-Out Cross Validation (LOOCV)'],
+  ['Interpretation', 'There is no statistically significant difference between the two methods at common significance levels.'],
+];
 
 export default function AnalyticsPage() {
-  const [recStats, setRecStats] = useState(null);
-  const [driverStats, setDriverStats] = useState([]);
-  const [areaStats, setAreaStats] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState('');
-
-  useEffect(() => {
-    loadData();
-  }, []);
-
-  const loadData = async () => {
-    setLoading(true);
-    setError('');
-    try {
-      const [rec, drv, area] = await Promise.all([
-        analyticsService.getRecommendationStats().catch(() => null),
-        analyticsService.getDriverStats().catch(() => []),
-        analyticsService.getAreaStats().catch(() => []),
-      ]);
-      setRecStats(rec);
-      setDriverStats(drv || []);
-      setAreaStats(area || []);
-    } catch (err) {
-      setError('Gagal memuat data analytics.');
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  /* ─── Prepare chart data ─────────────────────────────────── */
-  const evidenceDistributionData = recStats?.scoreDistribution
-    ? Object.entries(recStats.scoreDistribution).map(([name, value]) => ({
-        name, value, fill: DELIVERY_COLORS[name] || '#6366f1',
-      }))
-    : [];
-
-  const confidenceData = recStats?.confidenceDistribution
-    ? Object.entries(recStats.confidenceDistribution).map(([name, value]) => ({
-        name: name === 'High' ? 'Tinggi' : name === 'Medium' ? 'Sedang' : 'Rendah',
-        value,
-        fill: CONFIDENCE_COLORS[name] || '#6366f1',
-      }))
-    : [];
-
-  if (loading) {
-    return (
-      <>
-        <Topbar title="Operational Analytics" subtitle="Analisis performa Operational Knowledge dan POD" />
-        <div className="page-container" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: 400 }}>
-          <Loader2 size={32} className="animate-spin" style={{ color: 'var(--primary-light)' }} />
-        </div>
-      </>
-    );
-  }
-
   return (
-    <>
-      <Topbar title="Operational Analytics" subtitle="Analisis performa priority recommendation, delivery context, dan POD" />
-
-      <div className="page-container">
-        {error && <div style={{ color: 'var(--priority-high)', marginBottom: 16 }}>{error}</div>}
-
-        {/* ─── Stat Cards ────────────────────────────────────── */}
-        <div className="stats-grid" style={{ gridTemplateColumns: 'repeat(4, 1fr)' }}>
-          <StatCard
-            icon={Target} label="Total Rekomendasi"
-            value={recStats?.totalRecommendations ?? 0}
-            accent="default"
-          />
-          <StatCard
-            icon={TrendingUp} label="Rata-rata Evidence"
-            value={recStats?.avgScore != null ? recStats.avgScore.toFixed(2) : '—'}
-            accent="default"
-          />
-          <StatCard
-            icon={CheckCircle2} label="Tingkat Penerimaan"
-            value={recStats?.acceptanceRate != null ? `${(recStats.acceptanceRate * 100).toFixed(0)}%` : '—'}
-            accent="low"
-          />
-          <StatCard
-            icon={Award} label="Tingkat Keberhasilan"
-            value={recStats?.successRate != null ? `${(recStats.successRate * 100).toFixed(0)}%` : '—'}
-            accent="low"
-          />
+    <div>
+      <header className="topbar">
+        <div className="topbar-title">
+          <h1>Research Results</h1>
+          <p>Final thesis results prepared for live defense</p>
         </div>
+      </header>
 
-        {/* ─── Charts Row ────────────────────────────────────── */}
-        <div className="analytics-grid">
-          {/* Bar Chart - Distribusi Priority Recommendation */}
-          <div className="card" style={{ padding: 24 }}>
-            <h3 style={{ fontSize: '0.95rem', fontWeight: 700, color: 'var(--text-primary)', marginBottom: 20, display: 'flex', alignItems: 'center', gap: 8 }}>
-              <BarChart2 size={18} style={{ color: 'var(--primary-light)' }} />
-              Distribusi Priority Recommendation
-            </h3>
-            <div className="chart-container">
-              {evidenceDistributionData.length > 0 ? (
-                <ResponsiveContainer width="100%" height="100%">
-                  <BarChart data={evidenceDistributionData} barSize={48}>
-                    <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" />
-                    <XAxis dataKey="name" tick={{ fill: '#94a3b8', fontSize: 12 }} axisLine={{ stroke: 'rgba(255,255,255,0.08)' }} />
-                    <YAxis tick={{ fill: '#94a3b8', fontSize: 12 }} axisLine={{ stroke: 'rgba(255,255,255,0.08)' }} allowDecimals={false} />
-                    <Tooltip content={<CustomTooltip />} />
-                    <Bar dataKey="value" name="Jumlah" radius={[6, 6, 0, 0]}>
-                      {evidenceDistributionData.map((entry, i) => (
-                        <Cell key={i} fill={entry.fill} />
-                      ))}
-                    </Bar>
-                  </BarChart>
-                </ResponsiveContainer>
-              ) : (
-                <EmptyState text="Belum ada data distribusi" />
-              )}
+      <div className="page-container" style={{ display: 'grid', gap: 24 }}>
+        <section className="card">
+          <div className="section-header" style={{ marginBottom: 16 }}>
+            <div>
+              <div className="section-title">Final Evaluation Results</div>
+              <div className="section-subtitle">Frozen values from the final undergraduate thesis</div>
             </div>
           </div>
 
-          {/* Pie Chart — Distribusi Confidence */}
-          <div className="card" style={{ padding: 24 }}>
-            <h3 style={{ fontSize: '0.95rem', fontWeight: 700, color: 'var(--text-primary)', marginBottom: 20, display: 'flex', alignItems: 'center', gap: 8 }}>
-              <Target size={18} style={{ color: 'var(--primary-light)' }} />
-              Distribusi Decision Confidence
-            </h3>
-            <div className="chart-container">
-              {confidenceData.length > 0 ? (
-                <ResponsiveContainer width="100%" height="100%">
-                  <PieChart>
-                    <Pie
-                      data={confidenceData} cx="50%" cy="50%"
-                      innerRadius={60} outerRadius={100}
-                      paddingAngle={4} dataKey="value"
-                      label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`}
-                    >
-                      {confidenceData.map((entry, i) => (
-                        <Cell key={i} fill={entry.fill} stroke="transparent" />
-                      ))}
-                    </Pie>
-                    <Legend
-                      verticalAlign="bottom" height={36}
-                      formatter={(value) => <span style={{ color: '#94a3b8', fontSize: '0.8rem' }}>{value}</span>}
-                    />
-                    <Tooltip content={<CustomTooltip />} />
-                  </PieChart>
-                </ResponsiveContainer>
-              ) : (
-                <EmptyState text="Belum ada data confidence" />
-              )}
-            </div>
+          <div className="stats-grid" style={{ gridTemplateColumns: 'repeat(3, 1fr)' }}>
+            {RESULT_CARDS.map((card) => {
+              const Icon = card.icon;
+              return (
+                <div className="stat-card default" key={card.label}>
+                  <div className="stat-header">
+                    <div className="stat-icon-wrap" style={{ '--icon-bg': card.bg, '--icon-color': card.color }}>
+                      <Icon size={20} />
+                    </div>
+                  </div>
+                  <div className="stat-value" style={card.value.length > 8 ? { fontSize: '1.45rem' } : undefined}>
+                    {card.value}
+                  </div>
+                  <div className="stat-label">{card.label}</div>
+                  <div style={{ marginTop: 6, color: 'var(--text-muted)', fontSize: '0.75rem' }}>
+                    {card.detail}
+                  </div>
+                </div>
+              );
+            })}
           </div>
-        </div>
+        </section>
 
-        {/* ─── Driver Performance Table ──────────────────────── */}
-        <div className="card" style={{ padding: 24, marginBottom: 24 }}>
-          <h3 style={{ fontSize: '0.95rem', fontWeight: 700, color: 'var(--text-primary)', marginBottom: 16, display: 'flex', alignItems: 'center', gap: 8 }}>
-            <Users size={18} style={{ color: 'var(--primary-light)' }} />
-            Delivery Context Performance
-          </h3>
-          {driverStats.length > 0 ? (
-            <div className="table-wrapper">
-              <table className="data-table">
-                <thead>
-                  <tr>
-                    <th>Driver</th>
-                    <th>Total Priority Decisions</th>
-                    <th>Avg Evidence</th>
-                    <th style={{ minWidth: 160 }}>Evidence Visual</th>
-                    <th>Dipilih Sebagai Driver</th>
-                    <th>Success Rate</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {driverStats.map((d, i) => (
-                    <tr key={i}>
-                      <td style={{ fontWeight: 600, color: 'var(--text-primary)' }}>{d.driver || d.nama_driver || '—'}</td>
-                      <td>{d.totalRecommendations ?? d.total ?? 0}</td>
-                      <td>
-                        <span style={{ fontFamily: 'var(--font-mono)', fontWeight: 600, color: 'var(--primary-light)' }}>
-                          {(d.avgScore ?? d.avg_score ?? 0).toFixed(2)}
-                        </span>
-                      </td>
-                      <td>
-                        <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                          <div style={{ flex: 1, height: 8, background: 'rgba(255,255,255,0.06)', borderRadius: 99, overflow: 'hidden' }}>
-                            <div style={{
-                              width: `${((d.avgScore ?? d.avg_score ?? 0) * 100)}%`, height: '100%',
-                              borderRadius: 99,
-                              background: 'linear-gradient(90deg, var(--primary), var(--primary-light))',
-                              transition: 'width 0.6s ease',
-                            }} />
-                          </div>
-                        </div>
-                      </td>
-                      <td>{d.recommendedCount ?? d.recommended_count ?? 0}</td>
-                      <td>
-                        {d.successRate != null || d.success_rate != null
-                          ? `${(((d.successRate ?? d.success_rate) || 0) * 100).toFixed(0)}%`
-                          : '—'}
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
+        <div className="grid-2" style={{ alignItems: 'start' }}>
+          <section className="card">
+            <div className="section-header" style={{ marginBottom: 16 }}>
+              <div>
+                <div className="section-title">Dataset</div>
+                <div className="section-subtitle">Final research dataset used for evaluation</div>
+              </div>
             </div>
-          ) : (
-            <EmptyState text="Belum ada data delivery context" />
-          )}
-        </div>
 
-        {/* ─── Area Analytics Table ──────────────────────────── */}
-        <div className="card" style={{ padding: 24 }}>
-          <h3 style={{ fontSize: '0.95rem', fontWeight: 700, color: 'var(--text-primary)', marginBottom: 16, display: 'flex', alignItems: 'center', gap: 8 }}>
-            <MapPin size={18} style={{ color: 'var(--primary-light)' }} />
-            Analisis Area Pengiriman
-          </h3>
-          {areaStats.length > 0 ? (
-            <div className="table-wrapper">
-              <table className="data-table">
-                <thead>
-                  <tr>
-                    <th>Area</th>
-                    <th>Total Rekomendasi</th>
-                    <th>Avg Evidence</th>
-                    <th>Avg Estimasi Waktu</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {areaStats.map((a, i) => (
-                    <tr key={i}>
-                      <td style={{ fontWeight: 600, color: 'var(--text-primary)' }}>{a.area || a.area_pengantaran || '—'}</td>
-                      <td>{a.totalRecommendations ?? a.total ?? 0}</td>
-                      <td>
-                        <span style={{ fontFamily: 'var(--font-mono)', fontWeight: 600, color: 'var(--primary-light)' }}>
-                          {(a.avgScore ?? a.avg_score ?? 0).toFixed(2)}
-                        </span>
-                      </td>
-                      <td style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
-                        <Clock size={14} style={{ color: 'var(--text-muted)' }} />
-                        {a.avgEstimatedMinutes ?? a.avg_estimated_minutes
-                          ? `${Math.round(a.avgEstimatedMinutes ?? a.avg_estimated_minutes)} menit`
-                          : '—'}
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, minmax(0, 1fr))', gap: 12 }}>
+              {DATASET_CARDS.map(([value, label, Icon]) => (
+                <div
+                  key={label}
+                  style={{
+                    border: '1px solid var(--border)',
+                    borderRadius: 'var(--radius-md)',
+                    background: 'var(--bg-input)',
+                    padding: 14,
+                  }}
+                >
+                  <div className="stat-icon-wrap" style={{ '--icon-bg': 'rgba(37,99,235,0.12)', '--icon-color': 'var(--primary)' }}>
+                    <Icon size={18} />
+                  </div>
+                  <div style={{ color: 'var(--text-primary)', fontSize: value === 'expert_label' ? '1.15rem' : '1.7rem', fontWeight: 900, marginTop: 12 }}>
+                    {value}
+                  </div>
+                  <div style={{ color: 'var(--text-secondary)', fontSize: '0.84rem', marginTop: 4 }}>
+                    {label}
+                  </div>
+                </div>
+              ))}
             </div>
-          ) : (
-            <EmptyState text="Belum ada data analisis area" />
-          )}
+          </section>
+
+          <section className="card">
+            <div className="section-header" style={{ marginBottom: 16 }}>
+              <div>
+                <div className="section-title">Research Conclusion</div>
+                <div className="section-subtitle">How the results should be presented during defense</div>
+              </div>
+            </div>
+
+            <div style={{ display: 'grid', gap: 10 }}>
+              {METHOD_ROWS.map(([label, value]) => (
+                <div
+                  key={label}
+                  style={{
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    gap: 14,
+                    border: '1px solid var(--border)',
+                    borderRadius: 'var(--radius-md)',
+                    background: 'var(--bg-input)',
+                    padding: '12px 14px',
+                  }}
+                >
+                  <span style={{ color: 'var(--text-muted)', fontSize: '0.84rem' }}>{label}</span>
+                  <strong style={{ color: 'var(--text-primary)', textAlign: 'right', maxWidth: 360 }}>
+                    {value}
+                  </strong>
+                </div>
+              ))}
+            </div>
+          </section>
         </div>
       </div>
-    </>
-  );
-}
-
-/* ─── Stat Card Component ──────────────────────────────────── */
-function StatCard({ icon: Icon, label, value, accent = 'default' }) {
-  return (
-    <div className={`stat-card ${accent}`}>
-      <div className="stat-header">
-        <div className="stat-icon-wrap" style={{
-          background: accent === 'low' ? 'var(--priority-low-bg)' : 'rgba(99,102,241,0.15)',
-          color: accent === 'low' ? 'var(--priority-low)' : 'var(--primary-light)',
-        }}>
-          <Icon size={20} />
-        </div>
-      </div>
-      <div className="stat-value">{value}</div>
-      <div className="stat-label">{label}</div>
-    </div>
-  );
-}
-
-/* ─── Empty State Component ────────────────────────────────── */
-function EmptyState({ text }) {
-  return (
-    <div style={{
-      display: 'flex', flexDirection: 'column', alignItems: 'center',
-      justifyContent: 'center', height: 200, color: 'var(--text-muted)',
-      fontSize: '0.875rem', gap: 8,
-    }}>
-      <BarChart2 size={24} />
-      {text}
     </div>
   );
 }

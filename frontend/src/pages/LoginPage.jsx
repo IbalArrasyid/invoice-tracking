@@ -61,10 +61,10 @@ export default function LoginPage({ onLogin }) {
             <FileText size={28} />
           </div>
           <h1 style={{ fontSize: '1.5rem', fontWeight: 800, color: 'var(--text-primary)', marginBottom: 8 }}>
-            InvoiceTracker
+            Invoice Tracking System
           </h1>
           <p style={{ color: 'var(--text-muted)', fontSize: '0.875rem' }}>
-            Masuk untuk mengakses dashboard admin
+            AI-assisted Priority Classification
           </p>
         </div>
 

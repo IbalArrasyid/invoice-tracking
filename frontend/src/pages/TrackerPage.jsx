@@ -1,8 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Search, MapPin, Clock, CheckCircle2, Truck, Package, AlertCircle, RotateCcw } from 'lucide-react';
-import Topbar from '../components/Topbar';
 import { trackingService } from '../api';
-import { getStatusBadgeClass, getPriorityBadgeClass, formatCurrency, formatDate, formatDateTime } from '../data/mockData';
+import { getStatusBadgeClass, formatCurrency, formatDate, formatDateTime } from '../data/mockData';
 
 const STATUS_STEPS = {
   'Menunggu': 1,
@@ -46,6 +45,17 @@ function StatusIcon({ status }) {
     case 'Kembali': return <RotateCcw size={16} color="var(--priority-high)" />;
     default: return <Clock size={16} />;
   }
+}
+
+function getVisiblePriority(priority) {
+  const normalized = String(priority || '').trim().toLowerCase();
+  if (normalized === 'tinggi' || normalized === 'prioritas' || normalized === 'urgent') return 'Urgent';
+  if (normalized === 'sedang' || normalized === 'rendah' || normalized === 'normal' || normalized === 'not urgent') return 'Not Urgent';
+  return priority || '-';
+}
+
+function getVisiblePriorityBadgeClass(priority) {
+  return getVisiblePriority(priority) === 'Urgent' ? 'badge-high' : 'badge-low';
 }
 
 export default function TrackerPage() {
@@ -117,10 +127,12 @@ export default function TrackerPage() {
 
   return (
     <div>
-      <Topbar
-        title="Status Tracker"
-        subtitle="Pantau status pengiriman invoice secara real-time"
-      />
+      <header className="topbar">
+        <div className="topbar-title">
+          <h1>Invoice Tracking</h1>
+          <p>Follow invoice delivery status after priority classification</p>
+        </div>
+      </header>
 
       <div className="page-container">
         <div style={{ display: 'grid', gridTemplateColumns: '340px 1fr', gap: 20, alignItems: 'start' }}>
@@ -190,8 +202,8 @@ export default function TrackerPage() {
                     <span style={{ fontSize: '0.75rem', color: 'var(--text-secondary)' }}>
                       Driver: {inv.driver?.name || inv.driverName || '-'}
                     </span>
-                    <span className={`badge ${getPriorityBadgeClass(inv.priority)}`} style={{ fontSize: '0.65rem' }}>
-                      {inv.priority}
+                    <span className={`badge ${getVisiblePriorityBadgeClass(inv.priority)}`} style={{ fontSize: '0.65rem' }}>
+                      {getVisiblePriority(inv.priority)}
                     </span>
                   </div>
                 </div>
@@ -220,8 +232,8 @@ export default function TrackerPage() {
                       <span className={`badge ${getStatusBadgeClass(selected.status)}`}>
                         <StatusIcon status={selected.status} /> {selected.status}
                       </span>
-                      <span className={`badge ${getPriorityBadgeClass(selected.priority)}`}>
-                        Prioritas {selected.priority}
+                      <span className={`badge ${getVisiblePriorityBadgeClass(selected.priority)}`}>
+                        Priority: {getVisiblePriority(selected.priority)}
                       </span>
                     </div>
                   </div>

@@ -1,34 +1,20 @@
 import { NavLink, useLocation } from 'react-router-dom';
 import {
-  LayoutDashboard, FileText, MapPin, Brain, Settings,
-  ChevronRight, Bell, LogOut, Users, BarChart2, Activity,
+  LayoutDashboard, FileText, MapPin, LogOut, Activity,
   Lightbulb, TrendingUp, BookOpen
 } from 'lucide-react';
 
 const navItems = [
   {
-    section: 'Utama',
+    section: 'Defense Demo',
     items: [
       { to: '/', icon: LayoutDashboard, label: 'Dashboard', exact: true },
-      { to: '/invoices', icon: FileText, label: 'Input Invoice' },
-      { to: '/tracker', icon: MapPin, label: 'Status Tracker' },
-      { to: '/courier', icon: Activity, label: 'Mode Kurir' },
-      { to: '/priority', icon: Brain, label: 'Prioritas C4.5', badge: 3 },
-      { to: '/recommendation', icon: Lightbulb, label: 'Priority Recommendation' },
-    ]
-  },
-  {
-    section: 'Analitik',
-    items: [
-      { to: '/research-showcase', icon: BookOpen, label: 'Research Showcase' },
-      { to: '/analytics', icon: TrendingUp, label: 'Operational Analytics' },
-    ]
-  },
-  {
-    section: 'Laporan',
-    items: [
-      { to: '/reports', icon: BarChart2, label: 'Laporan' },
-      { to: '/customers', icon: Users, label: 'Pelanggan' },
+      { to: '/invoices', icon: FileText, label: 'Invoice List' },
+      { to: '/recommendation', icon: Lightbulb, label: 'Priority Classification' },
+      { to: '/research-showcase', icon: BookOpen, label: 'Comparative Analysis' },
+      { to: '/analytics', icon: TrendingUp, label: 'Research Results' },
+      { to: '/tracker', icon: MapPin, label: 'Invoice Tracking' },
+      { to: '/courier', icon: Activity, label: 'Proof of Delivery' },
     ]
   }
 ];
@@ -49,8 +35,8 @@ export default function Sidebar({ onLogout }) {
           <Activity size={18} color="white" />
         </div>
         <div className="logo-text">
-          InvoiceTrack
-          <span>Operational Knowledge System</span>
+          Invoice Tracking
+          <span>Invoice Tracking System</span>
         </div>
       </div>
 
@@ -86,10 +72,6 @@ export default function Sidebar({ onLogout }) {
 
       {/* Footer */}
       <div className="sidebar-footer">
-        <div className="nav-item" style={{ marginBottom: 4 }}>
-          <Settings className="nav-icon" />
-          <span>Pengaturan</span>
-        </div>
         <div className="user-profile">
           <div className="user-avatar">{initials}</div>
           <div className="user-info">

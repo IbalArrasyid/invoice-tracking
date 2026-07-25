@@ -3,13 +3,16 @@ import {
   Plus, Search, Filter, FileText, Edit2, Trash2,
   MapPin, Clock, ChevronDown, Download, Eye, Upload
 } from 'lucide-react';
-import Topbar from '../components/Topbar';
 import { invoiceService, customerService, driverService, predictService } from '../api';
-import { AREAS, SCHEDULES, getStatusBadgeClass, getPriorityBadgeClass, formatCurrency, formatDate } from '../data/mockData';
+import { AREAS, SCHEDULES, getStatusBadgeClass, formatCurrency, formatDate } from '../data/mockData';
 
 const STATUS_OPTIONS = ['Semua', 'Menunggu', 'Dalam Pengiriman', 'Terkirim', 'Kembali'];
-const PRIORITY_OPTIONS = ['Semua', 'Tinggi', 'Sedang', 'Rendah'];
-const BULK_TEMPLATE = 'invoiceNo,customerName,area,schedule,cutoff,amount,dueDate,driverName,notes\nINV-2026-001,PT Nusantara,Jakarta Pusat,Senin & Kamis,10:00,2500000,2026-05-20,Budi,Prioritas kontrak';
+const PRIORITY_OPTIONS = [
+  { value: 'All', label: 'All Priority' },
+  { value: 'Urgent', label: 'Urgent' },
+  { value: 'Not Urgent', label: 'Not Urgent' },
+];
+const BULK_TEMPLATE = 'invoiceNo,customerName,area,schedule,cutoff,amount,dueDate,driverName,notes\nINV-2026-001,PT Nusantara,Jakarta Pusat,Senin & Kamis,10:00,2500000,2026-05-20,Budi,Kontrak utama';
 
 function splitDelimitedLine(line, delimiter) {
   const cells = [];
@@ -59,13 +62,37 @@ function pickBulk(row, keys) {
   return '-';
 }
 
+function getVisiblePriority(priority) {
+  const normalized = String(priority || '').trim().toLowerCase();
+
+  if (normalized === 'tinggi' || normalized === 'prioritas' || normalized === 'urgent') {
+    return 'Urgent';
+  }
+
+  if (
+    normalized === 'sedang' ||
+    normalized === 'rendah' ||
+    normalized === 'normal' ||
+    normalized === 'not urgent' ||
+    normalized === 'not_urgent'
+  ) {
+    return 'Not Urgent';
+  }
+
+  return priority || '-';
+}
+
+function getVisiblePriorityBadgeClass(priority) {
+  return getVisiblePriority(priority) === 'Urgent' ? 'badge-high' : 'badge-low';
+}
+
 export default function InvoicePage() {
   const [invoices, setInvoices] = useState([]);
   const [customers, setCustomers] = useState([]);
   const [drivers, setDrivers] = useState([]);
   const [search, setSearch] = useState('');
   const [statusFilter, setStatusFilter] = useState('Semua');
-  const [priorityFilter, setPriorityFilter] = useState('Semua');
+  const [priorityFilter, setPriorityFilter] = useState('All');
   const [showModal, setShowModal] = useState(false);
   const [showBulkModal, setShowBulkModal] = useState(false);
   const [detailInvoice, setDetailInvoice] = useState(null);
@@ -120,7 +147,7 @@ export default function InvoicePage() {
       custName.toLowerCase().includes(search.toLowerCase()) ||
       invArea.toLowerCase().includes(search.toLowerCase());
     const matchStatus = statusFilter === 'Semua' || inv.status === statusFilter;
-    const matchPriority = priorityFilter === 'Semua' || inv.priority === priorityFilter;
+    const matchPriority = priorityFilter === 'All' || getVisiblePriority(inv.priority) === priorityFilter;
     return matchSearch && matchStatus && matchPriority;
   });
 
@@ -138,7 +165,7 @@ export default function InvoicePage() {
       setPredictResult(result);
     } catch (err) {
       console.error('Prediction error:', err);
-      alert('Gagal memprediksi prioritas');
+      alert('Priority classification failed.');
     } finally {
       setIsLoading(false);
     }
@@ -147,7 +174,7 @@ export default function InvoicePage() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!predictResult) {
-      alert('Jalankan prediksi C4.5 terlebih dahulu!');
+      alert('Run priority classification first.');
       return;
     }
     
@@ -220,32 +247,27 @@ export default function InvoicePage() {
     }
   };
 
-  const priorityChipColors = {
-    'Tinggi': { bg: 'var(--priority-high-bg)', text: 'var(--priority-high)' },
-    'Sedang': { bg: 'var(--priority-medium-bg)', text: 'var(--priority-medium)' },
-    'Rendah': { bg: 'var(--priority-low-bg)', text: 'var(--priority-low)' },
-  };
-
   if (pageLoading) {
     return <div style={{ padding: 40, textAlign: 'center' }}>Memuat data invoice...</div>;
   }
 
   return (
     <div>
-      <Topbar
-        title="Input Invoice"
-        subtitle="Manajemen data invoice dan prediksi prioritas"
-        actions={
-          <>
-            <button className="btn btn-secondary btn-sm" onClick={() => setShowBulkModal(true)}>
-              <Upload size={14} /> Bulk Import
-            </button>
-            <button className="btn btn-primary btn-sm" onClick={() => setShowModal(true)}>
-              <Plus size={15} /> Invoice Baru
-            </button>
-          </>
-        }
-      />
+      <header className="topbar">
+        <div className="topbar-title">
+          <h1>Invoice List</h1>
+          <p>Prepare invoice data before priority classification</p>
+        </div>
+
+        <div className="topbar-actions">
+          <button className="btn btn-secondary btn-sm" onClick={() => setShowBulkModal(true)}>
+            <Upload size={14} /> Bulk Import
+          </button>
+          <button className="btn btn-primary btn-sm" onClick={() => setShowModal(true)}>
+            <Plus size={15} /> New Invoice
+          </button>
+        </div>
+      </header>
 
       <div className="page-container">
         {/* Filter Bar */}
@@ -267,7 +289,7 @@ export default function InvoicePage() {
 
           <select className="form-select" style={{ width: 'auto', flex: 'none', minWidth: 140 }}
             value={priorityFilter} onChange={e => setPriorityFilter(e.target.value)}>
-            {PRIORITY_OPTIONS.map(p => <option key={p}>{p}</option>)}
+            {PRIORITY_OPTIONS.map(p => <option key={p.value} value={p.value}>{p.label}</option>)}
           </select>
 
           <button className="btn btn-secondary btn-sm">
@@ -312,7 +334,7 @@ export default function InvoicePage() {
                   <th>Jatuh Tempo</th>
                   <th>Driver</th>
                   <th>Status</th>
-                  <th>Prioritas</th>
+                  <th>Priority</th>
                   <th></th>
                 </tr>
               </thead>
@@ -355,8 +377,8 @@ export default function InvoicePage() {
                       </span>
                     </td>
                     <td>
-                      <span className={`badge ${getPriorityBadgeClass(inv.priority)}`}>
-                        {inv.priority}
+                      <span className={`badge ${getVisiblePriorityBadgeClass(inv.priority)}`}>
+                        {getVisiblePriority(inv.priority)}
                       </span>
                     </td>
                     <td>
@@ -378,14 +400,14 @@ export default function InvoicePage() {
         </div>
       </div>
 
-      {/* ── Modal: Input Invoice Baru ── */}
+      {/* Modal: Create Invoice */}
       {showModal && (
         <div className="modal-backdrop" onClick={() => setShowModal(false)}>
           <div className="modal" style={{ maxWidth: 620 }} onClick={e => e.stopPropagation()}>
             <div className="modal-header">
               <div>
-                <div className="modal-title">Input Invoice Baru</div>
-                <div className="modal-subtitle">Data akan diproses oleh model C4.5 untuk klasifikasi prioritas</div>
+                <div className="modal-title">Create Invoice</div>
+                <div className="modal-subtitle">Invoice context will be used for priority classification</div>
               </div>
               <button className="btn btn-ghost btn-icon" onClick={() => setShowModal(false)}>✕</button>
             </div>
@@ -439,7 +461,7 @@ export default function InvoicePage() {
                   borderRadius: 'var(--radius-md)', padding: '14px 16px'
                 }}>
                   <div style={{ fontSize: '0.75rem', fontWeight: 700, color: 'var(--primary-light)', marginBottom: 12, textTransform: 'uppercase', letterSpacing: '0.06em' }}>
-                    🧠 Parameter Model C4.5
+                    Classification Parameters
                   </div>
                   <div className="form-row">
                     <div className="form-group">
@@ -462,24 +484,25 @@ export default function InvoicePage() {
                     disabled={!form.jadwal || !form.cutoff || isLoading}>
                     {isLoading ? (
                       <><span className="animate-spin" style={{ display: 'inline-block', width: 14, height: 14, border: '2px solid rgba(255,255,255,0.3)', borderTopColor: 'white', borderRadius: '50%' }} />Memproses...</>
-                    ) : '🔮 Prediksi Prioritas C4.5'}
+                    ) : 'Run Priority Classification'}
                   </button>
 
                   {predictResult && (
                     <div className="prediction-result" style={{ marginTop: 12 }}>
-                      <div className="prediction-label">Hasil Prediksi Model</div>
+                      <div className="prediction-label">Priority Classification Result</div>
                       <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
                         <div className="prediction-value" style={{
-                          color: predictResult.priority === 'Tinggi' ? 'var(--priority-high)' :
-                            predictResult.priority === 'Sedang' ? 'var(--priority-medium)' : 'var(--priority-low)'
+                          color: getVisiblePriority(predictResult.priority) === 'Urgent' ? 'var(--priority-high)' : 'var(--priority-low)'
                         }}>
-                          Prioritas {predictResult.priority}
+                          Priority: {getVisiblePriority(predictResult.priority)}
                         </div>
                         <span className="tag">
                           Confidence: {Math.round(predictResult.confidence * 100)}%
                         </span>
                       </div>
-                      <div className="prediction-confidence">{predictResult.reason}</div>
+                      <div className="prediction-confidence">
+                        Classification output is ready for the next workflow step.
+                      </div>
                     </div>
                   )}
                 </div>
@@ -622,8 +645,8 @@ export default function InvoicePage() {
                   <span className={`badge ${getStatusBadgeClass(detailInvoice.status)}`}>
                     <span className="badge-dot" />{detailInvoice.status}
                   </span>
-                  <span className={`badge ${getPriorityBadgeClass(detailInvoice.priority)}`}>
-                    Prioritas {detailInvoice.priority}
+                  <span className={`badge ${getVisiblePriorityBadgeClass(detailInvoice.priority)}`}>
+                    Priority: {getVisiblePriority(detailInvoice.priority)}
                   </span>
                 </div>
               </div>
