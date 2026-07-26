@@ -1,0 +1,8 @@
+item,value
+Source rows,101
+Cleaned unique invoices,99
+Removed duplicate rows,2
+Missing target labels,0
+Urgent,30
+Not Urgent,69
+Feature derivation issues,6

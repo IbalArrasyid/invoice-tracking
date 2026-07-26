@@ -1,0 +1,20 @@
+experiment,fold,invoice_no,source_excel_row,admin_ground_truth,prediction_rule_based,rule_ids,prediction_decision_tree,decision_tree_urgent_probability,decision_tree_leaf_id,comparison_group
+E2_70_30,1,S202605-0721,74,Urgent,Not Urgent,R8,Urgent,1.0,5,Decision Tree only correct
+E2_70_30,1,S202605-0708,101,Urgent,Not Urgent,R8,Not Urgent,0.5,6,Both wrong
+E3_5_Fold_CV,1,S202605-0737,4,Urgent,Not Urgent,R8,Urgent,1.0,2,Decision Tree only correct
+E3_5_Fold_CV,3,S202605-0632,73,Urgent,Not Urgent,R8,Urgent,1.0,2,Decision Tree only correct
+E3_5_Fold_CV,3,S202605-0721,74,Urgent,Not Urgent,R8,Urgent,1.0,2,Decision Tree only correct
+E3_5_Fold_CV,3,S202605-2098,94,Urgent,Urgent,R3;R6,Not Urgent,0.0,3,Rule-Based only correct
+E3_5_Fold_CV,3,S202605-0708,101,Urgent,Not Urgent,R8,Not Urgent,0.0,3,Both wrong
+E3_5_Fold_CV,4,S202605-1800,102,Not Urgent,Not Urgent,R8,Urgent,1.0,1,Rule-Based only correct
+E3_5_Fold_CV,5,S202605-1801,32,Urgent,Urgent,R7,Not Urgent,0.0,3,Rule-Based only correct
+E3_5_Fold_CV,5,S202605-0715,67,Urgent,Not Urgent,R8,Urgent,1.0,2,Decision Tree only correct
+E3_5_Fold_CV,5,S202605-0710,75,Urgent,Not Urgent,R8,Urgent,1.0,2,Decision Tree only correct
+E4_LOOCV,3,S202605-0737,4,Urgent,Not Urgent,R8,Urgent,1.0,5,Decision Tree only correct
+E4_LOOCV,31,S202605-1801,32,Urgent,Urgent,R7,Not Urgent,0.0,3,Rule-Based only correct
+E4_LOOCV,65,S202605-0715,67,Urgent,Not Urgent,R8,Urgent,1.0,2,Decision Tree only correct
+E4_LOOCV,70,S202605-0632,73,Urgent,Not Urgent,R8,Urgent,1.0,2,Decision Tree only correct
+E4_LOOCV,71,S202605-0721,74,Urgent,Not Urgent,R8,Urgent,1.0,2,Decision Tree only correct
+E4_LOOCV,72,S202605-0710,75,Urgent,Not Urgent,R8,Urgent,1.0,2,Decision Tree only correct
+E4_LOOCV,98,S202605-0708,101,Urgent,Not Urgent,R8,Urgent,0.75,3,Decision Tree only correct
+E4_LOOCV,99,S202605-1800,102,Not Urgent,Not Urgent,R8,Urgent,1.0,4,Rule-Based only correct

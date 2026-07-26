@@ -4,7 +4,8 @@ import {
   RotateCcw, Search, Send, Truck
 } from 'lucide-react';
 import { trackingService } from '../api';
-import { formatCurrency, formatDate, formatDateTime, getStatusBadgeClass } from '../data/mockData';
+import { formatDate, formatDateTime, getStatusBadgeClass } from '../data/mockData';
+import { getThesisInvoice, normalizeThesisLabel, thesisPriorityBadgeClass } from '../utils/thesisDataset';
 
 const STATUS_FLOW = ['Dalam Pengiriman', 'Terkirim', 'Kembali'];
 
@@ -102,14 +103,11 @@ function StatusIcon({ status }) {
 }
 
 function getVisiblePriority(priority) {
-  const normalized = String(priority || '').trim().toLowerCase();
-  if (normalized === 'tinggi' || normalized === 'prioritas' || normalized === 'urgent') return 'Urgent';
-  if (normalized === 'sedang' || normalized === 'rendah' || normalized === 'normal' || normalized === 'not urgent') return 'Not Urgent';
-  return priority || '-';
+  return normalizeThesisLabel(priority);
 }
 
 function getVisiblePriorityBadgeClass(priority) {
-  return getVisiblePriority(priority) === 'Urgent' ? 'badge-high' : 'badge-low';
+  return thesisPriorityBadgeClass(priority);
 }
 
 export default function CourierPage() {
@@ -161,10 +159,11 @@ export default function CourierPage() {
 
   const filtered = invoices.filter((invoice) => {
     const q = search.toLowerCase();
+    const thesis = getThesisInvoice(invoice);
     return !q ||
-      (invoice.invoiceNo || '').toLowerCase().includes(q) ||
-      (invoice.customer?.name || '').toLowerCase().includes(q) ||
-      (invoice.customer?.area || '').toLowerCase().includes(q);
+      thesis.invoice_no.toLowerCase().includes(q) ||
+      thesis.customer_name_masking.toLowerCase().includes(q) ||
+      thesis.Driver.toLowerCase().includes(q);
   });
 
   const resetAction = () => {
@@ -222,14 +221,16 @@ export default function CourierPage() {
             <Search className="search-icon" />
             <input
               className="search-input"
-              placeholder="Cari invoice, pelanggan, atau area..."
+              placeholder="Cari invoice_no, customer_name_masking, atau Driver..."
               value={search}
               onChange={(event) => setSearch(event.target.value)}
             />
           </div>
 
           <div className="courier-stack">
-            {filtered.map((invoice) => (
+            {filtered.map((invoice) => {
+              const thesis = getThesisInvoice(invoice);
+              return (
               <button
                 type="button"
                 key={invoice.id}
@@ -237,19 +238,19 @@ export default function CourierPage() {
                 onClick={() => setSelected(invoice)}
               >
                 <div className="courier-card-top">
-                  <span className="invoice-no">{invoice.invoiceNo}</span>
+                  <span className="invoice-no">{thesis.invoice_no}</span>
                   <span className={`badge ${getStatusBadgeClass(invoice.status)}`}>
                     <StatusIcon status={invoice.status} /> {invoice.status}
                   </span>
                 </div>
-                <strong>{invoice.customer?.name}</strong>
-                <span><MapPin size={12} /> {invoice.customer?.area}</span>
+                <strong>{thesis.customer_name_masking}</strong>
+                <span>receive_schedule: {thesis.receive_schedule || '-'}</span>
                 <div className="courier-card-foot">
-                  <span>{formatCurrency(invoice.amount)}</span>
-                  <span className={`badge ${getVisiblePriorityBadgeClass(invoice.priority)}`}>{getVisiblePriority(invoice.priority)}</span>
+                  <span className={`badge ${getVisiblePriorityBadgeClass(thesis.expert_label)}`}>{getVisiblePriority(thesis.expert_label)}</span>
                 </div>
               </button>
-            ))}
+              );
+            })}
 
             {!loading && filtered.length === 0 && (
               <div className="empty-state">
@@ -265,17 +266,21 @@ export default function CourierPage() {
             <div className="card">
               <div className="courier-detail-head">
                 <div>
-                  <div className="invoice-no" style={{ marginBottom: 6 }}>{selected.invoiceNo}</div>
-                  <h2>{selected.customer?.name}</h2>
-                  <p>{selected.customer?.area} · Cut-off {selected.cutoff} · Jatuh tempo {formatDate(selected.dueDate || selected.due_date)}</p>
+                  <div className="invoice-no" style={{ marginBottom: 6 }}>{getThesisInvoice(selected).invoice_no}</div>
+                  <h2>{getThesisInvoice(selected).customer_name_masking}</h2>
+                  <div className="courier-thesis-summary">
+                    sent_date {formatDate(getThesisInvoice(selected).sent_date)}
+                    {' · '}receive_date {formatDate(getThesisInvoice(selected).receive_date)}
+                    {' · '}receive_schedule {getThesisInvoice(selected).receive_schedule || '-'}
+                  </div>
                 </div>
-                <span className={`badge ${getVisiblePriorityBadgeClass(selected.priority)}`}>Priority: {getVisiblePriority(selected.priority)}</span>
+                <span className={`badge ${getVisiblePriorityBadgeClass(getThesisInvoice(selected).expert_label)}`}>expert_label: {getVisiblePriority(getThesisInvoice(selected).expert_label)}</span>
               </div>
 
               <div className="delivery-kpi">
                 <div><span>Status</span><strong>{selected.status}</strong></div>
-                <div><span>Driver</span><strong>{selected.driver?.name || courierName}</strong></div>
-                <div><span>Nominal</span><strong>{formatCurrency(selected.amount)}</strong></div>
+                <div><span>Driver</span><strong>{getThesisInvoice(selected).Driver || selected.driver?.name || courierName}</strong></div>
+                <div><span>days_to_cutoff</span><strong>{getThesisInvoice(selected).days_to_cutoff || '-'}</strong></div>
               </div>
             </div>
 

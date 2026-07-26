@@ -1,0 +1,10 @@
+item,value
+Source workbook,D:\Semester 8\Tugas Akhir\farah\paper-2\paper-invoice-tracking\dataset_invoice.xlsx
+Source sheet,Data Labeling
+Raw invoice rows,101
+Unique invoices used,99
+Removed duplicate rows,2
+Urgent invoices,30
+Not Urgent invoices,69
+Ground-truth source column,expert_label
+Target column,admin_ground_truth

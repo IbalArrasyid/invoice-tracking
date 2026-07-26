@@ -1,0 +1,7 @@
+invoice_no,source_excel_row,cutoff_type,cutoff_rule,cutoff_value,feature,issue,action
+S202605-0757,60,"Every 11th ,12th, 21th,22th,28th,29th in every month",MONTHLY_DATE,0.0,cutoff_value,Invalid or missing monthly cutoff day; parsed from cutoff_type.,Set cutoff_value to missing before decision-time derivation.
+S202605-2098,94,"Every 11th ,12th, 21th,22th,28th,29th in every month",MONTHLY_DATE,0.0,cutoff_value,Invalid or missing monthly cutoff day; parsed from cutoff_type.,Set cutoff_value to missing before decision-time derivation.
+S202605-0707,95,Max 3 working days before end of month,MONTHLY_DATE,,cutoff_value,Invalid or missing monthly cutoff day; parsed from cutoff_type.,Set cutoff_value to missing before decision-time derivation.
+S202605-0030,31,,,,next_receive_day_gap_decision_time,Cannot derive because receive_day_code is missing or invalid.,Keep missing value and use configured model imputation value.
+S202605-0757,60,,,,next_receive_day_gap_decision_time,Cannot derive because receive_day_code is missing or invalid.,Keep missing value and use configured model imputation value.
+S202605-2098,94,,,,next_receive_day_gap_decision_time,Cannot derive because receive_day_code is missing or invalid.,Keep missing value and use configured model imputation value.

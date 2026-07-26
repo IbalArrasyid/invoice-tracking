@@ -1,0 +1,249 @@
+experiment,fold,invoice_no,source_excel_row,admin_ground_truth,prediction_rule_based,rule_ids,prediction_decision_tree,decision_tree_urgent_probability,decision_tree_leaf_id
+E1_80_20,1,S202605-2379,20,Not Urgent,Not Urgent,R8,Not Urgent,0.0,6
+E1_80_20,1,S202605-0719,81,Urgent,Urgent,R7,Urgent,0.75,2
+E1_80_20,1,S202605-2484,26,Not Urgent,Not Urgent,R8,Not Urgent,0.0,6
+E1_80_20,1,S202605-1801,32,Urgent,Urgent,R7,Urgent,1.0,3
+E1_80_20,1,93109195,3,Not Urgent,Not Urgent,R8,Not Urgent,0.0,6
+E1_80_20,1,S202605-1769,27,Not Urgent,Not Urgent,R8,Not Urgent,0.0,6
+E1_80_20,1,S202605-0859,96,Not Urgent,Not Urgent,R8,Not Urgent,0.0,6
+E1_80_20,1,S202605-0586,54,Urgent,Urgent,R7,Urgent,1.0,3
+E1_80_20,1,S202605-2382,41,Not Urgent,Not Urgent,R8,Not Urgent,0.0,6
+E1_80_20,1,S202605-0412,51,Not Urgent,Not Urgent,R8,Not Urgent,0.0,6
+E1_80_20,1,S202605-0629,78,Not Urgent,Not Urgent,R8,Not Urgent,0.0,6
+E1_80_20,1,S202605-0587,55,Urgent,Urgent,R7,Urgent,1.0,3
+E1_80_20,1,S202605-0634,62,Not Urgent,Not Urgent,R8,Not Urgent,0.0,6
+E1_80_20,1,S202605-1319,33,Not Urgent,Not Urgent,R8,Not Urgent,0.0,6
+E1_80_20,1,S202605-0834,99,Not Urgent,Not Urgent,R8,Not Urgent,0.0,6
+E1_80_20,1,S202605-0628,77,Not Urgent,Not Urgent,R8,Not Urgent,0.0,6
+E1_80_20,1,S202605-0419,53,Urgent,Urgent,R7,Urgent,1.0,3
+E1_80_20,1,S202605-1765,5,Not Urgent,Not Urgent,R8,Not Urgent,0.0,6
+E1_80_20,1,S202605-0772,86,Urgent,Urgent,R6,Urgent,1.0,5
+E1_80_20,1,93106212,90,Not Urgent,Not Urgent,R8,Not Urgent,0.0,6
+E2_70_30,1,S202605-0586,54,Urgent,Urgent,R7,Urgent,1.0,5
+E2_70_30,1,S202605-0707,95,Urgent,Urgent,R2;R6,Urgent,1.0,2
+E2_70_30,1,S202605-1319,33,Not Urgent,Not Urgent,R8,Not Urgent,0.0,3
+E2_70_30,1,S202605-1801,32,Urgent,Urgent,R7,Urgent,1.0,5
+E2_70_30,1,S202605-2484,26,Not Urgent,Not Urgent,R8,Not Urgent,0.0,3
+E2_70_30,1,S202605-2841,34,Not Urgent,Not Urgent,R8,Not Urgent,0.0,3
+E2_70_30,1,S202605-0629,78,Not Urgent,Not Urgent,R8,Not Urgent,0.0,3
+E2_70_30,1,S202605-0419,53,Urgent,Urgent,R7,Urgent,1.0,5
+E2_70_30,1,93106212,90,Not Urgent,Not Urgent,R8,Not Urgent,0.0,3
+E2_70_30,1,S202605-0773,92,Not Urgent,Not Urgent,R8,Not Urgent,0.0,3
+E2_70_30,1,S202605-0628,77,Not Urgent,Not Urgent,R8,Not Urgent,0.0,3
+E2_70_30,1,S202605-1765,5,Not Urgent,Not Urgent,R8,Not Urgent,0.0,3
+E2_70_30,1,S202605-0721,74,Urgent,Not Urgent,R8,Urgent,1.0,5
+E2_70_30,1,S202605-0634,62,Not Urgent,Not Urgent,R8,Not Urgent,0.0,3
+E2_70_30,1,S202605-1769,27,Not Urgent,Not Urgent,R8,Not Urgent,0.0,3
+E2_70_30,1,S202605-0708,101,Urgent,Not Urgent,R8,Not Urgent,0.5,6
+E2_70_30,1,S202605-0859,96,Not Urgent,Not Urgent,R8,Not Urgent,0.0,3
+E2_70_30,1,S202605-2382,41,Not Urgent,Not Urgent,R8,Not Urgent,0.0,3
+E2_70_30,1,S202605-0712,70,Not Urgent,Not Urgent,R8,Not Urgent,0.0,3
+E2_70_30,1,93115446,17,Not Urgent,Not Urgent,R8,Not Urgent,0.0,3
+E2_70_30,1,S202605-0719,81,Urgent,Urgent,R7,Urgent,1.0,5
+E2_70_30,1,S202605-0834,99,Not Urgent,Not Urgent,R8,Not Urgent,0.0,3
+E2_70_30,1,S202605-2390,45,Not Urgent,Not Urgent,R8,Not Urgent,0.0,3
+E2_70_30,1,S202605-1788,98,Not Urgent,Not Urgent,R8,Not Urgent,0.0,3
+E2_70_30,1,S202605-0724,87,Not Urgent,Not Urgent,R8,Not Urgent,0.0,3
+E2_70_30,1,S202605-0412,51,Not Urgent,Not Urgent,R8,Not Urgent,0.0,3
+E2_70_30,1,93109195,3,Not Urgent,Not Urgent,R8,Not Urgent,0.0,3
+E2_70_30,1,S202605-2379,20,Not Urgent,Not Urgent,R8,Not Urgent,0.0,3
+E2_70_30,1,S202605-0772,86,Urgent,Urgent,R6,Urgent,1.0,2
+E2_70_30,1,S202605-0587,55,Urgent,Urgent,R7,Urgent,1.0,5
+E3_5_Fold_CV,1,93109195,3,Not Urgent,Not Urgent,R8,Not Urgent,0.0,6
+E3_5_Fold_CV,1,S202605-0737,4,Urgent,Not Urgent,R8,Urgent,1.0,2
+E3_5_Fold_CV,1,93110546,6,Not Urgent,Not Urgent,R8,Not Urgent,0.0,6
+E3_5_Fold_CV,1,S202605-1311,10,Not Urgent,Not Urgent,R8,Not Urgent,0.0,6
+E3_5_Fold_CV,1,S202605-2378,13,Urgent,Urgent,R7,Urgent,1.0,2
+E3_5_Fold_CV,1,S202605-1314,14,Not Urgent,Not Urgent,R8,Not Urgent,0.0,6
+E3_5_Fold_CV,1,93115446,17,Not Urgent,Not Urgent,R8,Not Urgent,0.0,6
+E3_5_Fold_CV,1,S202605-2089,19,Not Urgent,Not Urgent,R8,Not Urgent,0.0,6
+E3_5_Fold_CV,1,S202605-2480,29,Urgent,Urgent,R7,Urgent,1.0,2
+E3_5_Fold_CV,1,S202605-0745,30,Urgent,Urgent,R7,Urgent,1.0,2
+E3_5_Fold_CV,1,S202605-0030,31,Urgent,Urgent,R4,Urgent,1.0,2
+E3_5_Fold_CV,1,S202605-2841,34,Not Urgent,Not Urgent,R8,Not Urgent,0.0,6
+E3_5_Fold_CV,1,S202605-2384,47,Not Urgent,Not Urgent,R8,Not Urgent,0.0,6
+E3_5_Fold_CV,1,S202605-0406,50,Not Urgent,Not Urgent,R8,Not Urgent,0.0,6
+E3_5_Fold_CV,1,S202605-0557,52,Urgent,Urgent,R7,Urgent,1.0,2
+E3_5_Fold_CV,1,S202605-0590,56,Not Urgent,Not Urgent,R8,Not Urgent,0.0,6
+E3_5_Fold_CV,1,S202605-0723,58,Not Urgent,Not Urgent,R8,Not Urgent,0.0,6
+E3_5_Fold_CV,1,S202605-0629,78,Not Urgent,Not Urgent,R8,Not Urgent,0.0,6
+E3_5_Fold_CV,1,93106212,90,Not Urgent,Not Urgent,R8,Not Urgent,0.0,6
+E3_5_Fold_CV,1,S202605-0858,93,Not Urgent,Not Urgent,R8,Not Urgent,0.0,6
+E3_5_Fold_CV,2,S202605-0795,2,Not Urgent,Not Urgent,R8,Not Urgent,0.0,3
+E3_5_Fold_CV,2,S202605-1312,7,Urgent,Urgent,R4,Urgent,1.0,2
+E3_5_Fold_CV,2,S202605-1758,9,Not Urgent,Not Urgent,R8,Not Urgent,0.0,3
+E3_5_Fold_CV,2,S202605-1766,16,Urgent,Urgent,R7,Urgent,1.0,5
+E3_5_Fold_CV,2,S202605-2484,26,Not Urgent,Not Urgent,R8,Not Urgent,0.0,3
+E3_5_Fold_CV,2,S202605-2391,40,Urgent,Urgent,R7,Urgent,1.0,5
+E3_5_Fold_CV,2,S202605-2382,41,Not Urgent,Not Urgent,R8,Not Urgent,0.0,3
+E3_5_Fold_CV,2,S202605-2387,44,Urgent,Urgent,R7,Urgent,1.0,5
+E3_5_Fold_CV,2,S202605-2390,45,Not Urgent,Not Urgent,R8,Not Urgent,0.0,3
+E3_5_Fold_CV,2,S202605-0412,51,Not Urgent,Not Urgent,R8,Not Urgent,0.0,3
+E3_5_Fold_CV,2,S202605-0757,60,Urgent,Urgent,R3,Urgent,1.0,5
+E3_5_Fold_CV,2,S202605-0769,63,Not Urgent,Not Urgent,R8,Not Urgent,0.0,3
+E3_5_Fold_CV,2,S202605-0722,66,Not Urgent,Not Urgent,R8,Not Urgent,0.0,3
+E3_5_Fold_CV,2,S202605-0720,69,Not Urgent,Not Urgent,R8,Not Urgent,0.0,3
+E3_5_Fold_CV,2,S202605-0325,71,Not Urgent,Not Urgent,R8,Not Urgent,0.0,3
+E3_5_Fold_CV,2,S202605-0773,92,Not Urgent,Not Urgent,R8,Not Urgent,0.0,3
+E3_5_Fold_CV,2,S202605-0707,95,Urgent,Urgent,R2;R6,Urgent,1.0,2
+E3_5_Fold_CV,2,S202605-0859,96,Not Urgent,Not Urgent,R8,Not Urgent,0.0,3
+E3_5_Fold_CV,2,S202605-1788,98,Not Urgent,Not Urgent,R8,Not Urgent,0.0,3
+E3_5_Fold_CV,2,S202605-1768,100,Not Urgent,Not Urgent,R8,Not Urgent,0.0,3
+E3_5_Fold_CV,3,S202605-1329,11,Not Urgent,Not Urgent,R8,Not Urgent,0.0,6
+E3_5_Fold_CV,3,S202605-2103,15,Not Urgent,Not Urgent,R8,Not Urgent,0.0,6
+E3_5_Fold_CV,3,S202605-2088,21,Not Urgent,Not Urgent,R8,Not Urgent,0.0,6
+E3_5_Fold_CV,3,S202605-2091,23,Not Urgent,Not Urgent,R8,Not Urgent,0.0,6
+E3_5_Fold_CV,3,S202605-1769,27,Not Urgent,Not Urgent,R8,Not Urgent,0.0,6
+E3_5_Fold_CV,3,S202605-1319,33,Not Urgent,Not Urgent,R8,Not Urgent,0.0,6
+E3_5_Fold_CV,3,S202605-2831,36,Not Urgent,Not Urgent,R8,Not Urgent,0.0,6
+E3_5_Fold_CV,3,S202605-2395,43,Not Urgent,Not Urgent,R8,Not Urgent,0.0,6
+E3_5_Fold_CV,3,S202605-2386,46,Not Urgent,Not Urgent,R8,Not Urgent,0.0,6
+E3_5_Fold_CV,3,S202605-0395,49,Urgent,Urgent,R4,Urgent,1.0,5
+E3_5_Fold_CV,3,S202605-0609,59,Not Urgent,Not Urgent,R8,Not Urgent,0.0,6
+E3_5_Fold_CV,3,S202605-0633,68,Not Urgent,Not Urgent,R8,Not Urgent,0.0,6
+E3_5_Fold_CV,3,S202605-0632,73,Urgent,Not Urgent,R8,Urgent,1.0,2
+E3_5_Fold_CV,3,S202605-0721,74,Urgent,Not Urgent,R8,Urgent,1.0,2
+E3_5_Fold_CV,3,S202605-0630,79,Not Urgent,Not Urgent,R8,Not Urgent,0.0,6
+E3_5_Fold_CV,3,93103070,84,Not Urgent,Not Urgent,R8,Not Urgent,0.0,6
+E3_5_Fold_CV,3,S202605-0830,85,Not Urgent,Not Urgent,R8,Not Urgent,0.0,6
+E3_5_Fold_CV,3,S202605-2098,94,Urgent,Urgent,R3;R6,Not Urgent,0.0,3
+E3_5_Fold_CV,3,S202605-0764,97,Urgent,Urgent,R6,Urgent,1.0,5
+E3_5_Fold_CV,3,S202605-0708,101,Urgent,Not Urgent,R8,Not Urgent,0.0,3
+E3_5_Fold_CV,4,S202605-1765,5,Not Urgent,Not Urgent,R8,Not Urgent,0.0,4
+E3_5_Fold_CV,4,S202605-1767,8,Not Urgent,Not Urgent,R8,Not Urgent,0.0,4
+E3_5_Fold_CV,4,S202605-1330,12,Not Urgent,Not Urgent,R8,Not Urgent,0.0,4
+E3_5_Fold_CV,4,S202605-1763,25,Not Urgent,Not Urgent,R8,Not Urgent,0.0,4
+E3_5_Fold_CV,4,93118518,28,Not Urgent,Not Urgent,R8,Not Urgent,0.0,4
+E3_5_Fold_CV,4,S202605-1781,37,Not Urgent,Not Urgent,R8,Not Urgent,0.0,4
+E3_5_Fold_CV,4,S202605-2393,38,Urgent,Urgent,R7,Urgent,1.0,1
+E3_5_Fold_CV,4,S202605-2380,39,Not Urgent,Not Urgent,R8,Not Urgent,0.0,4
+E3_5_Fold_CV,4,S202605-2394,42,Not Urgent,Not Urgent,R8,Not Urgent,0.0,4
+E3_5_Fold_CV,4,S202605-0608,48,Not Urgent,Not Urgent,R8,Not Urgent,0.0,4
+E3_5_Fold_CV,4,S202605-0419,53,Urgent,Urgent,R7,Urgent,1.0,1
+E3_5_Fold_CV,4,S202605-0586,54,Urgent,Urgent,R7,Urgent,1.0,1
+E3_5_Fold_CV,4,S202605-0587,55,Urgent,Urgent,R7,Urgent,1.0,1
+E3_5_Fold_CV,4,S202605-0591,57,Not Urgent,Not Urgent,R8,Not Urgent,0.0,4
+E3_5_Fold_CV,4,S202605-0712,70,Not Urgent,Not Urgent,R8,Not Urgent,0.0,4
+E3_5_Fold_CV,4,S202605-0719,81,Urgent,Urgent,R7,Urgent,1.0,1
+E3_5_Fold_CV,4,S202605-0724,87,Not Urgent,Not Urgent,R8,Not Urgent,0.0,4
+E3_5_Fold_CV,4,S202605-0750,89,Urgent,Urgent,R7,Urgent,1.0,1
+E3_5_Fold_CV,4,S202605-0360,91,Not Urgent,Not Urgent,R8,Not Urgent,0.0,4
+E3_5_Fold_CV,4,S202605-1800,102,Not Urgent,Not Urgent,R8,Urgent,1.0,1
+E3_5_Fold_CV,5,93115889,18,Not Urgent,Not Urgent,R8,Not Urgent,0.0,6
+E3_5_Fold_CV,5,S202605-2379,20,Not Urgent,Not Urgent,R8,Not Urgent,0.0,6
+E3_5_Fold_CV,5,S202605-2086,22,Not Urgent,Not Urgent,R8,Not Urgent,0.0,6
+E3_5_Fold_CV,5,S202605-2575,24,Not Urgent,Not Urgent,R8,Not Urgent,0.0,6
+E3_5_Fold_CV,5,S202605-1801,32,Urgent,Urgent,R7,Not Urgent,0.0,3
+E3_5_Fold_CV,5,S202605-2835,35,Not Urgent,Not Urgent,R8,Not Urgent,0.0,6
+E3_5_Fold_CV,5,93101903,61,Not Urgent,Not Urgent,R8,Not Urgent,0.0,6
+E3_5_Fold_CV,5,S202605-0634,62,Not Urgent,Not Urgent,R8,Not Urgent,0.0,6
+E3_5_Fold_CV,5,S202605-0635,65,Urgent,Urgent,R4,Urgent,1.0,5
+E3_5_Fold_CV,5,S202605-0715,67,Urgent,Not Urgent,R8,Urgent,1.0,2
+E3_5_Fold_CV,5,S202605-0710,75,Urgent,Not Urgent,R8,Urgent,1.0,2
+E3_5_Fold_CV,5,S202605-0717,76,Not Urgent,Not Urgent,R8,Not Urgent,0.0,6
+E3_5_Fold_CV,5,S202605-0628,77,Not Urgent,Not Urgent,R8,Not Urgent,0.0,6
+E3_5_Fold_CV,5,S202605-0767,80,Not Urgent,Not Urgent,R8,Not Urgent,0.0,6
+E3_5_Fold_CV,5,S202605-0413,82,Urgent,Urgent,R3;R6,Urgent,1.0,5
+E3_5_Fold_CV,5,S202605-0766,83,Not Urgent,Not Urgent,R8,Not Urgent,0.0,6
+E3_5_Fold_CV,5,S202605-0772,86,Urgent,Urgent,R6,Urgent,1.0,5
+E3_5_Fold_CV,5,S202605-0550,88,Not Urgent,Not Urgent,R8,Not Urgent,0.0,6
+E3_5_Fold_CV,5,S202605-0834,99,Not Urgent,Not Urgent,R8,Not Urgent,0.0,6
+E4_LOOCV,1,S202605-0795,2,Not Urgent,Not Urgent,R8,Not Urgent,0.0,6
+E4_LOOCV,2,93109195,3,Not Urgent,Not Urgent,R8,Not Urgent,0.0,3
+E4_LOOCV,3,S202605-0737,4,Urgent,Not Urgent,R8,Urgent,1.0,5
+E4_LOOCV,4,S202605-1765,5,Not Urgent,Not Urgent,R8,Not Urgent,0.0,6
+E4_LOOCV,5,93110546,6,Not Urgent,Not Urgent,R8,Not Urgent,0.0,3
+E4_LOOCV,6,S202605-1312,7,Urgent,Urgent,R4,Urgent,1.0,5
+E4_LOOCV,7,S202605-1767,8,Not Urgent,Not Urgent,R8,Not Urgent,0.0,6
+E4_LOOCV,8,S202605-1758,9,Not Urgent,Not Urgent,R8,Not Urgent,0.0,6
+E4_LOOCV,9,S202605-1311,10,Not Urgent,Not Urgent,R8,Not Urgent,0.0,8
+E4_LOOCV,10,S202605-1329,11,Not Urgent,Not Urgent,R8,Not Urgent,0.0,6
+E4_LOOCV,11,S202605-1330,12,Not Urgent,Not Urgent,R8,Not Urgent,0.0,6
+E4_LOOCV,12,S202605-2378,13,Urgent,Urgent,R7,Urgent,1.0,5
+E4_LOOCV,13,S202605-1314,14,Not Urgent,Not Urgent,R8,Not Urgent,0.0,3
+E4_LOOCV,14,S202605-2103,15,Not Urgent,Not Urgent,R8,Not Urgent,0.0,6
+E4_LOOCV,15,S202605-1766,16,Urgent,Urgent,R7,Urgent,1.0,2
+E4_LOOCV,16,93115446,17,Not Urgent,Not Urgent,R8,Not Urgent,0.0,6
+E4_LOOCV,17,93115889,18,Not Urgent,Not Urgent,R8,Not Urgent,0.0,6
+E4_LOOCV,18,S202605-2089,19,Not Urgent,Not Urgent,R8,Not Urgent,0.0,6
+E4_LOOCV,19,S202605-2379,20,Not Urgent,Not Urgent,R8,Not Urgent,0.0,3
+E4_LOOCV,20,S202605-2088,21,Not Urgent,Not Urgent,R8,Not Urgent,0.0,3
+E4_LOOCV,21,S202605-2086,22,Not Urgent,Not Urgent,R8,Not Urgent,0.0,3
+E4_LOOCV,22,S202605-2091,23,Not Urgent,Not Urgent,R8,Not Urgent,0.0,3
+E4_LOOCV,23,S202605-2575,24,Not Urgent,Not Urgent,R8,Not Urgent,0.0,6
+E4_LOOCV,24,S202605-1763,25,Not Urgent,Not Urgent,R8,Not Urgent,0.0,6
+E4_LOOCV,25,S202605-2484,26,Not Urgent,Not Urgent,R8,Not Urgent,0.0,3
+E4_LOOCV,26,S202605-1769,27,Not Urgent,Not Urgent,R8,Not Urgent,0.0,6
+E4_LOOCV,27,93118518,28,Not Urgent,Not Urgent,R8,Not Urgent,0.0,6
+E4_LOOCV,28,S202605-2480,29,Urgent,Urgent,R7,Urgent,1.0,2
+E4_LOOCV,29,S202605-0745,30,Urgent,Urgent,R7,Urgent,1.0,2
+E4_LOOCV,30,S202605-0030,31,Urgent,Urgent,R4,Urgent,1.0,5
+E4_LOOCV,31,S202605-1801,32,Urgent,Urgent,R7,Not Urgent,0.0,3
+E4_LOOCV,32,S202605-1319,33,Not Urgent,Not Urgent,R8,Not Urgent,0.0,6
+E4_LOOCV,33,S202605-2841,34,Not Urgent,Not Urgent,R8,Not Urgent,0.0,6
+E4_LOOCV,34,S202605-2835,35,Not Urgent,Not Urgent,R8,Not Urgent,0.0,3
+E4_LOOCV,35,S202605-2831,36,Not Urgent,Not Urgent,R8,Not Urgent,0.0,6
+E4_LOOCV,36,S202605-1781,37,Not Urgent,Not Urgent,R8,Not Urgent,0.0,6
+E4_LOOCV,37,S202605-2393,38,Urgent,Urgent,R7,Urgent,1.0,2
+E4_LOOCV,38,S202605-2380,39,Not Urgent,Not Urgent,R8,Not Urgent,0.0,6
+E4_LOOCV,39,S202605-2391,40,Urgent,Urgent,R7,Urgent,1.0,5
+E4_LOOCV,40,S202605-2382,41,Not Urgent,Not Urgent,R8,Not Urgent,0.0,6
+E4_LOOCV,41,S202605-2394,42,Not Urgent,Not Urgent,R8,Not Urgent,0.0,6
+E4_LOOCV,42,S202605-2395,43,Not Urgent,Not Urgent,R8,Not Urgent,0.0,6
+E4_LOOCV,43,S202605-2387,44,Urgent,Urgent,R7,Urgent,1.0,2
+E4_LOOCV,44,S202605-2390,45,Not Urgent,Not Urgent,R8,Not Urgent,0.0,6
+E4_LOOCV,45,S202605-2386,46,Not Urgent,Not Urgent,R8,Not Urgent,0.0,6
+E4_LOOCV,46,S202605-2384,47,Not Urgent,Not Urgent,R8,Not Urgent,0.0,6
+E4_LOOCV,47,S202605-0608,48,Not Urgent,Not Urgent,R8,Not Urgent,0.0,6
+E4_LOOCV,48,S202605-0395,49,Urgent,Urgent,R4,Urgent,1.0,5
+E4_LOOCV,49,S202605-0406,50,Not Urgent,Not Urgent,R8,Not Urgent,0.0,6
+E4_LOOCV,50,S202605-0412,51,Not Urgent,Not Urgent,R8,Not Urgent,0.0,3
+E4_LOOCV,51,S202605-0557,52,Urgent,Urgent,R7,Urgent,1.0,5
+E4_LOOCV,52,S202605-0419,53,Urgent,Urgent,R7,Urgent,1.0,2
+E4_LOOCV,53,S202605-0586,54,Urgent,Urgent,R7,Urgent,1.0,2
+E4_LOOCV,54,S202605-0587,55,Urgent,Urgent,R7,Urgent,1.0,2
+E4_LOOCV,55,S202605-0590,56,Not Urgent,Not Urgent,R8,Not Urgent,0.0,6
+E4_LOOCV,56,S202605-0591,57,Not Urgent,Not Urgent,R8,Not Urgent,0.0,3
+E4_LOOCV,57,S202605-0723,58,Not Urgent,Not Urgent,R8,Not Urgent,0.0,6
+E4_LOOCV,58,S202605-0609,59,Not Urgent,Not Urgent,R8,Not Urgent,0.0,6
+E4_LOOCV,59,S202605-0757,60,Urgent,Urgent,R3,Urgent,0.75,2
+E4_LOOCV,60,93101903,61,Not Urgent,Not Urgent,R8,Not Urgent,0.0,6
+E4_LOOCV,61,S202605-0634,62,Not Urgent,Not Urgent,R8,Not Urgent,0.0,6
+E4_LOOCV,62,S202605-0769,63,Not Urgent,Not Urgent,R8,Not Urgent,0.0,6
+E4_LOOCV,63,S202605-0635,65,Urgent,Urgent,R4,Urgent,1.0,2
+E4_LOOCV,64,S202605-0722,66,Not Urgent,Not Urgent,R8,Not Urgent,0.0,6
+E4_LOOCV,65,S202605-0715,67,Urgent,Not Urgent,R8,Urgent,1.0,2
+E4_LOOCV,66,S202605-0633,68,Not Urgent,Not Urgent,R8,Not Urgent,0.0,6
+E4_LOOCV,67,S202605-0720,69,Not Urgent,Not Urgent,R8,Not Urgent,0.0,6
+E4_LOOCV,68,S202605-0712,70,Not Urgent,Not Urgent,R8,Not Urgent,0.0,6
+E4_LOOCV,69,S202605-0325,71,Not Urgent,Not Urgent,R8,Not Urgent,0.0,6
+E4_LOOCV,70,S202605-0632,73,Urgent,Not Urgent,R8,Urgent,1.0,2
+E4_LOOCV,71,S202605-0721,74,Urgent,Not Urgent,R8,Urgent,1.0,2
+E4_LOOCV,72,S202605-0710,75,Urgent,Not Urgent,R8,Urgent,1.0,2
+E4_LOOCV,73,S202605-0717,76,Not Urgent,Not Urgent,R8,Not Urgent,0.0,6
+E4_LOOCV,74,S202605-0628,77,Not Urgent,Not Urgent,R8,Not Urgent,0.0,6
+E4_LOOCV,75,S202605-0629,78,Not Urgent,Not Urgent,R8,Not Urgent,0.0,6
+E4_LOOCV,76,S202605-0630,79,Not Urgent,Not Urgent,R8,Not Urgent,0.0,6
+E4_LOOCV,77,S202605-0767,80,Not Urgent,Not Urgent,R8,Not Urgent,0.0,6
+E4_LOOCV,78,S202605-0719,81,Urgent,Urgent,R7,Urgent,0.75,3
+E4_LOOCV,79,S202605-0413,82,Urgent,Urgent,R3;R6,Urgent,1.0,5
+E4_LOOCV,80,S202605-0766,83,Not Urgent,Not Urgent,R8,Not Urgent,0.0,6
+E4_LOOCV,81,93103070,84,Not Urgent,Not Urgent,R8,Not Urgent,0.0,3
+E4_LOOCV,82,S202605-0830,85,Not Urgent,Not Urgent,R8,Not Urgent,0.0,6
+E4_LOOCV,83,S202605-0772,86,Urgent,Urgent,R6,Urgent,1.0,5
+E4_LOOCV,84,S202605-0724,87,Not Urgent,Not Urgent,R8,Not Urgent,0.0,6
+E4_LOOCV,85,S202605-0550,88,Not Urgent,Not Urgent,R8,Not Urgent,0.0,6
+E4_LOOCV,86,S202605-0750,89,Urgent,Urgent,R7,Urgent,0.75,3
+E4_LOOCV,87,93106212,90,Not Urgent,Not Urgent,R8,Not Urgent,0.0,6
+E4_LOOCV,88,S202605-0360,91,Not Urgent,Not Urgent,R8,Not Urgent,0.0,6
+E4_LOOCV,89,S202605-0773,92,Not Urgent,Not Urgent,R8,Not Urgent,0.0,6
+E4_LOOCV,90,S202605-0858,93,Not Urgent,Not Urgent,R8,Not Urgent,0.0,6
+E4_LOOCV,91,S202605-2098,94,Urgent,Urgent,R3;R6,Urgent,0.75,6
+E4_LOOCV,92,S202605-0707,95,Urgent,Urgent,R2;R6,Urgent,1.0,2
+E4_LOOCV,93,S202605-0859,96,Not Urgent,Not Urgent,R8,Not Urgent,0.0,6
+E4_LOOCV,94,S202605-0764,97,Urgent,Urgent,R6,Urgent,1.0,2
+E4_LOOCV,95,S202605-1788,98,Not Urgent,Not Urgent,R8,Not Urgent,0.0,6
+E4_LOOCV,96,S202605-0834,99,Not Urgent,Not Urgent,R8,Not Urgent,0.0,3
+E4_LOOCV,97,S202605-1768,100,Not Urgent,Not Urgent,R8,Not Urgent,0.0,6
+E4_LOOCV,98,S202605-0708,101,Urgent,Not Urgent,R8,Urgent,0.75,3
+E4_LOOCV,99,S202605-1800,102,Not Urgent,Not Urgent,R8,Urgent,1.0,4

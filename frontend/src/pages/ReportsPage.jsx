@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import { BarChart2, TrendingUp, Download } from 'lucide-react';
 import Topbar from '../components/Topbar';
 import { invoiceService } from '../api';
-import { formatCurrency } from '../data/mockData';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, LineChart, Line, Legend } from 'recharts';
 
 const monthlyData = [
@@ -31,9 +30,6 @@ export default function ReportsPage() {
     fetchInvoices();
   }, []);
 
-  const totalRevenue = invoices.reduce((sum, i) => sum + (parseFloat(i.amount) || 0), 0);
-  const avgRevenue = invoices.length > 0 ? totalRevenue / invoices.length : 0;
-  
   const totalTerkirim = invoices.filter(i => i.status === 'Terkirim').length;
   const successRate = invoices.length > 0 ? Math.round((totalTerkirim / invoices.length) * 100) : 0;
 
@@ -51,9 +47,9 @@ export default function ReportsPage() {
       <div className="page-container">
         <div className="stats-grid" style={{ gridTemplateColumns: 'repeat(3, 1fr)', marginBottom: 24 }}>
           {[
-            { label: 'Total Nilai Invoice', value: formatCurrency(totalRevenue), icon: '💰' },
-            { label: 'Rata-rata per Invoice', value: formatCurrency(avgRevenue), icon: '📊' },
-            { label: 'Tingkat Keberhasilan', value: `${successRate}%`, icon: '✅' },
+            { label: 'Total Invoice', value: invoices.length, icon: 'INV' },
+            { label: 'Invoice Terkirim', value: totalTerkirim, icon: 'OK' },
+            { label: 'Tingkat Keberhasilan', value: `${successRate}%`, icon: '%' },
           ].map(s => (
             <div key={s.label} className="stat-card default">
               <div style={{ fontSize: 28 }}>{s.icon}</div>

@@ -1,0 +1,34 @@
+{
+  "source": "D:\\Semester 8\\Tugas Akhir\\farah\\paper-2\\paper-invoice-tracking\\dataset_invoice.xlsx",
+  "source_sheet": "Data Labeling",
+  "source_label": "expert_label",
+  "label_mapping": {
+    "HIGH": "Urgent",
+    "NORMAL": "Not Urgent"
+  },
+  "deduplication": "One earliest record retained per invoice_no.",
+  "random_state": 42,
+  "experiments": [
+    "E1_80_20",
+    "E2_70_30",
+    "E3_5_Fold_CV",
+    "E4_LOOCV"
+  ],
+  "decision_tree": {
+    "criterion": "entropy",
+    "inner_validation": "Stratified 5-fold where class counts permit",
+    "parameter_grid": {
+      "max_depth": [
+        2,
+        3,
+        4,
+        null
+      ],
+      "min_samples_leaf": [
+        1,
+        2,
+        4
+      ]
+    }
+  }
+}

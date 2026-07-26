@@ -1,0 +1,33 @@
+experiment,method,actual,predicted,count
+E1_80_20,Rule-Based,Not Urgent,Not Urgent,14
+E1_80_20,Rule-Based,Not Urgent,Urgent,0
+E1_80_20,Rule-Based,Urgent,Not Urgent,0
+E1_80_20,Rule-Based,Urgent,Urgent,6
+E1_80_20,Decision Tree,Not Urgent,Not Urgent,14
+E1_80_20,Decision Tree,Not Urgent,Urgent,0
+E1_80_20,Decision Tree,Urgent,Not Urgent,0
+E1_80_20,Decision Tree,Urgent,Urgent,6
+E2_70_30,Rule-Based,Not Urgent,Not Urgent,21
+E2_70_30,Rule-Based,Not Urgent,Urgent,0
+E2_70_30,Rule-Based,Urgent,Not Urgent,2
+E2_70_30,Rule-Based,Urgent,Urgent,7
+E2_70_30,Decision Tree,Not Urgent,Not Urgent,21
+E2_70_30,Decision Tree,Not Urgent,Urgent,0
+E2_70_30,Decision Tree,Urgent,Not Urgent,1
+E2_70_30,Decision Tree,Urgent,Urgent,8
+E3_5_Fold_CV,Rule-Based,Not Urgent,Not Urgent,69
+E3_5_Fold_CV,Rule-Based,Not Urgent,Urgent,0
+E3_5_Fold_CV,Rule-Based,Urgent,Not Urgent,6
+E3_5_Fold_CV,Rule-Based,Urgent,Urgent,24
+E3_5_Fold_CV,Decision Tree,Not Urgent,Not Urgent,68
+E3_5_Fold_CV,Decision Tree,Not Urgent,Urgent,1
+E3_5_Fold_CV,Decision Tree,Urgent,Not Urgent,3
+E3_5_Fold_CV,Decision Tree,Urgent,Urgent,27
+E4_LOOCV,Rule-Based,Not Urgent,Not Urgent,69
+E4_LOOCV,Rule-Based,Not Urgent,Urgent,0
+E4_LOOCV,Rule-Based,Urgent,Not Urgent,6
+E4_LOOCV,Rule-Based,Urgent,Urgent,24
+E4_LOOCV,Decision Tree,Not Urgent,Not Urgent,68
+E4_LOOCV,Decision Tree,Not Urgent,Urgent,1
+E4_LOOCV,Decision Tree,Urgent,Not Urgent,1
+E4_LOOCV,Decision Tree,Urgent,Urgent,29

@@ -1,0 +1,79 @@
+{
+  "source_workbook": "D:\\Semester 8\\Tugas Akhir\\farah\\paper-2\\paper-invoice-tracking\\dataset_invoice.xlsx",
+  "source_sheet": "Data Labeling",
+  "source_label_column": "expert_label",
+  "target_column": "admin_ground_truth",
+  "label_map": {
+    "HIGH": "Urgent",
+    "NORMAL": "Not Urgent"
+  },
+  "class_labels": [
+    "Not Urgent",
+    "Urgent"
+  ],
+  "random_state": 42,
+  "model_features": [
+    "cutoff_rule",
+    "receive_day_code",
+    "receive_schedule",
+    "receive_date_schedule_status",
+    "receive_month_end_flag",
+    "limited_receive_schedule_flag",
+    "cutoff_value_feature",
+    "days_to_cutoff_feature",
+    "next_receive_day_gap_feature",
+    "receive_weekday_code",
+    "receive_week_of_month",
+    "receive_day_of_month"
+  ],
+  "experiments": {
+    "E1_80_20": "Stratified Hold-out 80:20",
+    "E2_70_30": "Stratified Hold-out 70:30",
+    "E3_5_Fold_CV": "5-Fold Stratified Cross Validation",
+    "E4_LOOCV": "Leave-One-Out Cross Validation (LOOCV)"
+  },
+  "decision_tree": {
+    "implementation": "sklearn.tree.DecisionTreeClassifier",
+    "criterion": "entropy",
+    "hyperparameter_tuning": false
+  },
+  "final_full_data_tree": {
+    "criterion": "entropy",
+    "random_state": 42,
+    "hyperparameter_tuning": false,
+    "algorithm": "sklearn.tree.DecisionTreeClassifier",
+    "features": [
+      "cutoff_rule",
+      "receive_day_code",
+      "receive_schedule",
+      "receive_date_schedule_status",
+      "receive_month_end_flag",
+      "limited_receive_schedule_flag",
+      "cutoff_value_feature",
+      "days_to_cutoff_feature",
+      "next_receive_day_gap_feature",
+      "receive_weekday_code",
+      "receive_week_of_month",
+      "receive_day_of_month"
+    ],
+    "categorical_features": [
+      "cutoff_rule",
+      "receive_day_code",
+      "receive_schedule",
+      "receive_date_schedule_status",
+      "receive_month_end_flag",
+      "limited_receive_schedule_flag"
+    ],
+    "numeric_features": [
+      "cutoff_value_feature",
+      "days_to_cutoff_feature",
+      "next_receive_day_gap_feature",
+      "receive_weekday_code",
+      "receive_week_of_month",
+      "receive_day_of_month"
+    ],
+    "tree_depth": 3,
+    "tree_leaves": 5,
+    "note": "Full-data tree is saved for inspection only; reported metrics use validation predictions."
+  }
+}

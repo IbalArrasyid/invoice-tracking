@@ -86,7 +86,7 @@
 }
 
 /* ─── Reset & Base ──────────────────────────────────────────── */
-*, *::before, *after {
+*, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -853,8 +853,23 @@ table.data-table {
 
 .search-wrap {
   position: relative;
-  flex: 1;
+  flex: 1 1 280px;
+  max-width: 100%;
   min-width: 200px;
+}
+
+.filter-bar .search-wrap {
+  min-width: min(100%, 260px);
+}
+
+.filter-bar .form-select {
+  flex: 0 1 180px;
+  min-width: 0;
+}
+
+.filter-bar .btn {
+  flex: 0 0 auto;
+  white-space: nowrap;
 }
 
 .search-icon {
@@ -869,6 +884,7 @@ table.data-table {
 
 .search-input {
   width: 100%;
+  min-width: 0;
   padding: 10px 14px 10px 38px;
   background: var(--bg-input);
   border: 1px solid var(--border);
@@ -1423,6 +1439,10 @@ table.data-table {
 }
 
 .courier-detail-head p {
+  display: none;
+}
+
+.courier-thesis-summary {
   color: var(--text-secondary);
   font-size: 0.83rem;
   margin-top: 6px;
@@ -1570,6 +1590,23 @@ table.data-table {
   color: var(--text-secondary);
   font-size: 0.8rem;
   padding: 12px 14px;
+}
+
+.supported-format-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 8px;
+}
+
+.format-chip {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--text-primary);
+  font-size: 0.72rem;
+  font-weight: 700;
+  line-height: 1;
+  padding: 5px 7px;
 }
 
 .bulk-textarea {

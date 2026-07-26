@@ -1,0 +1,39 @@
+{
+  "criterion": "entropy",
+  "random_state": 42,
+  "hyperparameter_tuning": false,
+  "algorithm": "sklearn.tree.DecisionTreeClassifier",
+  "features": [
+    "cutoff_rule",
+    "receive_day_code",
+    "receive_schedule",
+    "receive_date_schedule_status",
+    "receive_month_end_flag",
+    "limited_receive_schedule_flag",
+    "cutoff_value_feature",
+    "days_to_cutoff_feature",
+    "next_receive_day_gap_feature",
+    "receive_weekday_code",
+    "receive_week_of_month",
+    "receive_day_of_month"
+  ],
+  "categorical_features": [
+    "cutoff_rule",
+    "receive_day_code",
+    "receive_schedule",
+    "receive_date_schedule_status",
+    "receive_month_end_flag",
+    "limited_receive_schedule_flag"
+  ],
+  "numeric_features": [
+    "cutoff_value_feature",
+    "days_to_cutoff_feature",
+    "next_receive_day_gap_feature",
+    "receive_weekday_code",
+    "receive_week_of_month",
+    "receive_day_of_month"
+  ],
+  "tree_depth": 3,
+  "tree_leaves": 5,
+  "note": "Full-data tree is saved for inspection only; reported metrics use validation predictions."
+}

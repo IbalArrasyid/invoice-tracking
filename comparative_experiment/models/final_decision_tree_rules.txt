@@ -1,0 +1,13 @@
+|--- cat__limited_receive_schedule_flag_No <= 0.50
+|   |--- cat__receive_schedule_Monday, Tuesday, Wednesday <= 0.50
+|   |   |--- class: Urgent
+|   |--- cat__receive_schedule_Monday, Tuesday, Wednesday >  0.50
+|   |   |--- cat__receive_month_end_flag_Yes <= 0.50
+|   |   |   |--- class: Urgent
+|   |   |--- cat__receive_month_end_flag_Yes >  0.50
+|   |   |   |--- class: Not Urgent
+|--- cat__limited_receive_schedule_flag_No >  0.50
+|   |--- num__days_to_cutoff_feature <= 3.50
+|   |   |--- class: Urgent
+|   |--- num__days_to_cutoff_feature >  3.50
+|   |   |--- class: Not Urgent

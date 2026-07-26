@@ -1,0 +1,5 @@
+experiment,both_correct,rule_based_only_correct,decision_tree_only_correct,both_wrong,mcnemar_exact_p_value
+E1_80_20,20,0,0,0,1.0
+E2_70_30,28,0,1,1,1.0
+E3_5_Fold_CV,90,3,5,1,0.7265625
+E4_LOOCV,91,2,6,0,0.2890625

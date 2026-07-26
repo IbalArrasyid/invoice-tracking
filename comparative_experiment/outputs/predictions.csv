@@ -1,0 +1,249 @@
+experiment_id,experiment,fold,train_n,test_n,invoice_no,observation_id,source_excel_row,admin_ground_truth,prediction_rule_based,rule_ids,prediction_decision_tree
+E1_80_20,Stratified Hold-out 80:20,1,79,20,S202605-2379,S202605-2379,20,Not Urgent,Not Urgent,R8,Not Urgent
+E1_80_20,Stratified Hold-out 80:20,1,79,20,S202605-0719,S202605-0719,81,Urgent,Urgent,R7,Urgent
+E1_80_20,Stratified Hold-out 80:20,1,79,20,S202605-2484,S202605-2484,26,Not Urgent,Not Urgent,R8,Not Urgent
+E1_80_20,Stratified Hold-out 80:20,1,79,20,S202605-1801,S202605-1801,32,Urgent,Urgent,R7,Not Urgent
+E1_80_20,Stratified Hold-out 80:20,1,79,20,93109195,93109195,3,Not Urgent,Not Urgent,R8,Not Urgent
+E1_80_20,Stratified Hold-out 80:20,1,79,20,S202605-1769,S202605-1769,27,Not Urgent,Not Urgent,R8,Not Urgent
+E1_80_20,Stratified Hold-out 80:20,1,79,20,S202605-0859,S202605-0859,96,Not Urgent,Not Urgent,R8,Not Urgent
+E1_80_20,Stratified Hold-out 80:20,1,79,20,S202605-0586,S202605-0586,54,Urgent,Urgent,R7,Urgent
+E1_80_20,Stratified Hold-out 80:20,1,79,20,S202605-2382,S202605-2382,41,Not Urgent,Not Urgent,R8,Not Urgent
+E1_80_20,Stratified Hold-out 80:20,1,79,20,S202605-0412,S202605-0412,51,Not Urgent,Not Urgent,R8,Not Urgent
+E1_80_20,Stratified Hold-out 80:20,1,79,20,S202605-0629,S202605-0629,78,Not Urgent,Not Urgent,R8,Not Urgent
+E1_80_20,Stratified Hold-out 80:20,1,79,20,S202605-0587,S202605-0587,55,Urgent,Urgent,R7,Urgent
+E1_80_20,Stratified Hold-out 80:20,1,79,20,S202605-0634,S202605-0634,62,Not Urgent,Not Urgent,R8,Not Urgent
+E1_80_20,Stratified Hold-out 80:20,1,79,20,S202605-1319,S202605-1319,33,Not Urgent,Not Urgent,R8,Not Urgent
+E1_80_20,Stratified Hold-out 80:20,1,79,20,S202605-0834,S202605-0834,99,Not Urgent,Not Urgent,R8,Not Urgent
+E1_80_20,Stratified Hold-out 80:20,1,79,20,S202605-0628,S202605-0628,77,Not Urgent,Not Urgent,R8,Not Urgent
+E1_80_20,Stratified Hold-out 80:20,1,79,20,S202605-0419,S202605-0419,53,Urgent,Urgent,R7,Urgent
+E1_80_20,Stratified Hold-out 80:20,1,79,20,S202605-1765,S202605-1765,5,Not Urgent,Not Urgent,R8,Not Urgent
+E1_80_20,Stratified Hold-out 80:20,1,79,20,S202605-0772,S202605-0772,86,Urgent,Urgent,R6,Urgent
+E1_80_20,Stratified Hold-out 80:20,1,79,20,93106212,93106212,90,Not Urgent,Not Urgent,R8,Not Urgent
+E2_70_30,Stratified Hold-out 70:30,1,69,30,S202605-0586,S202605-0586,54,Urgent,Urgent,R7,Urgent
+E2_70_30,Stratified Hold-out 70:30,1,69,30,S202605-0707,S202605-0707,95,Urgent,Urgent,R2;R6,Urgent
+E2_70_30,Stratified Hold-out 70:30,1,69,30,S202605-1319,S202605-1319,33,Not Urgent,Not Urgent,R8,Not Urgent
+E2_70_30,Stratified Hold-out 70:30,1,69,30,S202605-1801,S202605-1801,32,Urgent,Urgent,R7,Not Urgent
+E2_70_30,Stratified Hold-out 70:30,1,69,30,S202605-2484,S202605-2484,26,Not Urgent,Not Urgent,R8,Not Urgent
+E2_70_30,Stratified Hold-out 70:30,1,69,30,S202605-2841,S202605-2841,34,Not Urgent,Not Urgent,R8,Not Urgent
+E2_70_30,Stratified Hold-out 70:30,1,69,30,S202605-0629,S202605-0629,78,Not Urgent,Not Urgent,R8,Not Urgent
+E2_70_30,Stratified Hold-out 70:30,1,69,30,S202605-0419,S202605-0419,53,Urgent,Urgent,R7,Urgent
+E2_70_30,Stratified Hold-out 70:30,1,69,30,93106212,93106212,90,Not Urgent,Not Urgent,R8,Not Urgent
+E2_70_30,Stratified Hold-out 70:30,1,69,30,S202605-0773,S202605-0773,92,Not Urgent,Not Urgent,R8,Not Urgent
+E2_70_30,Stratified Hold-out 70:30,1,69,30,S202605-0628,S202605-0628,77,Not Urgent,Not Urgent,R8,Not Urgent
+E2_70_30,Stratified Hold-out 70:30,1,69,30,S202605-1765,S202605-1765,5,Not Urgent,Not Urgent,R8,Not Urgent
+E2_70_30,Stratified Hold-out 70:30,1,69,30,S202605-0721,S202605-0721,74,Urgent,Not Urgent,R8,Not Urgent
+E2_70_30,Stratified Hold-out 70:30,1,69,30,S202605-0634,S202605-0634,62,Not Urgent,Not Urgent,R8,Not Urgent
+E2_70_30,Stratified Hold-out 70:30,1,69,30,S202605-1769,S202605-1769,27,Not Urgent,Not Urgent,R8,Not Urgent
+E2_70_30,Stratified Hold-out 70:30,1,69,30,S202605-0708,S202605-0708,101,Urgent,Not Urgent,R8,Urgent
+E2_70_30,Stratified Hold-out 70:30,1,69,30,S202605-0859,S202605-0859,96,Not Urgent,Not Urgent,R8,Not Urgent
+E2_70_30,Stratified Hold-out 70:30,1,69,30,S202605-2382,S202605-2382,41,Not Urgent,Not Urgent,R8,Not Urgent
+E2_70_30,Stratified Hold-out 70:30,1,69,30,S202605-0712,S202605-0712,70,Not Urgent,Not Urgent,R8,Not Urgent
+E2_70_30,Stratified Hold-out 70:30,1,69,30,93115446,93115446,17,Not Urgent,Not Urgent,R8,Not Urgent
+E2_70_30,Stratified Hold-out 70:30,1,69,30,S202605-0719,S202605-0719,81,Urgent,Urgent,R7,Urgent
+E2_70_30,Stratified Hold-out 70:30,1,69,30,S202605-0834,S202605-0834,99,Not Urgent,Not Urgent,R8,Not Urgent
+E2_70_30,Stratified Hold-out 70:30,1,69,30,S202605-2390,S202605-2390,45,Not Urgent,Not Urgent,R8,Not Urgent
+E2_70_30,Stratified Hold-out 70:30,1,69,30,S202605-1788,S202605-1788,98,Not Urgent,Not Urgent,R8,Not Urgent
+E2_70_30,Stratified Hold-out 70:30,1,69,30,S202605-0724,S202605-0724,87,Not Urgent,Not Urgent,R8,Not Urgent
+E2_70_30,Stratified Hold-out 70:30,1,69,30,S202605-0412,S202605-0412,51,Not Urgent,Not Urgent,R8,Not Urgent
+E2_70_30,Stratified Hold-out 70:30,1,69,30,93109195,93109195,3,Not Urgent,Not Urgent,R8,Not Urgent
+E2_70_30,Stratified Hold-out 70:30,1,69,30,S202605-2379,S202605-2379,20,Not Urgent,Not Urgent,R8,Not Urgent
+E2_70_30,Stratified Hold-out 70:30,1,69,30,S202605-0772,S202605-0772,86,Urgent,Urgent,R6,Urgent
+E2_70_30,Stratified Hold-out 70:30,1,69,30,S202605-0587,S202605-0587,55,Urgent,Urgent,R7,Urgent
+E3_5_Fold_CV,5-Fold Stratified Cross Validation,1,79,20,93109195,93109195,3,Not Urgent,Not Urgent,R8,Not Urgent
+E3_5_Fold_CV,5-Fold Stratified Cross Validation,1,79,20,S202605-0737,S202605-0737,4,Urgent,Not Urgent,R8,Urgent
+E3_5_Fold_CV,5-Fold Stratified Cross Validation,1,79,20,93110546,93110546,6,Not Urgent,Not Urgent,R8,Not Urgent
+E3_5_Fold_CV,5-Fold Stratified Cross Validation,1,79,20,S202605-1311,S202605-1311,10,Not Urgent,Not Urgent,R8,Not Urgent
+E3_5_Fold_CV,5-Fold Stratified Cross Validation,1,79,20,S202605-2378,S202605-2378,13,Urgent,Urgent,R7,Urgent
+E3_5_Fold_CV,5-Fold Stratified Cross Validation,1,79,20,S202605-1314,S202605-1314,14,Not Urgent,Not Urgent,R8,Not Urgent
+E3_5_Fold_CV,5-Fold Stratified Cross Validation,1,79,20,93115446,93115446,17,Not Urgent,Not Urgent,R8,Not Urgent
+E3_5_Fold_CV,5-Fold Stratified Cross Validation,1,79,20,S202605-2089,S202605-2089,19,Not Urgent,Not Urgent,R8,Not Urgent
+E3_5_Fold_CV,5-Fold Stratified Cross Validation,1,79,20,S202605-2480,S202605-2480,29,Urgent,Urgent,R7,Urgent
+E3_5_Fold_CV,5-Fold Stratified Cross Validation,1,79,20,S202605-0745,S202605-0745,30,Urgent,Urgent,R7,Urgent
+E3_5_Fold_CV,5-Fold Stratified Cross Validation,1,79,20,S202605-0030,S202605-0030,31,Urgent,Urgent,R4,Urgent
+E3_5_Fold_CV,5-Fold Stratified Cross Validation,1,79,20,S202605-2841,S202605-2841,34,Not Urgent,Not Urgent,R8,Not Urgent
+E3_5_Fold_CV,5-Fold Stratified Cross Validation,1,79,20,S202605-2384,S202605-2384,47,Not Urgent,Not Urgent,R8,Not Urgent
+E3_5_Fold_CV,5-Fold Stratified Cross Validation,1,79,20,S202605-0406,S202605-0406,50,Not Urgent,Not Urgent,R8,Not Urgent
+E3_5_Fold_CV,5-Fold Stratified Cross Validation,1,79,20,S202605-0557,S202605-0557,52,Urgent,Urgent,R7,Urgent
+E3_5_Fold_CV,5-Fold Stratified Cross Validation,1,79,20,S202605-0590,S202605-0590,56,Not Urgent,Not Urgent,R8,Not Urgent
+E3_5_Fold_CV,5-Fold Stratified Cross Validation,1,79,20,S202605-0723,S202605-0723,58,Not Urgent,Not Urgent,R8,Not Urgent
+E3_5_Fold_CV,5-Fold Stratified Cross Validation,1,79,20,S202605-0629,S202605-0629,78,Not Urgent,Not Urgent,R8,Not Urgent
+E3_5_Fold_CV,5-Fold Stratified Cross Validation,1,79,20,93106212,93106212,90,Not Urgent,Not Urgent,R8,Not Urgent
+E3_5_Fold_CV,5-Fold Stratified Cross Validation,1,79,20,S202605-0858,S202605-0858,93,Not Urgent,Not Urgent,R8,Not Urgent
+E3_5_Fold_CV,5-Fold Stratified Cross Validation,2,79,20,S202605-0795,S202605-0795,2,Not Urgent,Not Urgent,R8,Not Urgent
+E3_5_Fold_CV,5-Fold Stratified Cross Validation,2,79,20,S202605-1312,S202605-1312,7,Urgent,Urgent,R4,Urgent
+E3_5_Fold_CV,5-Fold Stratified Cross Validation,2,79,20,S202605-1758,S202605-1758,9,Not Urgent,Not Urgent,R8,Not Urgent
+E3_5_Fold_CV,5-Fold Stratified Cross Validation,2,79,20,S202605-1766,S202605-1766,16,Urgent,Urgent,R7,Urgent
+E3_5_Fold_CV,5-Fold Stratified Cross Validation,2,79,20,S202605-2484,S202605-2484,26,Not Urgent,Not Urgent,R8,Not Urgent
+E3_5_Fold_CV,5-Fold Stratified Cross Validation,2,79,20,S202605-2391,S202605-2391,40,Urgent,Urgent,R7,Urgent
+E3_5_Fold_CV,5-Fold Stratified Cross Validation,2,79,20,S202605-2382,S202605-2382,41,Not Urgent,Not Urgent,R8,Not Urgent
+E3_5_Fold_CV,5-Fold Stratified Cross Validation,2,79,20,S202605-2387,S202605-2387,44,Urgent,Urgent,R7,Urgent
+E3_5_Fold_CV,5-Fold Stratified Cross Validation,2,79,20,S202605-2390,S202605-2390,45,Not Urgent,Not Urgent,R8,Not Urgent
+E3_5_Fold_CV,5-Fold Stratified Cross Validation,2,79,20,S202605-0412,S202605-0412,51,Not Urgent,Not Urgent,R8,Not Urgent
+E3_5_Fold_CV,5-Fold Stratified Cross Validation,2,79,20,S202605-0757,S202605-0757,60,Urgent,Urgent,R3,Urgent
+E3_5_Fold_CV,5-Fold Stratified Cross Validation,2,79,20,S202605-0769,S202605-0769,63,Not Urgent,Not Urgent,R8,Not Urgent
+E3_5_Fold_CV,5-Fold Stratified Cross Validation,2,79,20,S202605-0722,S202605-0722,66,Not Urgent,Not Urgent,R8,Not Urgent
+E3_5_Fold_CV,5-Fold Stratified Cross Validation,2,79,20,S202605-0720,S202605-0720,69,Not Urgent,Not Urgent,R8,Not Urgent
+E3_5_Fold_CV,5-Fold Stratified Cross Validation,2,79,20,S202605-0325,S202605-0325,71,Not Urgent,Not Urgent,R8,Not Urgent
+E3_5_Fold_CV,5-Fold Stratified Cross Validation,2,79,20,S202605-0773,S202605-0773,92,Not Urgent,Not Urgent,R8,Not Urgent
+E3_5_Fold_CV,5-Fold Stratified Cross Validation,2,79,20,S202605-0707,S202605-0707,95,Urgent,Urgent,R2;R6,Urgent
+E3_5_Fold_CV,5-Fold Stratified Cross Validation,2,79,20,S202605-0859,S202605-0859,96,Not Urgent,Not Urgent,R8,Not Urgent
+E3_5_Fold_CV,5-Fold Stratified Cross Validation,2,79,20,S202605-1788,S202605-1788,98,Not Urgent,Not Urgent,R8,Not Urgent
+E3_5_Fold_CV,5-Fold Stratified Cross Validation,2,79,20,S202605-1768,S202605-1768,100,Not Urgent,Not Urgent,R8,Not Urgent
+E3_5_Fold_CV,5-Fold Stratified Cross Validation,3,79,20,S202605-1329,S202605-1329,11,Not Urgent,Not Urgent,R8,Not Urgent
+E3_5_Fold_CV,5-Fold Stratified Cross Validation,3,79,20,S202605-2103,S202605-2103,15,Not Urgent,Not Urgent,R8,Not Urgent
+E3_5_Fold_CV,5-Fold Stratified Cross Validation,3,79,20,S202605-2088,S202605-2088,21,Not Urgent,Not Urgent,R8,Not Urgent
+E3_5_Fold_CV,5-Fold Stratified Cross Validation,3,79,20,S202605-2091,S202605-2091,23,Not Urgent,Not Urgent,R8,Not Urgent
+E3_5_Fold_CV,5-Fold Stratified Cross Validation,3,79,20,S202605-1769,S202605-1769,27,Not Urgent,Not Urgent,R8,Not Urgent
+E3_5_Fold_CV,5-Fold Stratified Cross Validation,3,79,20,S202605-1319,S202605-1319,33,Not Urgent,Not Urgent,R8,Not Urgent
+E3_5_Fold_CV,5-Fold Stratified Cross Validation,3,79,20,S202605-2831,S202605-2831,36,Not Urgent,Not Urgent,R8,Not Urgent
+E3_5_Fold_CV,5-Fold Stratified Cross Validation,3,79,20,S202605-2395,S202605-2395,43,Not Urgent,Not Urgent,R8,Not Urgent
+E3_5_Fold_CV,5-Fold Stratified Cross Validation,3,79,20,S202605-2386,S202605-2386,46,Not Urgent,Not Urgent,R8,Not Urgent
+E3_5_Fold_CV,5-Fold Stratified Cross Validation,3,79,20,S202605-0395,S202605-0395,49,Urgent,Urgent,R4,Urgent
+E3_5_Fold_CV,5-Fold Stratified Cross Validation,3,79,20,S202605-0609,S202605-0609,59,Not Urgent,Not Urgent,R8,Not Urgent
+E3_5_Fold_CV,5-Fold Stratified Cross Validation,3,79,20,S202605-0633,S202605-0633,68,Not Urgent,Not Urgent,R8,Not Urgent
+E3_5_Fold_CV,5-Fold Stratified Cross Validation,3,79,20,S202605-0632,S202605-0632,73,Urgent,Not Urgent,R8,Urgent
+E3_5_Fold_CV,5-Fold Stratified Cross Validation,3,79,20,S202605-0721,S202605-0721,74,Urgent,Not Urgent,R8,Urgent
+E3_5_Fold_CV,5-Fold Stratified Cross Validation,3,79,20,S202605-0630,S202605-0630,79,Not Urgent,Not Urgent,R8,Not Urgent
+E3_5_Fold_CV,5-Fold Stratified Cross Validation,3,79,20,93103070,93103070,84,Not Urgent,Not Urgent,R8,Not Urgent
+E3_5_Fold_CV,5-Fold Stratified Cross Validation,3,79,20,S202605-0830,S202605-0830,85,Not Urgent,Not Urgent,R8,Not Urgent
+E3_5_Fold_CV,5-Fold Stratified Cross Validation,3,79,20,S202605-2098,S202605-2098,94,Urgent,Urgent,R3;R6,Not Urgent
+E3_5_Fold_CV,5-Fold Stratified Cross Validation,3,79,20,S202605-0764,S202605-0764,97,Urgent,Urgent,R6,Urgent
+E3_5_Fold_CV,5-Fold Stratified Cross Validation,3,79,20,S202605-0708,S202605-0708,101,Urgent,Not Urgent,R8,Not Urgent
+E3_5_Fold_CV,5-Fold Stratified Cross Validation,4,79,20,S202605-1765,S202605-1765,5,Not Urgent,Not Urgent,R8,Not Urgent
+E3_5_Fold_CV,5-Fold Stratified Cross Validation,4,79,20,S202605-1767,S202605-1767,8,Not Urgent,Not Urgent,R8,Not Urgent
+E3_5_Fold_CV,5-Fold Stratified Cross Validation,4,79,20,S202605-1330,S202605-1330,12,Not Urgent,Not Urgent,R8,Not Urgent
+E3_5_Fold_CV,5-Fold Stratified Cross Validation,4,79,20,S202605-1763,S202605-1763,25,Not Urgent,Not Urgent,R8,Not Urgent
+E3_5_Fold_CV,5-Fold Stratified Cross Validation,4,79,20,93118518,93118518,28,Not Urgent,Not Urgent,R8,Not Urgent
+E3_5_Fold_CV,5-Fold Stratified Cross Validation,4,79,20,S202605-1781,S202605-1781,37,Not Urgent,Not Urgent,R8,Not Urgent
+E3_5_Fold_CV,5-Fold Stratified Cross Validation,4,79,20,S202605-2393,S202605-2393,38,Urgent,Urgent,R7,Urgent
+E3_5_Fold_CV,5-Fold Stratified Cross Validation,4,79,20,S202605-2380,S202605-2380,39,Not Urgent,Not Urgent,R8,Not Urgent
+E3_5_Fold_CV,5-Fold Stratified Cross Validation,4,79,20,S202605-2394,S202605-2394,42,Not Urgent,Not Urgent,R8,Not Urgent
+E3_5_Fold_CV,5-Fold Stratified Cross Validation,4,79,20,S202605-0608,S202605-0608,48,Not Urgent,Not Urgent,R8,Not Urgent
+E3_5_Fold_CV,5-Fold Stratified Cross Validation,4,79,20,S202605-0419,S202605-0419,53,Urgent,Urgent,R7,Urgent
+E3_5_Fold_CV,5-Fold Stratified Cross Validation,4,79,20,S202605-0586,S202605-0586,54,Urgent,Urgent,R7,Urgent
+E3_5_Fold_CV,5-Fold Stratified Cross Validation,4,79,20,S202605-0587,S202605-0587,55,Urgent,Urgent,R7,Urgent
+E3_5_Fold_CV,5-Fold Stratified Cross Validation,4,79,20,S202605-0591,S202605-0591,57,Not Urgent,Not Urgent,R8,Not Urgent
+E3_5_Fold_CV,5-Fold Stratified Cross Validation,4,79,20,S202605-0712,S202605-0712,70,Not Urgent,Not Urgent,R8,Not Urgent
+E3_5_Fold_CV,5-Fold Stratified Cross Validation,4,79,20,S202605-0719,S202605-0719,81,Urgent,Urgent,R7,Urgent
+E3_5_Fold_CV,5-Fold Stratified Cross Validation,4,79,20,S202605-0724,S202605-0724,87,Not Urgent,Not Urgent,R8,Not Urgent
+E3_5_Fold_CV,5-Fold Stratified Cross Validation,4,79,20,S202605-0750,S202605-0750,89,Urgent,Urgent,R7,Urgent
+E3_5_Fold_CV,5-Fold Stratified Cross Validation,4,79,20,S202605-0360,S202605-0360,91,Not Urgent,Not Urgent,R8,Not Urgent
+E3_5_Fold_CV,5-Fold Stratified Cross Validation,4,79,20,S202605-1800,S202605-1800,102,Not Urgent,Not Urgent,R8,Urgent
+E3_5_Fold_CV,5-Fold Stratified Cross Validation,5,80,19,93115889,93115889,18,Not Urgent,Not Urgent,R8,Not Urgent
+E3_5_Fold_CV,5-Fold Stratified Cross Validation,5,80,19,S202605-2379,S202605-2379,20,Not Urgent,Not Urgent,R8,Not Urgent
+E3_5_Fold_CV,5-Fold Stratified Cross Validation,5,80,19,S202605-2086,S202605-2086,22,Not Urgent,Not Urgent,R8,Not Urgent
+E3_5_Fold_CV,5-Fold Stratified Cross Validation,5,80,19,S202605-2575,S202605-2575,24,Not Urgent,Not Urgent,R8,Not Urgent
+E3_5_Fold_CV,5-Fold Stratified Cross Validation,5,80,19,S202605-1801,S202605-1801,32,Urgent,Urgent,R7,Not Urgent
+E3_5_Fold_CV,5-Fold Stratified Cross Validation,5,80,19,S202605-2835,S202605-2835,35,Not Urgent,Not Urgent,R8,Not Urgent
+E3_5_Fold_CV,5-Fold Stratified Cross Validation,5,80,19,93101903,93101903,61,Not Urgent,Not Urgent,R8,Not Urgent
+E3_5_Fold_CV,5-Fold Stratified Cross Validation,5,80,19,S202605-0634,S202605-0634,62,Not Urgent,Not Urgent,R8,Not Urgent
+E3_5_Fold_CV,5-Fold Stratified Cross Validation,5,80,19,S202605-0635,S202605-0635,65,Urgent,Urgent,R4,Urgent
+E3_5_Fold_CV,5-Fold Stratified Cross Validation,5,80,19,S202605-0715,S202605-0715,67,Urgent,Not Urgent,R8,Urgent
+E3_5_Fold_CV,5-Fold Stratified Cross Validation,5,80,19,S202605-0710,S202605-0710,75,Urgent,Not Urgent,R8,Urgent
+E3_5_Fold_CV,5-Fold Stratified Cross Validation,5,80,19,S202605-0717,S202605-0717,76,Not Urgent,Not Urgent,R8,Not Urgent
+E3_5_Fold_CV,5-Fold Stratified Cross Validation,5,80,19,S202605-0628,S202605-0628,77,Not Urgent,Not Urgent,R8,Not Urgent
+E3_5_Fold_CV,5-Fold Stratified Cross Validation,5,80,19,S202605-0767,S202605-0767,80,Not Urgent,Not Urgent,R8,Not Urgent
+E3_5_Fold_CV,5-Fold Stratified Cross Validation,5,80,19,S202605-0413,S202605-0413,82,Urgent,Urgent,R3;R6,Urgent
+E3_5_Fold_CV,5-Fold Stratified Cross Validation,5,80,19,S202605-0766,S202605-0766,83,Not Urgent,Not Urgent,R8,Not Urgent
+E3_5_Fold_CV,5-Fold Stratified Cross Validation,5,80,19,S202605-0772,S202605-0772,86,Urgent,Urgent,R6,Urgent
+E3_5_Fold_CV,5-Fold Stratified Cross Validation,5,80,19,S202605-0550,S202605-0550,88,Not Urgent,Not Urgent,R8,Not Urgent
+E3_5_Fold_CV,5-Fold Stratified Cross Validation,5,80,19,S202605-0834,S202605-0834,99,Not Urgent,Not Urgent,R8,Not Urgent
+E4_LOOCV,Leave-One-Out Cross Validation (LOOCV),1,98,1,S202605-0795,S202605-0795,2,Not Urgent,Not Urgent,R8,Not Urgent
+E4_LOOCV,Leave-One-Out Cross Validation (LOOCV),2,98,1,93109195,93109195,3,Not Urgent,Not Urgent,R8,Not Urgent
+E4_LOOCV,Leave-One-Out Cross Validation (LOOCV),3,98,1,S202605-0737,S202605-0737,4,Urgent,Not Urgent,R8,Urgent
+E4_LOOCV,Leave-One-Out Cross Validation (LOOCV),4,98,1,S202605-1765,S202605-1765,5,Not Urgent,Not Urgent,R8,Not Urgent
+E4_LOOCV,Leave-One-Out Cross Validation (LOOCV),5,98,1,93110546,93110546,6,Not Urgent,Not Urgent,R8,Not Urgent
+E4_LOOCV,Leave-One-Out Cross Validation (LOOCV),6,98,1,S202605-1312,S202605-1312,7,Urgent,Urgent,R4,Urgent
+E4_LOOCV,Leave-One-Out Cross Validation (LOOCV),7,98,1,S202605-1767,S202605-1767,8,Not Urgent,Not Urgent,R8,Not Urgent
+E4_LOOCV,Leave-One-Out Cross Validation (LOOCV),8,98,1,S202605-1758,S202605-1758,9,Not Urgent,Not Urgent,R8,Not Urgent
+E4_LOOCV,Leave-One-Out Cross Validation (LOOCV),9,98,1,S202605-1311,S202605-1311,10,Not Urgent,Not Urgent,R8,Not Urgent
+E4_LOOCV,Leave-One-Out Cross Validation (LOOCV),10,98,1,S202605-1329,S202605-1329,11,Not Urgent,Not Urgent,R8,Not Urgent
+E4_LOOCV,Leave-One-Out Cross Validation (LOOCV),11,98,1,S202605-1330,S202605-1330,12,Not Urgent,Not Urgent,R8,Not Urgent
+E4_LOOCV,Leave-One-Out Cross Validation (LOOCV),12,98,1,S202605-2378,S202605-2378,13,Urgent,Urgent,R7,Urgent
+E4_LOOCV,Leave-One-Out Cross Validation (LOOCV),13,98,1,S202605-1314,S202605-1314,14,Not Urgent,Not Urgent,R8,Not Urgent
+E4_LOOCV,Leave-One-Out Cross Validation (LOOCV),14,98,1,S202605-2103,S202605-2103,15,Not Urgent,Not Urgent,R8,Not Urgent
+E4_LOOCV,Leave-One-Out Cross Validation (LOOCV),15,98,1,S202605-1766,S202605-1766,16,Urgent,Urgent,R7,Urgent
+E4_LOOCV,Leave-One-Out Cross Validation (LOOCV),16,98,1,93115446,93115446,17,Not Urgent,Not Urgent,R8,Not Urgent
+E4_LOOCV,Leave-One-Out Cross Validation (LOOCV),17,98,1,93115889,93115889,18,Not Urgent,Not Urgent,R8,Not Urgent
+E4_LOOCV,Leave-One-Out Cross Validation (LOOCV),18,98,1,S202605-2089,S202605-2089,19,Not Urgent,Not Urgent,R8,Not Urgent
+E4_LOOCV,Leave-One-Out Cross Validation (LOOCV),19,98,1,S202605-2379,S202605-2379,20,Not Urgent,Not Urgent,R8,Not Urgent
+E4_LOOCV,Leave-One-Out Cross Validation (LOOCV),20,98,1,S202605-2088,S202605-2088,21,Not Urgent,Not Urgent,R8,Not Urgent
+E4_LOOCV,Leave-One-Out Cross Validation (LOOCV),21,98,1,S202605-2086,S202605-2086,22,Not Urgent,Not Urgent,R8,Not Urgent
+E4_LOOCV,Leave-One-Out Cross Validation (LOOCV),22,98,1,S202605-2091,S202605-2091,23,Not Urgent,Not Urgent,R8,Not Urgent
+E4_LOOCV,Leave-One-Out Cross Validation (LOOCV),23,98,1,S202605-2575,S202605-2575,24,Not Urgent,Not Urgent,R8,Not Urgent
+E4_LOOCV,Leave-One-Out Cross Validation (LOOCV),24,98,1,S202605-1763,S202605-1763,25,Not Urgent,Not Urgent,R8,Not Urgent
+E4_LOOCV,Leave-One-Out Cross Validation (LOOCV),25,98,1,S202605-2484,S202605-2484,26,Not Urgent,Not Urgent,R8,Not Urgent
+E4_LOOCV,Leave-One-Out Cross Validation (LOOCV),26,98,1,S202605-1769,S202605-1769,27,Not Urgent,Not Urgent,R8,Not Urgent
+E4_LOOCV,Leave-One-Out Cross Validation (LOOCV),27,98,1,93118518,93118518,28,Not Urgent,Not Urgent,R8,Not Urgent
+E4_LOOCV,Leave-One-Out Cross Validation (LOOCV),28,98,1,S202605-2480,S202605-2480,29,Urgent,Urgent,R7,Urgent
+E4_LOOCV,Leave-One-Out Cross Validation (LOOCV),29,98,1,S202605-0745,S202605-0745,30,Urgent,Urgent,R7,Urgent
+E4_LOOCV,Leave-One-Out Cross Validation (LOOCV),30,98,1,S202605-0030,S202605-0030,31,Urgent,Urgent,R4,Urgent
+E4_LOOCV,Leave-One-Out Cross Validation (LOOCV),31,98,1,S202605-1801,S202605-1801,32,Urgent,Urgent,R7,Not Urgent
+E4_LOOCV,Leave-One-Out Cross Validation (LOOCV),32,98,1,S202605-1319,S202605-1319,33,Not Urgent,Not Urgent,R8,Not Urgent
+E4_LOOCV,Leave-One-Out Cross Validation (LOOCV),33,98,1,S202605-2841,S202605-2841,34,Not Urgent,Not Urgent,R8,Not Urgent
+E4_LOOCV,Leave-One-Out Cross Validation (LOOCV),34,98,1,S202605-2835,S202605-2835,35,Not Urgent,Not Urgent,R8,Not Urgent
+E4_LOOCV,Leave-One-Out Cross Validation (LOOCV),35,98,1,S202605-2831,S202605-2831,36,Not Urgent,Not Urgent,R8,Not Urgent
+E4_LOOCV,Leave-One-Out Cross Validation (LOOCV),36,98,1,S202605-1781,S202605-1781,37,Not Urgent,Not Urgent,R8,Not Urgent
+E4_LOOCV,Leave-One-Out Cross Validation (LOOCV),37,98,1,S202605-2393,S202605-2393,38,Urgent,Urgent,R7,Urgent
+E4_LOOCV,Leave-One-Out Cross Validation (LOOCV),38,98,1,S202605-2380,S202605-2380,39,Not Urgent,Not Urgent,R8,Not Urgent
+E4_LOOCV,Leave-One-Out Cross Validation (LOOCV),39,98,1,S202605-2391,S202605-2391,40,Urgent,Urgent,R7,Urgent
+E4_LOOCV,Leave-One-Out Cross Validation (LOOCV),40,98,1,S202605-2382,S202605-2382,41,Not Urgent,Not Urgent,R8,Not Urgent
+E4_LOOCV,Leave-One-Out Cross Validation (LOOCV),41,98,1,S202605-2394,S202605-2394,42,Not Urgent,Not Urgent,R8,Not Urgent
+E4_LOOCV,Leave-One-Out Cross Validation (LOOCV),42,98,1,S202605-2395,S202605-2395,43,Not Urgent,Not Urgent,R8,Not Urgent
+E4_LOOCV,Leave-One-Out Cross Validation (LOOCV),43,98,1,S202605-2387,S202605-2387,44,Urgent,Urgent,R7,Urgent
+E4_LOOCV,Leave-One-Out Cross Validation (LOOCV),44,98,1,S202605-2390,S202605-2390,45,Not Urgent,Not Urgent,R8,Not Urgent
+E4_LOOCV,Leave-One-Out Cross Validation (LOOCV),45,98,1,S202605-2386,S202605-2386,46,Not Urgent,Not Urgent,R8,Not Urgent
+E4_LOOCV,Leave-One-Out Cross Validation (LOOCV),46,98,1,S202605-2384,S202605-2384,47,Not Urgent,Not Urgent,R8,Not Urgent
+E4_LOOCV,Leave-One-Out Cross Validation (LOOCV),47,98,1,S202605-0608,S202605-0608,48,Not Urgent,Not Urgent,R8,Not Urgent
+E4_LOOCV,Leave-One-Out Cross Validation (LOOCV),48,98,1,S202605-0395,S202605-0395,49,Urgent,Urgent,R4,Urgent
+E4_LOOCV,Leave-One-Out Cross Validation (LOOCV),49,98,1,S202605-0406,S202605-0406,50,Not Urgent,Not Urgent,R8,Not Urgent
+E4_LOOCV,Leave-One-Out Cross Validation (LOOCV),50,98,1,S202605-0412,S202605-0412,51,Not Urgent,Not Urgent,R8,Not Urgent
+E4_LOOCV,Leave-One-Out Cross Validation (LOOCV),51,98,1,S202605-0557,S202605-0557,52,Urgent,Urgent,R7,Urgent
+E4_LOOCV,Leave-One-Out Cross Validation (LOOCV),52,98,1,S202605-0419,S202605-0419,53,Urgent,Urgent,R7,Urgent
+E4_LOOCV,Leave-One-Out Cross Validation (LOOCV),53,98,1,S202605-0586,S202605-0586,54,Urgent,Urgent,R7,Urgent
+E4_LOOCV,Leave-One-Out Cross Validation (LOOCV),54,98,1,S202605-0587,S202605-0587,55,Urgent,Urgent,R7,Urgent
+E4_LOOCV,Leave-One-Out Cross Validation (LOOCV),55,98,1,S202605-0590,S202605-0590,56,Not Urgent,Not Urgent,R8,Not Urgent
+E4_LOOCV,Leave-One-Out Cross Validation (LOOCV),56,98,1,S202605-0591,S202605-0591,57,Not Urgent,Not Urgent,R8,Not Urgent
+E4_LOOCV,Leave-One-Out Cross Validation (LOOCV),57,98,1,S202605-0723,S202605-0723,58,Not Urgent,Not Urgent,R8,Not Urgent
+E4_LOOCV,Leave-One-Out Cross Validation (LOOCV),58,98,1,S202605-0609,S202605-0609,59,Not Urgent,Not Urgent,R8,Not Urgent
+E4_LOOCV,Leave-One-Out Cross Validation (LOOCV),59,98,1,S202605-0757,S202605-0757,60,Urgent,Urgent,R3,Urgent
+E4_LOOCV,Leave-One-Out Cross Validation (LOOCV),60,98,1,93101903,93101903,61,Not Urgent,Not Urgent,R8,Not Urgent
+E4_LOOCV,Leave-One-Out Cross Validation (LOOCV),61,98,1,S202605-0634,S202605-0634,62,Not Urgent,Not Urgent,R8,Not Urgent
+E4_LOOCV,Leave-One-Out Cross Validation (LOOCV),62,98,1,S202605-0769,S202605-0769,63,Not Urgent,Not Urgent,R8,Not Urgent
+E4_LOOCV,Leave-One-Out Cross Validation (LOOCV),63,98,1,S202605-0635,S202605-0635,65,Urgent,Urgent,R4,Urgent
+E4_LOOCV,Leave-One-Out Cross Validation (LOOCV),64,98,1,S202605-0722,S202605-0722,66,Not Urgent,Not Urgent,R8,Not Urgent
+E4_LOOCV,Leave-One-Out Cross Validation (LOOCV),65,98,1,S202605-0715,S202605-0715,67,Urgent,Not Urgent,R8,Urgent
+E4_LOOCV,Leave-One-Out Cross Validation (LOOCV),66,98,1,S202605-0633,S202605-0633,68,Not Urgent,Not Urgent,R8,Not Urgent
+E4_LOOCV,Leave-One-Out Cross Validation (LOOCV),67,98,1,S202605-0720,S202605-0720,69,Not Urgent,Not Urgent,R8,Not Urgent
+E4_LOOCV,Leave-One-Out Cross Validation (LOOCV),68,98,1,S202605-0712,S202605-0712,70,Not Urgent,Not Urgent,R8,Not Urgent
+E4_LOOCV,Leave-One-Out Cross Validation (LOOCV),69,98,1,S202605-0325,S202605-0325,71,Not Urgent,Not Urgent,R8,Not Urgent
+E4_LOOCV,Leave-One-Out Cross Validation (LOOCV),70,98,1,S202605-0632,S202605-0632,73,Urgent,Not Urgent,R8,Urgent
+E4_LOOCV,Leave-One-Out Cross Validation (LOOCV),71,98,1,S202605-0721,S202605-0721,74,Urgent,Not Urgent,R8,Urgent
+E4_LOOCV,Leave-One-Out Cross Validation (LOOCV),72,98,1,S202605-0710,S202605-0710,75,Urgent,Not Urgent,R8,Urgent
+E4_LOOCV,Leave-One-Out Cross Validation (LOOCV),73,98,1,S202605-0717,S202605-0717,76,Not Urgent,Not Urgent,R8,Not Urgent
+E4_LOOCV,Leave-One-Out Cross Validation (LOOCV),74,98,1,S202605-0628,S202605-0628,77,Not Urgent,Not Urgent,R8,Not Urgent
+E4_LOOCV,Leave-One-Out Cross Validation (LOOCV),75,98,1,S202605-0629,S202605-0629,78,Not Urgent,Not Urgent,R8,Not Urgent
+E4_LOOCV,Leave-One-Out Cross Validation (LOOCV),76,98,1,S202605-0630,S202605-0630,79,Not Urgent,Not Urgent,R8,Not Urgent
+E4_LOOCV,Leave-One-Out Cross Validation (LOOCV),77,98,1,S202605-0767,S202605-0767,80,Not Urgent,Not Urgent,R8,Not Urgent
+E4_LOOCV,Leave-One-Out Cross Validation (LOOCV),78,98,1,S202605-0719,S202605-0719,81,Urgent,Urgent,R7,Urgent
+E4_LOOCV,Leave-One-Out Cross Validation (LOOCV),79,98,1,S202605-0413,S202605-0413,82,Urgent,Urgent,R3;R6,Urgent
+E4_LOOCV,Leave-One-Out Cross Validation (LOOCV),80,98,1,S202605-0766,S202605-0766,83,Not Urgent,Not Urgent,R8,Not Urgent
+E4_LOOCV,Leave-One-Out Cross Validation (LOOCV),81,98,1,93103070,93103070,84,Not Urgent,Not Urgent,R8,Not Urgent
+E4_LOOCV,Leave-One-Out Cross Validation (LOOCV),82,98,1,S202605-0830,S202605-0830,85,Not Urgent,Not Urgent,R8,Not Urgent
+E4_LOOCV,Leave-One-Out Cross Validation (LOOCV),83,98,1,S202605-0772,S202605-0772,86,Urgent,Urgent,R6,Urgent
+E4_LOOCV,Leave-One-Out Cross Validation (LOOCV),84,98,1,S202605-0724,S202605-0724,87,Not Urgent,Not Urgent,R8,Not Urgent
+E4_LOOCV,Leave-One-Out Cross Validation (LOOCV),85,98,1,S202605-0550,S202605-0550,88,Not Urgent,Not Urgent,R8,Not Urgent
+E4_LOOCV,Leave-One-Out Cross Validation (LOOCV),86,98,1,S202605-0750,S202605-0750,89,Urgent,Urgent,R7,Urgent
+E4_LOOCV,Leave-One-Out Cross Validation (LOOCV),87,98,1,93106212,93106212,90,Not Urgent,Not Urgent,R8,Not Urgent
+E4_LOOCV,Leave-One-Out Cross Validation (LOOCV),88,98,1,S202605-0360,S202605-0360,91,Not Urgent,Not Urgent,R8,Not Urgent
+E4_LOOCV,Leave-One-Out Cross Validation (LOOCV),89,98,1,S202605-0773,S202605-0773,92,Not Urgent,Not Urgent,R8,Not Urgent
+E4_LOOCV,Leave-One-Out Cross Validation (LOOCV),90,98,1,S202605-0858,S202605-0858,93,Not Urgent,Not Urgent,R8,Not Urgent
+E4_LOOCV,Leave-One-Out Cross Validation (LOOCV),91,98,1,S202605-2098,S202605-2098,94,Urgent,Urgent,R3;R6,Urgent
+E4_LOOCV,Leave-One-Out Cross Validation (LOOCV),92,98,1,S202605-0707,S202605-0707,95,Urgent,Urgent,R2;R6,Urgent
+E4_LOOCV,Leave-One-Out Cross Validation (LOOCV),93,98,1,S202605-0859,S202605-0859,96,Not Urgent,Not Urgent,R8,Not Urgent
+E4_LOOCV,Leave-One-Out Cross Validation (LOOCV),94,98,1,S202605-0764,S202605-0764,97,Urgent,Urgent,R6,Urgent
+E4_LOOCV,Leave-One-Out Cross Validation (LOOCV),95,98,1,S202605-1788,S202605-1788,98,Not Urgent,Not Urgent,R8,Not Urgent
+E4_LOOCV,Leave-One-Out Cross Validation (LOOCV),96,98,1,S202605-0834,S202605-0834,99,Not Urgent,Not Urgent,R8,Not Urgent
+E4_LOOCV,Leave-One-Out Cross Validation (LOOCV),97,98,1,S202605-1768,S202605-1768,100,Not Urgent,Not Urgent,R8,Not Urgent
+E4_LOOCV,Leave-One-Out Cross Validation (LOOCV),98,98,1,S202605-0708,S202605-0708,101,Urgent,Not Urgent,R8,Not Urgent
+E4_LOOCV,Leave-One-Out Cross Validation (LOOCV),99,98,1,S202605-1800,S202605-1800,102,Not Urgent,Not Urgent,R8,Urgent

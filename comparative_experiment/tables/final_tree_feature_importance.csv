@@ -1,0 +1,13 @@
+experiment,fold,feature,importance
+FINAL_FULL_DATA,0,cutoff_rule,0.0
+FINAL_FULL_DATA,0,receive_day_code,0.0
+FINAL_FULL_DATA,0,receive_schedule,0.0
+FINAL_FULL_DATA,0,receive_date_schedule_status,0.0
+FINAL_FULL_DATA,0,receive_month_end_flag,0.0
+FINAL_FULL_DATA,0,limited_receive_schedule_flag,0.5695614002671178
+FINAL_FULL_DATA,0,cutoff_value_feature,0.0326204057518392
+FINAL_FULL_DATA,0,days_to_cutoff_feature,0.39781819398104307
+FINAL_FULL_DATA,0,next_receive_day_gap_feature,0.0
+FINAL_FULL_DATA,0,receive_weekday_code,0.0
+FINAL_FULL_DATA,0,receive_week_of_month,0.0
+FINAL_FULL_DATA,0,receive_day_of_month,0.0

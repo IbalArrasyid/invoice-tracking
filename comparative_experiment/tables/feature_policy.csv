@@ -1,0 +1,15 @@
+feature,policy,reason
+invoice_no,Exclude,Identifier; used only for traceability and duplicate handling.
+customer_name_masking,Exclude,High-cardinality identifier may cause memorization.
+receive_date,Derive only,Creates decision-time calendar features.
+sent_date,Exclude,Post-decision field and leakage risk.
+Driver,Exclude,"Operational outcome/assignment, not an urgency condition."
+cutoff_type,Derive only,Used to calculate the effective cutoff date.
+cutoff_rule,Include,Structured customer cutoff category.
+cutoff_value,Include derived,Numeric cutoff input available from customer rules.
+receive_day_code,Include,Structured customer receiving-day rule.
+receive_schedule,Include,Customer receiving schedule.
+days_to_cutoff,Replace,Source value uses sent_date; replaced with decision-time value.
+expert_label,Target source,Mapped to administrator ground truth.
+expert_reason,Exclude,Post-label explanation and direct leakage risk.
+decision-time derived features,Include,Computed from receive_date and customer rules.

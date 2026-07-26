@@ -37,7 +37,7 @@ const invoiceService = {
    * @param {Array<object>} rows
    */
   async bulkCreate(rows) {
-    const res = await api.post('/invoices/bulk', { rows });
+    const res = await api.post('/invoices/bulk', { rows }, { timeout: 60000 });
     return res.data.data;
   },
 

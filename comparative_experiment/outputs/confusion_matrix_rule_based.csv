@@ -1,0 +1,9 @@
+experiment_id,experiment,actual_label,predicted_not_urgent,predicted_urgent
+E1_80_20,Stratified Hold-out 80:20,Not Urgent,14,0
+E1_80_20,Stratified Hold-out 80:20,Urgent,0,6
+E2_70_30,Stratified Hold-out 70:30,Not Urgent,21,0
+E2_70_30,Stratified Hold-out 70:30,Urgent,2,7
+E3_5_Fold_CV,5-Fold Stratified Cross Validation,Not Urgent,69,0
+E3_5_Fold_CV,5-Fold Stratified Cross Validation,Urgent,6,24
+E4_LOOCV,Leave-One-Out Cross Validation (LOOCV),Not Urgent,69,0
+E4_LOOCV,Leave-One-Out Cross Validation (LOOCV),Urgent,6,24

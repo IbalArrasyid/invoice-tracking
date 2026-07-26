@@ -1,0 +1,15 @@
+Exact McNemar Test: Rule-Based vs Decision Tree
+
+Test definition: two-sided exact binomial test on discordant paired outcomes.
+b = cases correct only by Rule-Based.
+c = cases correct only by Decision Tree.
+
+Primary final evaluation: E4_LOOCV
+LOOCV p-value: 0.453125
+
+| experiment_id | experiment | both_correct | rule_based_only_correct_b | decision_tree_only_correct_c | both_wrong | discordant_pairs | p_value |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| E1_80_20 | Stratified Hold-out 80:20 | 19 | 1 | 0 | 0 | 1 | 1.000000 |
+| E2_70_30 | Stratified Hold-out 70:30 | 27 | 1 | 1 | 1 | 2 | 1.000000 |
+| E3_5_Fold_CV | 5-Fold Stratified Cross Validation | 90 | 3 | 5 | 1 | 8 | 0.726562 |
+| E4_LOOCV | Leave-One-Out Cross Validation (LOOCV) | 91 | 2 | 5 | 1 | 7 | 0.453125 |

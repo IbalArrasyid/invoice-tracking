@@ -9,25 +9,21 @@ import {
   normalizePriorityResponse,
   toDisplayValue,
 } from '../utils/priorityRecommendationAdapter';
+import {
+  THESIS_DATASET_FIELDS,
+  getThesisInvoice,
+  normalizeThesisLabel,
+  thesisPriorityBadgeClass,
+} from '../utils/thesisDataset';
 
 const FINAL_RULE_SET = 'Rule-Based R1-R8';
 
 function toVisiblePriority(value) {
-  const normalized = String(value || '').trim().toLowerCase();
-
-  if (['urgent', 'prioritas', 'tinggi', 'high'].includes(normalized)) {
-    return 'Urgent';
-  }
-
-  if (['not urgent', 'not_urgent', 'normal', 'sedang', 'rendah', 'medium', 'low'].includes(normalized)) {
-    return 'Not Urgent';
-  }
-
-  return value ? sanitizeText(value) : '-';
+  return value ? normalizeThesisLabel(value) : '-';
 }
 
 function priorityBadgeClass(priority) {
-  return toVisiblePriority(priority) === 'Urgent' ? 'badge-high' : 'badge-low';
+  return thesisPriorityBadgeClass(priority);
 }
 
 function sanitizeText(value) {
@@ -43,11 +39,11 @@ function sanitizeText(value) {
     .replace(/SAW/gi, 'Classification')
     .replace(/Hybrid Recommendation/gi, 'Comparative Classification')
     .replace(/recommendation/gi, 'classification')
-    .replace(/Tinggi/gi, 'Urgent')
-    .replace(/Sedang/gi, 'Not Urgent')
-    .replace(/Rendah/gi, 'Not Urgent')
-    .replace(/Prioritas/gi, 'Urgent')
-    .replace(/Normal/gi, 'Not Urgent');
+    .replace(/Tinggi/gi, 'HIGH')
+    .replace(/Sedang/gi, 'NORMAL')
+    .replace(/Rendah/gi, 'NORMAL')
+    .replace(/Prioritas/gi, 'HIGH')
+    .replace(/Normal/gi, 'NORMAL');
 }
 
 function normalizeRuleId(value) {
@@ -242,11 +238,14 @@ export default function PriorityRecommendationPage() {
                   disabled={loadingInvoices}
                 >
                   <option value="">{loadingInvoices ? 'Loading invoices...' : '-- Select invoice --'}</option>
-                  {invoices.map((invoice) => (
-                    <option key={invoice.id} value={invoice.id}>
-                      {invoice.invoiceNo || invoice.invoice_no} - {invoice.customerName || invoice.customer_name || invoice.customer?.name || 'Customer'}
-                    </option>
-                  ))}
+                  {invoices.map((invoice) => {
+                    const thesis = getThesisInvoice(invoice);
+                    return (
+                      <option key={invoice.id} value={invoice.id}>
+                        {thesis.invoice_no} - {thesis.customer_name_masking || 'customer_name_masking'}
+                      </option>
+                    );
+                  })}
                 </select>
               </div>
 
@@ -463,15 +462,10 @@ function ClassificationMethodCard({ icon: Icon, title, result, rows, explanation
 }
 
 function InvoicePreview({ invoice }) {
-  const fields = [
-    ['Invoice', invoice.invoiceNo || invoice.invoice_no || '-'],
-    ['Customer', invoice.customerName || invoice.customer_name || invoice.customer?.name || '-'],
-    ['Area', invoice.area || invoice.customer?.area || '-'],
-    ['Receive Schedule', invoice.schedule || invoice.jadwal || '-'],
-    ['Cutoff', invoice.cutoff || invoice.cut_off || '-'],
-    ['Driver', invoice.driverName || invoice.driver_name || invoice.driver?.name || '-'],
-    ['Status', invoice.status || '-'],
-  ];
+  const thesis = getThesisInvoice(invoice);
+  const fields = THESIS_DATASET_FIELDS
+    .filter(fieldName => fieldName !== 'expert_label')
+    .map(fieldName => [fieldName, thesis[fieldName] || '-']);
 
   return (
     <div style={{
@@ -507,9 +501,9 @@ function InvoicePreview({ invoice }) {
           fontSize: '0.84rem',
           marginTop: 2,
         }}>
-          <span style={{ color: 'var(--text-muted)' }}>Priority</span>
-          <span className={`badge ${priorityBadgeClass(invoice.priority)}`}>
-            {toVisiblePriority(invoice.priority)}
+          <span style={{ color: 'var(--text-muted)' }}>expert_label</span>
+          <span className={`badge ${priorityBadgeClass(thesis.expert_label)}`}>
+            {toVisiblePriority(thesis.expert_label)}
           </span>
         </div>
       </div>

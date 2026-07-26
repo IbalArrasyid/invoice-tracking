@@ -6,7 +6,13 @@ import {
 import { RadarChart, PolarGrid, PolarAngleAxis, Radar, ResponsiveContainer, Tooltip } from 'recharts';
 import Topbar from '../components/Topbar';
 import { invoiceService, predictService, dashboardService, priorityLogService } from '../api';
-import { AREAS, SCHEDULES, getPriorityBadgeClass, formatDate } from '../data/mockData';
+import { getPriorityBadgeClass, formatDate } from '../data/mockData';
+import {
+  THESIS_COMPATIBILITY_AREA,
+  normalizeThesisLabel,
+  thesisPriorityBadgeClass,
+  toCompatibilityCutoff,
+} from '../utils/thesisDataset';
 
 // Accuracy data for the radar chart
 const performanceData = [
@@ -26,32 +32,38 @@ const decisionTreeEvaluation = [
 // Simplified C4.5 decision tree visualization nodes
 const TREE_NODES = [
   {
-    id: 'root', label: 'Cut-off', level: 0, type: 'decision',
+    id: 'root', label: 'days_to_cutoff', level: 0, type: 'decision',
     children: ['node1', 'node2', 'node3']
   },
   {
     id: 'node1', label: '≤ 10:00', level: 1, type: 'decision',
-    note: 'Jadwal?', children: ['leaf1', 'leaf2']
+    note: 'receive_schedule?', children: ['leaf1', 'leaf2']
   },
   {
     id: 'node2', label: '10:01–12:00', level: 1, type: 'decision',
-    note: 'Jadwal?', children: ['leaf3', 'leaf4']
+    note: 'cutoff_rule?', children: ['leaf3', 'leaf4']
   },
   {
     id: 'node3', label: '> 12:00', level: 1, type: 'decision',
-    note: 'Jadwal?', children: ['leaf5', 'leaf6']
+    note: 'expert_label?', children: ['leaf5', 'leaf6']
   },
-  { id: 'leaf1', label: 'TINGGI', level: 2, type: 'leaf-high', note: 'Jadwal terbatas', children: [] },
-  { id: 'leaf2', label: 'TINGGI', level: 2, type: 'leaf-high', note: 'Cutoff ketat', children: [] },
-  { id: 'leaf3', label: 'TINGGI', level: 2, type: 'leaf-high', note: 'Jadwal terbatas', children: [] },
-  { id: 'leaf4', label: 'SEDANG', level: 2, type: 'leaf-medium', note: 'Jadwal reguler', children: [] },
-  { id: 'leaf5', label: 'SEDANG', level: 2, type: 'leaf-medium', note: 'Jadwal khusus', children: [] },
-  { id: 'leaf6', label: 'RENDAH', level: 2, type: 'leaf-low', note: 'Jadwal fleksibel', children: [] },
+  { id: 'leaf1', label: 'HIGH', level: 2, type: 'leaf-high', note: 'LIMITED_RECEIVE_DAY', children: [] },
+  { id: 'leaf2', label: 'HIGH', level: 2, type: 'leaf-high', note: 'CUTOFF_TODAY', children: [] },
+  { id: 'leaf3', label: 'HIGH', level: 2, type: 'leaf-high', note: 'CUTOFF_NEAR', children: [] },
+  { id: 'leaf4', label: 'NORMAL', level: 2, type: 'leaf-medium', note: 'LONG_TIME_TO_CUTOFF', children: [] },
+  { id: 'leaf5', label: 'NORMAL', level: 2, type: 'leaf-medium', note: 'NO_CUTOFF', children: [] },
+  { id: 'leaf6', label: 'NORMAL', level: 2, type: 'leaf-low', note: 'LONG_TIME_TO_CUTOFF', children: [] },
 ];
 
 export default function PriorityPage() {
   const [tab, setTab] = useState('predict');
-  const [form, setForm] = useState({ area: '', jadwal: '', cutoff: '' });
+  const [form, setForm] = useState({
+    receive_schedule: '',
+    cutoff_rule: '',
+    cutoff_value: '',
+    receive_day_code: '',
+    days_to_cutoff: '',
+  });
   const [result, setResult] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [history, setHistory] = useState([]);
@@ -93,10 +105,15 @@ export default function PriorityPage() {
   }, []);
 
   const handlePredict = async () => {
-    if (!form.jadwal || !form.cutoff) return;
+    if (!form.receive_schedule || !form.cutoff_rule || !form.days_to_cutoff) return;
     setIsLoading(true);
     try {
-      const r = await predictService.predict({ area: form.area, jadwal: form.jadwal, cutoff: form.cutoff });
+      const r = await predictService.predict({
+        area: THESIS_COMPATIBILITY_AREA,
+        jadwal: form.receive_schedule,
+        cutoff: toCompatibilityCutoff(form),
+        days_to_cutoff: form.days_to_cutoff,
+      });
       setResult(r);
       setHistory(prev => [{ ...form, ...r, time: new Date().toLocaleTimeString('id-ID') }, ...prev.slice(0, 4)]);
     } catch (err) {
@@ -110,8 +127,8 @@ export default function PriorityPage() {
   return (
     <div>
       <Topbar
-        title="Rekomendasi Prioritas C4.5"
-        subtitle="Klasifikasi prioritas invoice menggunakan algoritma Decision Tree C4.5"
+        title="Priority Classification"
+        subtitle="Classification input follows the finalized thesis dataset fields"
         actions={
           <button className="btn btn-secondary btn-sm">
             <RefreshCw size={14} /> Retrain Model
@@ -124,9 +141,8 @@ export default function PriorityPage() {
         <div className="alert alert-info" style={{ marginBottom: 20 }}>
           <Brain size={18} style={{ flexShrink: 0 }} />
           <div>
-            <strong>Tentang Model C4.5:</strong> Algoritma Decision Tree C4.5 mengklasifikasikan prioritas invoice berdasarkan
-            fitur <em>jadwal penerimaan</em> dan <em>batas waktu cut-off</em> pelanggan.
-            Model dilatih dari data historis pengiriman dan diperbarui secara berkala.
+            <strong>Finalized thesis fields:</strong> input klasifikasi memakai <em>receive_schedule</em>,
+            <em> cutoff_rule</em>, <em>cutoff_value</em>, <em>receive_day_code</em>, dan <em>days_to_cutoff</em>.
           </div>
         </div>
 
@@ -172,42 +188,55 @@ export default function PriorityPage() {
         {tab === 'predict' && (
           <div className="grid-2">
             <div className="card">
-              <div className="section-title" style={{ marginBottom: 4 }}>Input Parameter Prediksi</div>
+              <div className="section-title" style={{ marginBottom: 4 }}>Classification Input</div>
               <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)', marginBottom: 20 }}>
-                Masukkan data jadwal pelanggan untuk mendapatkan rekomendasi prioritas
+                Masukkan field dataset final untuk menjalankan klasifikasi prioritas
               </div>
 
               <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
                 <div className="form-group">
-                  <label className="form-label">Area / Wilayah Pengiriman</label>
-                  <select className="form-select" value={form.area}
-                    onChange={e => setForm(p => ({ ...p, area: e.target.value }))}>
-                    <option value="">-- Opsional --</option>
-                    {AREAS.map(a => <option key={a} value={a}>{a}</option>)}
+                  <label className="form-label">receive_schedule <span style={{ color: 'var(--priority-high)' }}>*</span></label>
+                  <input className="form-input" value={form.receive_schedule}
+                    onChange={e => { setForm(p => ({ ...p, receive_schedule: e.target.value })); setResult(null); }}
+                    placeholder="Everyday" />
+                </div>
+
+                <div className="form-group">
+                  <label className="form-label">cutoff_rule <span style={{ color: 'var(--priority-high)' }}>*</span></label>
+                  <select className="form-select" value={form.cutoff_rule}
+                    onChange={e => { setForm(p => ({ ...p, cutoff_rule: e.target.value })); setResult(null); }} required>
+                    <option value="">-- Select cutoff_rule --</option>
+                    {['NO_CUTOFF', 'END_MONTH', 'MONTHLY_DATE', 'NEXT_MONTH_DATE', 'MULTIPLE_MONTHLY_DATE'].map(rule => (
+                      <option key={rule} value={rule}>{rule}</option>
+                    ))}
                   </select>
                 </div>
 
                 <div className="form-group">
-                  <label className="form-label">Jadwal Penerimaan <span style={{ color: 'var(--priority-high)' }}>*</span></label>
-                  <select className="form-select" value={form.jadwal}
-                    onChange={e => { setForm(p => ({ ...p, jadwal: e.target.value })); setResult(null); }} required>
-                    <option value="">-- Pilih jadwal --</option>
-                    {SCHEDULES.map(s => <option key={s} value={s}>{s}</option>)}
-                  </select>
+                  <label className="form-label">days_to_cutoff <span style={{ color: 'var(--priority-high)' }}>*</span></label>
+                  <input type="number" className="form-input" value={form.days_to_cutoff}
+                    onChange={e => { setForm(p => ({ ...p, days_to_cutoff: e.target.value })); setResult(null); }}
+                    placeholder="9" />
                 </div>
 
-                <div className="form-group">
-                  <label className="form-label">Batas Waktu Cut-off <span style={{ color: 'var(--priority-high)' }}>*</span></label>
-                  <input type="time" className="form-input" value={form.cutoff}
-                    onChange={e => { setForm(p => ({ ...p, cutoff: e.target.value })); setResult(null); }} />
-                  <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)', marginTop: 4 }}>
-                    Jam cut-off ini merupakan salah satu fitur utama model C4.5
+                <div className="form-row">
+                  <div className="form-group">
+                    <label className="form-label">cutoff_value</label>
+                    <input className="form-input" value={form.cutoff_value}
+                      onChange={e => { setForm(p => ({ ...p, cutoff_value: e.target.value })); setResult(null); }}
+                      placeholder="25" />
+                  </div>
+                  <div className="form-group">
+                    <label className="form-label">receive_day_code</label>
+                    <input className="form-input" value={form.receive_day_code}
+                      onChange={e => { setForm(p => ({ ...p, receive_day_code: e.target.value })); setResult(null); }}
+                      placeholder="1,2,3,4,5" />
                   </div>
                 </div>
 
                 <button className="btn btn-primary"
                   onClick={handlePredict}
-                  disabled={!form.jadwal || !form.cutoff || isLoading}
+                  disabled={!form.receive_schedule || !form.cutoff_rule || !form.days_to_cutoff || isLoading}
                   style={{ marginTop: 4 }}>
                   {isLoading ? (
                     <><span style={{ display: 'inline-block', width: 16, height: 16, border: '2px solid rgba(255,255,255,0.3)', borderTopColor: 'white', borderRadius: '50%', animation: 'spin 1s linear infinite' }} /> Memproses Model...</>
@@ -224,26 +253,23 @@ export default function PriorityPage() {
                     <div style={{ fontSize: 48, marginBottom: 8 }}>🤖</div>
                     <div className="empty-title">Siap Memproses</div>
                     <div className="empty-desc">
-                      Isi parameter jadwal dan cut-off, lalu klik prediksi untuk mendapatkan rekomendasi prioritas dari model C4.5
+                      Isi field dataset final, lalu jalankan klasifikasi prioritas.
                     </div>
                   </div>
                 </div>
               ) : (
                 <>
                   <div className="prediction-result" style={{
-                    background: result.priority === 'Tinggi' ? 'linear-gradient(135deg, rgba(239,68,68,0.12), rgba(239,68,68,0.06))' :
-                      result.priority === 'Sedang' ? 'linear-gradient(135deg, rgba(245,158,11,0.12), rgba(245,158,11,0.06))' :
-                        'linear-gradient(135deg, rgba(16,185,129,0.12), rgba(16,185,129,0.06))',
-                    border: result.priority === 'Tinggi' ? '1px solid var(--priority-high-border)' :
-                      result.priority === 'Sedang' ? '1px solid var(--priority-medium-border)' : '1px solid var(--priority-low-border)',
+                    background: normalizeThesisLabel(result.priority) === 'HIGH' ? 'linear-gradient(135deg, rgba(239,68,68,0.12), rgba(239,68,68,0.06))' :
+                      'linear-gradient(135deg, rgba(16,185,129,0.12), rgba(16,185,129,0.06))',
+                    border: normalizeThesisLabel(result.priority) === 'HIGH' ? '1px solid var(--priority-high-border)' : '1px solid var(--priority-low-border)',
                   }}>
                     <div className="prediction-label">Hasil Klasifikasi C4.5</div>
                     <div className="prediction-value" style={{
-                      color: result.priority === 'Tinggi' ? 'var(--priority-high)' :
-                        result.priority === 'Sedang' ? 'var(--priority-medium)' : 'var(--priority-low)',
+                      color: normalizeThesisLabel(result.priority) === 'HIGH' ? 'var(--priority-high)' : 'var(--priority-low)',
                       fontSize: '2rem'
                     }}>
-                      {result.priority === 'Tinggi' ? '🔴' : result.priority === 'Sedang' ? '🟡' : '🟢'} Prioritas {result.priority}
+                      expert_label: {normalizeThesisLabel(result.priority)}
                     </div>
                     <div style={{ marginTop: 12, display: 'flex', gap: 12, alignItems: 'center' }}>
                       <div>
@@ -263,8 +289,7 @@ export default function PriorityPage() {
                       <div className="progress-bar">
                         <div className="progress-fill" style={{
                           width: `${result.confidence * 100}%`,
-                          background: result.priority === 'Tinggi' ? 'var(--priority-high)' :
-                            result.priority === 'Sedang' ? 'var(--priority-medium)' : 'var(--priority-low)'
+                          background: normalizeThesisLabel(result.priority) === 'HIGH' ? 'var(--priority-high)' : 'var(--priority-low)'
                         }} />
                       </div>
                     </div>
@@ -273,25 +298,18 @@ export default function PriorityPage() {
                   {/* Rekomendasi aksi */}
                   <div className="card">
                     <div className="section-title" style={{ marginBottom: 12 }}>Rekomendasi Tindakan</div>
-                    {result.priority === 'Tinggi' ? (
+                    {normalizeThesisLabel(result.priority) === 'HIGH' ? (
                       <div className="alert alert-danger">
                         <Zap size={16} />
                         <div>
-                          <strong>Kirimkan HARI INI</strong> — Invoice ini memiliki prioritas tinggi karena jadwal atau cut-off yang sangat ketat. Koordinasikan dengan driver untuk pengiriman segera.
-                        </div>
-                      </div>
-                    ) : result.priority === 'Sedang' ? (
-                      <div className="alert alert-warning">
-                        <Info size={16} />
-                        <div>
-                          <strong>Kirimkan Besok Pagi</strong> — Prioritas sedang. Pastikan invoice disiapkan dan masuk antrian pengiriman untuk esok hari sesuai jadwal pelanggan.
+                          <strong>HIGH</strong> - Invoice berada pada kelas prioritas tinggi berdasarkan field dataset final.
                         </div>
                       </div>
                     ) : (
                       <div className="alert alert-success">
                         <CheckCircle2 size={16} />
                         <div>
-                          <strong>Antrian Normal</strong> — Prioritas rendah. Invoice dapat dikirim sesuai jadwal reguler tanpa perlu percepatan khusus.
+                          <strong>NORMAL</strong> - Invoice berada pada kelas normal berdasarkan field dataset final.
                         </div>
                       </div>
                     )}
@@ -307,11 +325,13 @@ export default function PriorityPage() {
                     {history.map((h, i) => (
                       <div key={i} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '8px 12px', background: 'var(--bg-card)', borderRadius: 'var(--radius-sm)', border: '1px solid var(--border)' }}>
                         <div>
-                          <span style={{ fontSize: '0.8rem', color: 'var(--text-secondary)' }}>{h.jadwal}</span>
-                          <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)', marginLeft: 8 }}>cut-off {h.cutoff}</span>
+                          <span style={{ fontSize: '0.8rem', color: 'var(--text-secondary)' }}>{h.receive_schedule}</span>
+                          <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)', marginLeft: 8 }}>
+                            cutoff_rule {h.cutoff_rule}, days_to_cutoff {h.days_to_cutoff}
+                          </span>
                         </div>
                         <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                          <span className={`badge ${getPriorityBadgeClass(h.priority)}`}>{h.priority}</span>
+                          <span className={`badge ${thesisPriorityBadgeClass(h.priority)}`}>{normalizeThesisLabel(h.priority)}</span>
                           <span style={{ fontSize: '0.7rem', color: 'var(--text-muted)' }}>{h.time}</span>
                         </div>
                       </div>
@@ -409,7 +429,7 @@ export default function PriorityPage() {
                   ['Library', 'scikit-learn / Python'],
                   ['Format Model', '.pkl (joblib)'],
                   ['Jumlah Data Latih', '200 record historis'],
-                  ['Fitur Utama', 'Jadwal + Cut-off Penerimaan'],
+                  ['Fitur Utama', 'receive_schedule + cutoff_rule + days_to_cutoff'],
                   ['Akurasi Terakhir', '87.5%'],
                   ['Terakhir Retrain', '15 April 2024'],
                 ].map(([label, value]) => (
@@ -443,7 +463,7 @@ export default function PriorityPage() {
                 }}>
                   <div style={{ fontSize: '0.65rem', color: 'var(--text-muted)', marginBottom: 4, textTransform: 'uppercase', letterSpacing: '0.08em' }}>Node Akar</div>
                   <GitBranch size={18} style={{ marginBottom: 4 }} />
-                  <div>Cut-off Penerimaan</div>
+                  <div>days_to_cutoff</div>
                   <div style={{ fontSize: '0.7rem', marginTop: 2, color: 'var(--text-secondary)' }}>Info Gain: 0.847</div>
                 </div>
 
@@ -457,9 +477,9 @@ export default function PriorityPage() {
                 {/* Level 1 nodes */}
                 <div style={{ display: 'flex', gap: 32, marginTop: 8 }}>
                   {[
-                    { label: 'Jadwal Penerimaan', note: 'Cabang cutoff ketat', color: 'rgba(239,68,68,0.15)', border: 'var(--priority-high)', text: 'var(--priority-high)' },
-                    { label: 'Jadwal Penerimaan', note: 'Cabang cutoff sedang', color: 'rgba(245,158,11,0.15)', border: 'var(--priority-medium)', text: 'var(--priority-medium)' },
-                    { label: 'Jadwal Penerimaan', note: 'Cabang cutoff longgar', color: 'rgba(16,185,129,0.15)', border: 'var(--priority-low)', text: 'var(--priority-low)' },
+                    { label: 'receive_schedule', note: 'cutoff_rule branch', color: 'rgba(239,68,68,0.15)', border: 'var(--priority-high)', text: 'var(--priority-high)' },
+                    { label: 'receive_schedule', note: 'days_to_cutoff branch', color: 'rgba(245,158,11,0.15)', border: 'var(--priority-medium)', text: 'var(--priority-medium)' },
+                    { label: 'receive_schedule', note: 'NORMAL branch', color: 'rgba(16,185,129,0.15)', border: 'var(--priority-low)', text: 'var(--priority-low)' },
                   ].map((node, i) => (
                     <div key={i} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 16 }}>
                       <div style={{
@@ -475,8 +495,8 @@ export default function PriorityPage() {
                       {/* Leaf nodes */}
                       <div style={{ display: 'flex', gap: 10 }}>
                         {i === 0 && [
-                          { p: 'TINGGI', n: 'Jadwal terbatas', bg: 'var(--priority-high-bg)', bc: 'var(--priority-high-border)', c: 'var(--priority-high)' },
-                          { p: 'TINGGI', n: 'Cutoff sangat ketat', bg: 'var(--priority-high-bg)', bc: 'var(--priority-high-border)', c: 'var(--priority-high)' },
+                          { p: 'HIGH', n: 'LIMITED_RECEIVE_DAY', bg: 'var(--priority-high-bg)', bc: 'var(--priority-high-border)', c: 'var(--priority-high)' },
+                          { p: 'HIGH', n: 'CUTOFF_TODAY', bg: 'var(--priority-high-bg)', bc: 'var(--priority-high-border)', c: 'var(--priority-high)' },
                         ].map((leaf, j) => (
                           <div key={j} style={{ padding: '8px 12px', background: leaf.bg, border: `1px solid ${leaf.bc}`, borderRadius: 'var(--radius-sm)', textAlign: 'center', minWidth: 90 }}>
                             <div style={{ fontSize: '0.7rem', fontWeight: 800, color: leaf.c }}>{leaf.p}</div>
@@ -484,8 +504,8 @@ export default function PriorityPage() {
                           </div>
                         ))}
                         {i === 1 && [
-                          { p: 'TINGGI', n: 'Jadwal terbatas', bg: 'var(--priority-high-bg)', bc: 'var(--priority-high-border)', c: 'var(--priority-high)' },
-                          { p: 'SEDANG', n: 'Jadwal reguler', bg: 'var(--priority-medium-bg)', bc: 'var(--priority-medium-border)', c: 'var(--priority-medium)' },
+                          { p: 'HIGH', n: 'CUTOFF_NEAR', bg: 'var(--priority-high-bg)', bc: 'var(--priority-high-border)', c: 'var(--priority-high)' },
+                          { p: 'NORMAL', n: 'LONG_TIME_TO_CUTOFF', bg: 'var(--priority-medium-bg)', bc: 'var(--priority-medium-border)', c: 'var(--priority-medium)' },
                         ].map((leaf, j) => (
                           <div key={j} style={{ padding: '8px 12px', background: leaf.bg, border: `1px solid ${leaf.bc}`, borderRadius: 'var(--radius-sm)', textAlign: 'center', minWidth: 90 }}>
                             <div style={{ fontSize: '0.7rem', fontWeight: 800, color: leaf.c }}>{leaf.p}</div>
@@ -493,8 +513,8 @@ export default function PriorityPage() {
                           </div>
                         ))}
                         {i === 2 && [
-                          { p: 'SEDANG', n: 'Jadwal khusus', bg: 'var(--priority-medium-bg)', bc: 'var(--priority-medium-border)', c: 'var(--priority-medium)' },
-                          { p: 'RENDAH', n: 'Jadwal fleksibel', bg: 'var(--priority-low-bg)', bc: 'var(--priority-low-border)', c: 'var(--priority-low)' },
+                          { p: 'NORMAL', n: 'NO_CUTOFF', bg: 'var(--priority-medium-bg)', bc: 'var(--priority-medium-border)', c: 'var(--priority-medium)' },
+                          { p: 'NORMAL', n: 'LONG_TIME_TO_CUTOFF', bg: 'var(--priority-low-bg)', bc: 'var(--priority-low-border)', c: 'var(--priority-low)' },
                         ].map((leaf, j) => (
                           <div key={j} style={{ padding: '8px 12px', background: leaf.bg, border: `1px solid ${leaf.bc}`, borderRadius: 'var(--radius-sm)', textAlign: 'center', minWidth: 90 }}>
                             <div style={{ fontSize: '0.7rem', fontWeight: 800, color: leaf.c }}>{leaf.p}</div>
@@ -513,9 +533,9 @@ export default function PriorityPage() {
             <div className="section-title" style={{ marginBottom: 14 }}>Importance Atribut</div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
               {[
-                { label: 'Cut-off Penerimaan', value: 85, color: 'var(--primary-light)' },
-                { label: 'Jadwal Penerimaan', value: 72, color: 'var(--priority-medium)' },
-                { label: 'Area / Wilayah', value: 41, color: 'var(--priority-low)' },
+                { label: 'days_to_cutoff', value: 85, color: 'var(--primary-light)' },
+                { label: 'receive_schedule', value: 72, color: 'var(--priority-medium)' },
+                { label: 'cutoff_rule', value: 41, color: 'var(--priority-low)' },
               ].map(attr => (
                 <div key={attr.label}>
                   <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 5, fontSize: '0.8rem' }}>
@@ -549,11 +569,9 @@ export default function PriorityPage() {
                 <thead>
                   <tr>
                     <th>No. Invoice</th>
-                    <th>Area</th>
-                    <th>Jadwal</th>
-                    <th>Cut-off</th>
-                    <th>Prediksi C4.5</th>
-                    <th>Label Aktual</th>
+                    <th>receive_schedule</th>
+                    <th>predicted expert_label</th>
+                    <th>actual expert_label</th>
                     <th>Akurasi</th>
                   </tr>
                 </thead>
@@ -561,11 +579,9 @@ export default function PriorityPage() {
                   {logs.map((log, i) => (
                     <tr key={i}>
                       <td><span className="invoice-no">{log.invoiceNo || log.invoice_id}</span></td>
-                      <td>{log.area || '-'}</td>
                       <td><span style={{ fontSize: '0.8rem', color: 'var(--text-secondary)' }}>{log.schedule || '-'}</span></td>
-                      <td style={{ fontFamily: 'var(--font-mono)', fontSize: '0.8rem' }}>{log.cutoff || '-'}</td>
-                      <td><span className={`badge ${getPriorityBadgeClass(log.predicted)}`}>{log.predicted}</span></td>
-                      <td><span className={`badge ${getPriorityBadgeClass(log.actual || log.predicted)}`}>{log.actual || log.predicted}</span></td>
+                      <td><span className={`badge ${thesisPriorityBadgeClass(log.predicted)}`}>{normalizeThesisLabel(log.predicted)}</span></td>
+                      <td><span className={`badge ${thesisPriorityBadgeClass(log.actual || log.predicted)}`}>{normalizeThesisLabel(log.actual || log.predicted)}</span></td>
                       <td>
                         {log.accuracy ? (
                           <span style={{ display: 'flex', alignItems: 'center', gap: 5, color: 'var(--priority-low)', fontSize: '0.8rem', fontWeight: 600 }}>
