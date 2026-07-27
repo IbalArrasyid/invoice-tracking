@@ -12,9 +12,11 @@ async function seed() {
     // ─── Users ────────────────────────────────────────────────────
     const adminPass = await bcrypt.hash('admin123', 10);
     const staffPass = await bcrypt.hash('staff123', 10);
+    const driverPass = await bcrypt.hash('driver123', 10);
     await User.bulkCreate([
       { name: 'Admin Utama',  email: 'admin@invoicetrack.id',  password: adminPass, role: 'admin' },
       { name: 'Staff Farah',  email: 'farah@invoicetrack.id',  password: staffPass, role: 'staff' },
+      { name: 'Driver Budi Santoso', email: 'driver@invoicetrack.id', password: driverPass, role: 'driver' },
     ], { ignoreDuplicates: true });
     console.log('✅ Users seeded');
 
@@ -65,6 +67,7 @@ async function seed() {
     console.log('\n🎉 Seeding selesai!');
     console.log('   Login: admin@invoicetrack.id / admin123');
     console.log('   Login: farah@invoicetrack.id / staff123');
+    console.log('   Login: driver@invoicetrack.id / driver123');
     process.exit(0);
   } catch (err) {
     console.error('❌ Error saat seeding:', err.message);

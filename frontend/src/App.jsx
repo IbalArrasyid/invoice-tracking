@@ -12,36 +12,52 @@ import CourierPage from './pages/CourierPage';
 import PriorityRecommendationPage from './pages/PriorityRecommendationPage';
 import AnalyticsPage from './pages/AnalyticsPage';
 import ResearchShowcasePage from './pages/ResearchShowcasePage';
+import { AUTHENTICATED_ROLES, PRIVILEGED_ROLES, getDefaultPathForUser, getStoredUser } from './utils/auth';
 
 // Protected Route Component
-const ProtectedRoute = ({ children, isAuthenticated }) => {
-  if (!isAuthenticated) {
+const ProtectedRoute = ({ children, isAuthenticated, user }) => {
+  if (!isAuthenticated || !user) {
     return <Navigate to="/login" replace />;
+  }
+  return children;
+};
+
+const RoleRoute = ({ children, user, allowedRoles = AUTHENTICATED_ROLES }) => {
+  if (!allowedRoles.includes(user?.role)) {
+    return <Navigate to={getDefaultPathForUser(user)} replace />;
   }
   return children;
 };
 
 export default function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     // Check if token exists on initial load
     const token = localStorage.getItem('token');
-    if (token) {
+    const storedUser = getStoredUser();
+    if (token && storedUser) {
       setIsAuthenticated(true);
+      setUser(storedUser);
+    } else {
+      localStorage.removeItem('token');
+      localStorage.removeItem('user');
     }
     setLoading(false);
   }, []);
 
   const handleLogin = (token, user) => {
     setIsAuthenticated(true);
+    setUser(user);
   };
 
   const handleLogout = () => {
     localStorage.removeItem('token');
     localStorage.removeItem('user');
     setIsAuthenticated(false);
+    setUser(null);
   };
 
   if (loading) {
@@ -52,25 +68,66 @@ export default function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/login" element={
-          isAuthenticated ? <Navigate to="/" replace /> : <LoginPage onLogin={handleLogin} />
+          isAuthenticated ? <Navigate to={getDefaultPathForUser(user)} replace /> : <LoginPage onLogin={handleLogin} />
         } />
         
         <Route path="/*" element={
-          <ProtectedRoute isAuthenticated={isAuthenticated}>
+          <ProtectedRoute isAuthenticated={isAuthenticated} user={user}>
             <div className="app-layout">
               <Sidebar onLogout={handleLogout} />
               <main className="main-content">
                 <Routes>
-                  <Route path="/" element={<Dashboard />} />
-                  <Route path="/invoices" element={<InvoicePage />} />
-                  <Route path="/tracker" element={<TrackerPage />} />
-                  <Route path="/courier" element={<CourierPage />} />
-                  <Route path="/priority" element={<PriorityPage />} />
-                  <Route path="/recommendation" element={<PriorityRecommendationPage />} />
-                  <Route path="/research-showcase" element={<ResearchShowcasePage />} />
-                  <Route path="/analytics" element={<AnalyticsPage />} />
-                  <Route path="/reports" element={<ReportsPage />} />
-                  <Route path="/customers" element={<CustomersPage />} />
+                  <Route path="/" element={
+                    <RoleRoute user={user} allowedRoles={PRIVILEGED_ROLES}>
+                      <Dashboard />
+                    </RoleRoute>
+                  } />
+                  <Route path="/invoices" element={
+                    <RoleRoute user={user}>
+                      <InvoicePage />
+                    </RoleRoute>
+                  } />
+                  <Route path="/tracker" element={
+                    <RoleRoute user={user}>
+                      <TrackerPage />
+                    </RoleRoute>
+                  } />
+                  <Route path="/courier" element={
+                    <RoleRoute user={user}>
+                      <CourierPage />
+                    </RoleRoute>
+                  } />
+                  <Route path="/priority" element={
+                    <RoleRoute user={user} allowedRoles={PRIVILEGED_ROLES}>
+                      <PriorityPage />
+                    </RoleRoute>
+                  } />
+                  <Route path="/recommendation" element={
+                    <RoleRoute user={user} allowedRoles={PRIVILEGED_ROLES}>
+                      <PriorityRecommendationPage />
+                    </RoleRoute>
+                  } />
+                  <Route path="/research-showcase" element={
+                    <RoleRoute user={user} allowedRoles={PRIVILEGED_ROLES}>
+                      <ResearchShowcasePage />
+                    </RoleRoute>
+                  } />
+                  <Route path="/analytics" element={
+                    <RoleRoute user={user} allowedRoles={PRIVILEGED_ROLES}>
+                      <AnalyticsPage />
+                    </RoleRoute>
+                  } />
+                  <Route path="/reports" element={
+                    <RoleRoute user={user} allowedRoles={PRIVILEGED_ROLES}>
+                      <ReportsPage />
+                    </RoleRoute>
+                  } />
+                  <Route path="/customers" element={
+                    <RoleRoute user={user} allowedRoles={PRIVILEGED_ROLES}>
+                      <CustomersPage />
+                    </RoleRoute>
+                  } />
+                  <Route path="*" element={<Navigate to={getDefaultPathForUser(user)} replace />} />
                 </Routes>
               </main>
             </div>

@@ -1,9 +1,9 @@
 const router = require('express').Router();
 const { Op, fn, col, literal } = require('sequelize');
 const { Invoice, Customer, Driver, PriorityLog } = require('../models');
-const { authMiddleware } = require('../middleware/auth');
+const { authMiddleware, requireRole } = require('../middleware/auth');
 
-router.use(authMiddleware);
+router.use(authMiddleware, requireRole('admin', 'staff'));
 
 // GET /api/dashboard/stats
 router.get('/stats', async (req, res) => {

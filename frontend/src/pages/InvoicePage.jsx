@@ -19,6 +19,7 @@ import {
   toBackendPriority,
   toCompatibilityCutoff,
 } from '../utils/thesisDataset';
+import { getStoredUser, isDriverUser } from '../utils/auth';
 
 const STATUS_OPTIONS = ['Semua', 'Menunggu', 'Dalam Pengiriman', 'Terkirim', 'Kembali'];
 const PRIORITY_OPTIONS = [
@@ -304,6 +305,8 @@ function getThesisDisplayRows(invoice) {
 }
 
 export default function InvoicePage() {
+  const currentUser = getStoredUser();
+  const isDriver = isDriverUser(currentUser);
   const [invoices, setInvoices] = useState([]);
   const [customers, setCustomers] = useState([]);
   const [drivers, setDrivers] = useState([]);
@@ -340,12 +343,17 @@ export default function InvoicePage() {
       setPageLoading(true);
       try {
         await fetchInvoices();
-        const [custRes, drvRes] = await Promise.all([
-          customerService.getAll(),
-          driverService.getAll()
-        ]);
-        setCustomers(custRes || []);
-        setDrivers(drvRes || []);
+        if (!isDriver) {
+          const [custRes, drvRes] = await Promise.all([
+            customerService.getAll(),
+            driverService.getAll()
+          ]);
+          setCustomers(custRes || []);
+          setDrivers(drvRes || []);
+        } else {
+          setCustomers([]);
+          setDrivers([]);
+        }
       } catch (err) {
         console.error('Error fetching data:', err);
       } finally {
@@ -353,7 +361,7 @@ export default function InvoicePage() {
       }
     };
     fetchData();
-  }, []);
+  }, [isDriver]);
 
   const filtered = invoices.filter(inv => {
     const thesis = getThesisInvoice(inv);
@@ -590,14 +598,16 @@ export default function InvoicePage() {
           <p>Prepare invoice data before priority classification</p>
         </div>
 
-        <div className="topbar-actions">
-          <button className="btn btn-secondary btn-sm" onClick={() => setShowBulkModal(true)}>
-            <Upload size={14} /> Bulk Import
-          </button>
-          <button className="btn btn-primary btn-sm" onClick={openCreateModal}>
-            <Plus size={15} /> New Invoice
-          </button>
-        </div>
+        {!isDriver && (
+          <div className="topbar-actions">
+            <button className="btn btn-secondary btn-sm" onClick={() => setShowBulkModal(true)}>
+              <Upload size={14} /> Bulk Import
+            </button>
+            <button className="btn btn-primary btn-sm" onClick={openCreateModal}>
+              <Plus size={15} /> New Invoice
+            </button>
+          </div>
+        )}
       </header>
 
       <div className="page-container">
@@ -623,9 +633,11 @@ export default function InvoicePage() {
             {PRIORITY_OPTIONS.map(p => <option key={p.value} value={p.value}>{p.label}</option>)}
           </select>
 
-          <button className="btn btn-secondary btn-sm">
-            <Download size={14} /> Export
-          </button>
+          {!isDriver && (
+            <button className="btn btn-secondary btn-sm">
+              <Download size={14} /> Export
+            </button>
+          )}
         </div>
 
         {/* Count summary */}
@@ -672,11 +684,13 @@ export default function InvoicePage() {
               <tbody>
                 {filtered.length === 0 ? (
                   <tr>
-                    <td colSpan={8}>
+                    <td colSpan={9}>
                       <div className="empty-state">
                         <div className="empty-icon"><FileText size={22} /></div>
                         <div className="empty-title">Tidak ada invoice ditemukan</div>
-                        <div className="empty-desc">Coba ubah filter atau tambah invoice baru</div>
+                        <div className="empty-desc">
+                          {isDriver ? 'Coba ubah filter pencarian' : 'Coba ubah filter atau tambah invoice baru'}
+                        </div>
                       </div>
                     </td>
                   </tr>
@@ -710,10 +724,12 @@ export default function InvoicePage() {
                           onClick={() => setDetailInvoice(inv)}>
                           <Eye size={14} />
                         </button>
-                        <button className="btn btn-ghost btn-icon" style={{ padding: 6 }}
-                          onClick={() => openEditModal(inv)}>
-                          <Edit2 size={14} />
-                        </button>
+                        {!isDriver && (
+                          <button className="btn btn-ghost btn-icon" style={{ padding: 6 }}
+                            onClick={() => openEditModal(inv)}>
+                            <Edit2 size={14} />
+                          </button>
+                        )}
                       </div>
                     </td>
                   </tr>
@@ -1031,10 +1047,12 @@ export default function InvoicePage() {
 
             <div className="modal-footer">
               <button className="btn btn-secondary" onClick={() => setDetailInvoice(null)}>Tutup</button>
-              <button className="btn btn-primary" onClick={() => {
-                openEditModal(detailInvoice);
-                setDetailInvoice(null);
-              }}><Edit2 size={14} /> Edit Invoice</button>
+              {!isDriver && (
+                <button className="btn btn-primary" onClick={() => {
+                  openEditModal(detailInvoice);
+                  setDetailInvoice(null);
+                }}><Edit2 size={14} /> Edit Invoice</button>
+              )}
             </div>
           </div>
         </div>

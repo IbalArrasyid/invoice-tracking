@@ -1,8 +1,8 @@
 const router   = require('express').Router();
 const { Customer } = require('../models');
-const { authMiddleware } = require('../middleware/auth');
+const { authMiddleware, requireRole } = require('../middleware/auth');
 
-router.use(authMiddleware);
+router.use(authMiddleware, requireRole('admin', 'staff'));
 
 // ─── GET /api/customers ──────────────────────────────────────────
 router.get('/', async (req, res) => {

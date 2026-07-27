@@ -3,6 +3,7 @@ import {
   LayoutDashboard, FileText, MapPin, LogOut, Activity,
   Lightbulb, TrendingUp, BookOpen
 } from 'lucide-react';
+import { DRIVER_ALLOWED_PATHS, getStoredUser, isDriverUser } from '../utils/auth';
 
 const navItems = [
   {
@@ -21,8 +22,17 @@ const navItems = [
 
 export default function Sidebar({ onLogout }) {
   const location = useLocation();
-  const userStr = localStorage.getItem('user');
-  const user = userStr ? JSON.parse(userStr) : { name: 'Admin', role: 'Administrator' };
+  const user = getStoredUser() || { name: 'Admin', role: 'Administrator' };
+  const isDriver = isDriverUser(user);
+  const visibleNavItems = navItems
+    .map(section => ({
+      ...section,
+      section: isDriver ? 'Driver Access' : section.section,
+      items: isDriver
+        ? section.items.filter(item => DRIVER_ALLOWED_PATHS.has(item.to))
+        : section.items,
+    }))
+    .filter(section => section.items.length > 0);
 
   // Initials logic
   const initials = user.name ? user.name.split(' ').map(n => n[0]).slice(0, 2).join('').toUpperCase() : 'AD';
@@ -42,7 +52,7 @@ export default function Sidebar({ onLogout }) {
 
       {/* Navigation */}
       <nav className="sidebar-nav">
-        {navItems.map((section) => (
+        {visibleNavItems.map((section) => (
           <div key={section.section}>
             <div className="nav-section-label">{section.section}</div>
             {section.items.map((item) => {

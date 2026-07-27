@@ -1,9 +1,9 @@
 const router = require('express').Router();
 const { fn, col, literal, Op } = require('sequelize');
 const { DeliveryRecommendation, DeliveryAnalyticsLog } = require('../models');
-const { authMiddleware } = require('../middleware/auth');
+const { authMiddleware, requireRole } = require('../middleware/auth');
 
-router.use(authMiddleware);
+router.use(authMiddleware, requireRole('admin', 'staff'));
 
 // ─── GET /api/analytics/recommendation — Recommendation metrics ─
 router.get('/recommendation', async (_req, res) => {

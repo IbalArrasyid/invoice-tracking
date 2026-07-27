@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const { Op }  = require('sequelize');
 const { sequelize, Invoice, Customer, Driver } = require('../models');
-const { authMiddleware } = require('../middleware/auth');
+const { authMiddleware, requireRole } = require('../middleware/auth');
 
 // Semua route invoice butuh login
 router.use(authMiddleware);
@@ -119,7 +119,7 @@ function buildDatasetNotes(row) {
 }
 
 // Bulk input invoice dari file CSV/Excel-export atau tabel yang dipaste dari Excel.
-router.post('/bulk', async (req, res) => {
+router.post('/bulk', requireRole('admin', 'staff'), async (req, res) => {
   const transaction = await sequelize.transaction();
   try {
     const rows = Array.isArray(req.body.rows) ? req.body.rows : [];
@@ -217,7 +217,7 @@ router.get('/:id', async (req, res) => {
 });
 
 // ─── POST /api/invoices ──────────────────────────────────────────
-router.post('/', async (req, res) => {
+router.post('/', requireRole('admin', 'staff'), async (req, res) => {
   try {
     const { customerId, driverId, amount, date, dueDate, status, priority,
             schedule, cutoff, deliveryDate, notes, invoiceNo } = req.body;
@@ -250,7 +250,7 @@ router.post('/', async (req, res) => {
 });
 
 // ─── PUT /api/invoices/:id ───────────────────────────────────────
-router.put('/:id', async (req, res) => {
+router.put('/:id', requireRole('admin', 'staff'), async (req, res) => {
   try {
     const invoice = await Invoice.findByPk(req.params.id);
     if (!invoice) return res.status(404).json({ success: false, message: 'Invoice tidak ditemukan.' });
@@ -268,7 +268,7 @@ router.put('/:id', async (req, res) => {
 });
 
 // ─── DELETE /api/invoices/:id ────────────────────────────────────
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', requireRole('admin', 'staff'), async (req, res) => {
   try {
     const invoice = await Invoice.findByPk(req.params.id);
     if (!invoice) return res.status(404).json({ success: false, message: 'Invoice tidak ditemukan.' });

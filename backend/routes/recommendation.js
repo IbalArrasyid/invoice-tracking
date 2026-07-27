@@ -2,9 +2,9 @@ const router = require('express').Router();
 const axios  = require('axios');
 const { Op } = require('sequelize');
 const { Invoice, Customer, Driver, DeliveryRecommendation, DeliveryAnalyticsLog } = require('../models');
-const { authMiddleware } = require('../middleware/auth');
+const { authMiddleware, requireRole } = require('../middleware/auth');
 
-router.use(authMiddleware);
+router.use(authMiddleware, requireRole('admin', 'staff'));
 
 const AI_MODULE_URL = process.env.AI_MODULE_URL || 'http://localhost:5001';
 

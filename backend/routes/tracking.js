@@ -55,6 +55,20 @@ router.patch('/:id', async (req, res) => {
         message: `Status tidak valid. Pilih: ${validStatuses.join(', ')}`,
       });
     }
+    if (req.user?.role === 'driver') {
+      if (status === 'Dalam Pengiriman' && !courierSignature) {
+        return res.status(400).json({
+          success: false,
+          message: 'Tanda tangan kurir wajib diisi saat mulai pengiriman.',
+        });
+      }
+      if (status === 'Terkirim' && (!receiverName || !receiverSignature)) {
+        return res.status(400).json({
+          success: false,
+          message: 'Nama dan tanda tangan penerima wajib diisi saat invoice diterima.',
+        });
+      }
+    }
 
     const invoice = await Invoice.findByPk(req.params.id);
     if (!invoice) return res.status(404).json({ success: false, message: 'Invoice tidak ditemukan.' });

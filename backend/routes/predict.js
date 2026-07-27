@@ -1,9 +1,9 @@
 const router = require('express').Router();
 const axios  = require('axios');
 const { PriorityLog } = require('../models');
-const { authMiddleware } = require('../middleware/auth');
+const { authMiddleware, requireRole } = require('../middleware/auth');
 
-router.use(authMiddleware);
+router.use(authMiddleware, requireRole('admin', 'staff'));
 
 /**
  * Logika C4.5 rule-based (sama dengan simulateC45Prediction di frontend).

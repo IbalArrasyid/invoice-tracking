@@ -3,6 +3,7 @@ import { Search, MapPin, Clock, CheckCircle2, Truck, Package, AlertCircle, Rotat
 import { trackingService } from '../api';
 import { getStatusBadgeClass, formatDate, formatDateTime } from '../data/mockData';
 import { getThesisInvoice, normalizeThesisLabel, thesisPriorityBadgeClass } from '../utils/thesisDataset';
+import { isDriverUser } from '../utils/auth';
 
 const STATUS_STEPS = {
   'Menunggu': 1,
@@ -57,6 +58,7 @@ function getVisiblePriorityBadgeClass(priority) {
 }
 
 export default function TrackerPage() {
+  const isDriver = isDriverUser();
   const [invoices, setInvoices] = useState([]);
   const [search, setSearch] = useState('');
   const [statusFilter, setStatusFilter] = useState('Semua');
@@ -234,13 +236,15 @@ export default function TrackerPage() {
                       </span>
                     </div>
                   </div>
-                  <button className="btn btn-primary btn-sm" onClick={() => setShowUpdateForm(!showUpdateForm)}>
-                    Update Status
-                  </button>
+                  {!isDriver && (
+                    <button className="btn btn-primary btn-sm" onClick={() => setShowUpdateForm(!showUpdateForm)}>
+                      Update Status
+                    </button>
+                  )}
                 </div>
 
                 {/* Update form */}
-                {showUpdateForm && (
+                {!isDriver && showUpdateForm && (
                   <div style={{ padding: '14px 16px', background: 'var(--bg-input)', borderRadius: 'var(--radius-md)', marginBottom: 16, border: '1px solid var(--border)' }}>
                     <div style={{ fontSize: '0.8rem', fontWeight: 600, color: 'var(--text-secondary)', marginBottom: 10 }}>
                       Update Status Pengiriman

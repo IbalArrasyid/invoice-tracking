@@ -1,8 +1,8 @@
 const router = require('express').Router();
 const { Driver } = require('../models');
-const { authMiddleware } = require('../middleware/auth');
+const { authMiddleware, requireRole } = require('../middleware/auth');
 
-router.use(authMiddleware);
+router.use(authMiddleware, requireRole('admin', 'staff'));
 
 router.get('/', async (req, res) => {
   try {
